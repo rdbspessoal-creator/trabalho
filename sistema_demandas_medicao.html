@@ -303,10 +303,11 @@
       <h2>Base de clientes carregada</h2>
       <p class="muted" id="dadosInfo"></p>
       <p class="hint">
-        Este pacote inclui uma <b>base de clientes de demonstração</b> (poucos registros, apenas para validar o algoritmo
-        de correlação e o fluxo completo). Para produção, importe abaixo o JSON completo gerado a partir de
-        <code>Demanda_de_Medição_Modelo.xlsx</code> (abas HISTÓRICO_ORIGINAL + MÊS_ATUAL → 429 registros) e
-        <code>CLIENTES_X_EQUIPE.xlsx</code> (258 clientes). O formato de cada arquivo é documentado no <code>README.md</code>.
+        Base de clientes (<code>data/seed-clientes.json</code>, 256 registros — 254 da planilha
+        <code>CLIENTES_X_EQUIPE.xlsx</code> + 2 lacunas já resolvidas) e histórico de demandas
+        (<code>data/seed-demandas.json</code>, 428 registros de <code>Demanda_de_Medição_Modelo.xlsx</code>)
+        carregados automaticamente na primeira execução. Use os campos abaixo para importar uma atualização
+        dessas planilhas (o formato de cada arquivo é documentado no <code>README.md</code>).
       </p>
       <div class="row">
         <div class="col">
@@ -410,12 +411,34 @@ function correlate(clienteRaw){
 // ---------------------------------------------------------------------
 // Carga inicial
 // ---------------------------------------------------------------------
-async function loadDemoClientes(){
+const KEY_SEED_LOADED = 'seed-carregado-v1';
+
+async function loadJson(path){
   try{
-    const res = await fetch('data/seed-clientes-demo.json');
+    const res = await fetch(path);
     if(res.ok) return await res.json();
   }catch(e){}
-  return [];
+  return null;
+}
+
+function seedRecordToDemanda(r, now){
+  return {
+    id: uid(),
+    cliente: r.cliente || '',
+    executante: r.executante || '',
+    tecnico: r.executante || '',
+    area: r.area || C.execToArea(r.executante || ''),
+    data: r.data || '',
+    defeito: r.defeito || '',
+    acao: r.acao || '',
+    detalhamento: r.detalhamento || '',
+    origem: 'seed',
+    status: 'historico',
+    score: null,
+    match: null,
+    criadoEm: now,
+    statusOp: 'resolvida'
+  };
 }
 
 async function init(){
@@ -424,10 +447,24 @@ async function init(){
   state.apiKey = await storageAdapter.get(KEY_APIKEY, '');
   let clientes = await storageAdapter.get(KEY_CLIENTES, null);
   if(!clientes || !clientes.length){
-    clientes = await loadDemoClientes();
+    clientes = await loadJson('data/seed-clientes.json') || [];
+    state.clientes = clientes;
     await persistClientes();
+  } else {
+    state.clientes = clientes;
   }
-  state.clientes = clientes;
+
+  const seedLoaded = await storageAdapter.get(KEY_SEED_LOADED, false);
+  if(!seedLoaded){
+    const seedDemandas = await loadJson('data/seed-demandas.json');
+    if(seedDemandas){
+      const now = new Date().toISOString();
+      const novos = (seedDemandas.historico||[]).concat(seedDemandas.mesAtual||[]).map(r=>seedRecordToDemanda(r, now));
+      state.demandas = novos.concat(state.demandas);
+      await persistDemandas();
+    }
+    await storageAdapter.set(KEY_SEED_LOADED, true);
+  }
 
   if(state.apiKey){ document.getElementById('btnApiKey').style.display='inline-block'; }
   renderAll();

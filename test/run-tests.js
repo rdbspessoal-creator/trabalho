@@ -10,8 +10,8 @@ const assert = require('assert');
 
 const Core = require(path.join(__dirname, '..', 'core.js'));
 const fixture = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixture-imagem-teste.json'), 'utf8'));
-const dataClientesDemo = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '..', 'data', 'seed-clientes-demo.json'), 'utf8')
+const dataClientesReais = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '..', 'data', 'seed-clientes.json'), 'utf8')
 );
 
 let passed = 0;
@@ -94,53 +94,67 @@ test('todas as 8 linhas produzem data ISO válida 2026-08-03', () => {
   });
 });
 
-console.log('\nCorrelação Cliente -> Área -> Técnico (base demo)\n');
+console.log(`\nCorrelação Cliente -> Área -> Técnico (base REAL: ${dataClientesReais.length} clientes de CLIENTES_X_EQUIPE.xlsx)\n`);
 
-test('GERDAU correlaciona com OESTE/ILTEARLE (score alto, sem alterar o texto)', () => {
-  const r = Core.correlateClient('ERPM - GERDAU', dataClientesDemo, {});
+test('base de clientes real tem 258 registros (254 da planilha + 4 lacunas resolvidas da seção 8)', () => {
+  assert.strictEqual(dataClientesReais.length, 258);
+});
+
+test('as 8 estações da imagem correlacionam contra a base real como esperado (7 mapeadas, 1 lacuna genuína)', () => {
+  const results = fixture.linhas.map((row) => Core.correlateClient(row.estacao, dataClientesReais, {}));
+  const naoSemCorrelacao = results.filter((r) => r.status !== 'sem-correlacao');
+  assert.strictEqual(
+    naoSemCorrelacao.length,
+    7,
+    `esperado 7 estações correlacionadas, obtido ${naoSemCorrelacao.length}`
+  );
+});
+
+test('ERPM - GERDAU correlaciona com OESTE/ILTEARLE contra a base real', () => {
+  const r = Core.correlateClient('ERPM - GERDAU', dataClientesReais, {});
+  assert.strictEqual(r.area, 'OESTE');
+  assert.strictEqual(r.tecnico, 'ILTEARLE');
+  assert.ok(r.score >= 0.42);
+});
+
+test('ERPM - PERQUÍMICA correlaciona com alta confiança (status ok) para SUL/RUBENING', () => {
+  const r = Core.correlateClient('ERPM - PERQUÍMICA', dataClientesReais, {});
   assert.strictEqual(r.status, 'ok');
+  assert.strictEqual(r.area, 'SUL');
+  assert.strictEqual(r.tecnico, 'RUBENING');
+});
+
+test('ERPM - POSTO IND - PRINCESA ISABEL correlaciona com NORTE/BRUNO (lacuna resolvida, seção 8)', () => {
+  const r = Core.correlateClient('ERPM - POSTO IND - PRINCESA ISABEL', dataClientesReais, {});
+  assert.ok(r.score >= 0.42, `score muito baixo: ${r.score}`);
+  assert.strictEqual(r.area, 'NORTE');
+  assert.strictEqual(r.tecnico, 'BRUNO');
+});
+
+test('ERPM - MAURICÉA RAÇÕES (variante de grafia) correlaciona com OESTE/ILTEARLE', () => {
+  const r = Core.correlateClient('ERPM - MAURICÉA RAÇÕES', dataClientesReais, {});
+  assert.ok(r.score >= 0.42, `score muito baixo: ${r.score}`);
   assert.strictEqual(r.area, 'OESTE');
   assert.strictEqual(r.tecnico, 'ILTEARLE');
 });
 
-test('POSTO IND - PRINCESA ISABEL correlaciona com NORTE/BRUNO (lacuna resolvida, seção 8)', () => {
-  const r = Core.correlateClient('ERPM - POSTO IND - PRINCESA ISABEL', dataClientesDemo, {});
-  assert.ok(r.score >= 0.42, `score muito baixo: ${r.score}`);
-  assert.strictEqual(r.area, 'NORTE');
-  assert.strictEqual(r.tecnico, 'BRUNO');
-});
-
-test('MAURICÉA RAÇÕES (com acento) correlaciona com OESTE/ILTEARLE mesmo com variante de grafia', () => {
-  const r = Core.correlateClient('ERPM - MAURICÉA RAÇÕES', dataClientesDemo, {});
-  assert.ok(r.score >= 0.42, `score muito baixo: ${r.score}`);
-  assert.strictEqual(r.area, 'OESTE');
-});
-
-test('cliente totalmente desconhecido (CERÂMICA MARI 2) fica sem-correlacao contra base demo', () => {
-  const r = Core.correlateClient(
-    'ERPM - CERÂMICA MARI 2 (MORAES ARTEFATOS CERÂMICOS 2)',
-    dataClientesDemo,
-    {}
-  );
+test('ERPM - POSTO IND - MM PETROLEO TACARUNA fica sem-correlacao (lacuna genuína e ainda não resolvida)', () => {
+  const r = Core.correlateClient('ERPM - POSTO IND - MM PETROLEO TACARUNA', dataClientesReais, {});
   assert.strictEqual(r.status, 'sem-correlacao');
   assert.strictEqual(r.area, null);
 });
 
-test('override manual passa a resolver um cliente antes sem-correlacao', () => {
+test('override manual resolve a lacuna do MM PETROLEO TACARUNA', () => {
   const overrides = {
-    [Core.normalize('ERPM - CERÂMICA MARI 2 (MORAES ARTEFATOS CERÂMICOS 2)')]: {
-      label: 'ERPM - CERÂMICA MARI 2 (MORAES ARTEFATOS CERÂMICOS 2)',
-      area: 'NORTE',
+    [Core.normalize('ERPM - POSTO IND - MM PETROLEO TACARUNA')]: {
+      label: 'ERPM - POSTO IND - MM PETROLEO TACARUNA',
+      area: 'OESTE',
     },
   };
-  const r = Core.correlateClient(
-    'ERPM - CERÂMICA MARI 2 (MORAES ARTEFATOS CERÂMICOS 2)',
-    dataClientesDemo,
-    overrides
-  );
+  const r = Core.correlateClient('ERPM - POSTO IND - MM PETROLEO TACARUNA', dataClientesReais, overrides);
   assert.strictEqual(r.status, 'ok');
-  assert.strictEqual(r.area, 'NORTE');
-  assert.strictEqual(r.tecnico, 'BRUNO');
+  assert.strictEqual(r.area, 'OESTE');
+  assert.strictEqual(r.tecnico, 'ILTEARLE');
 });
 
 test('execToArea deriva área a partir do EXECUTANTE de registros seed', () => {
@@ -148,6 +162,16 @@ test('execToArea deriva área a partir do EXECUTANTE de registros seed', () => {
   assert.strictEqual(Core.execToArea('RUBENING SANTOS'), 'SUL');
   assert.strictEqual(Core.execToArea('ILTEARLE COSTA'), 'OESTE');
   assert.strictEqual(Core.execToArea('MEDIÇÃO'), 'OUTRO');
+});
+
+console.log('\nSeed de histórico real (Demanda_de_Medição_Modelo.xlsx)\n');
+
+test('seed-demandas.json tem 419 registros de HISTÓRICO_ORIGINAL e 9 de MÊS_ATUAL', () => {
+  const seed = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '..', 'data', 'seed-demandas.json'), 'utf8')
+  );
+  assert.strictEqual(seed.historico.length, 419);
+  assert.strictEqual(seed.mesAtual.length, 9);
 });
 
 console.log(`\n${passed} passaram, ${failed} falharam.`);

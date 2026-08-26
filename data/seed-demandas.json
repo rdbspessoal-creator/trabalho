@@ -1,0 +1,3858 @@
+{
+  "historico": [
+    {
+      "cliente": "MUSASHI",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-01-07",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "ATUALIZAR ARQUIVO PAR DO CVAZ",
+      "detalhamento": "RESOLVER PROBLEMA DE INTEGRAÇÃO DO HISTÓRICO"
+    },
+    {
+      "cliente": "POSTO IND - JUSTINO E XAVIER",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-07",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "INFRA CONCLUIDA | FALTA INSTALAR FLEX"
+    },
+    {
+      "cliente": "INGREDION",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-01-07",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "ULTIMO DADO 06/01 E SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "SSM INDUSTRIAL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-07",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "EM PROCESSO DE MUDANÇA. SERÁ DISTRATADO"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-07",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "HEINEKEN GUABIRABA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-07",
+      "defeito": "N/A",
+      "acao": "DESATIVAR DO GÁS ONLINE",
+      "detalhamento": "ERPM REMOVIDA"
+    },
+    {
+      "cliente": "HEINEKEN IGARASSU",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-07",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DISTRATO EM ANDAMENTO. AGUARDANDO CJUR"
+    },
+    {
+      "cliente": "ONDUNORTE",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-07",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "CLIENTE VOLTOU A CONSUMIR | AGENDADA VISITA DA AUTOMAÇÃO"
+    },
+    {
+      "cliente": "POSTO BR - BANDEIRANTE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-01-14",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "ULTIMA CONEXÃO 07/01"
+    },
+    {
+      "cliente": "ONDUNORTE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-01-14",
+      "defeito": "N/A",
+      "acao": "VERIFICAR PRESSÃO DE ENTRADA",
+      "detalhamento": "GÁS ONLINE INDICANDO VALOR INCOERENTE"
+    },
+    {
+      "cliente": "POSTO IND - JUSTINO E XAVIER",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-14",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "QUEDA 220V - 07/01"
+    },
+    {
+      "cliente": "POSTO IND - PICHILAU CARUARU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-14",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "FUNCIONANDO PELA BATERIA | QUEDA 220V - 10/01"
+    },
+    {
+      "cliente": "POSTO IND - AUTOPETRO CAMARAGIBE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-14",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "VERIFICAR FALHA NA INDICAÇÃO DE PRESSÃO",
+      "detalhamento": "GÁS ONLINE INDICANDO FUNDO DE ESCALA (-1,03 KGF/CM²)"
+    },
+    {
+      "cliente": "POSTO BR - C. TORREÃO",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-14",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "ATUALIZAR MODELO DO CVAZ",
+      "detalhamento": "XARTU >>> MACBAT5"
+    },
+    {
+      "cliente": "REVERSE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-01-14",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "FUNCIONANDO PELA BATERIA | QUEDA 220V - 12/01"
+    },
+    {
+      "cliente": "POSTO IND - CJCM AEROPORTO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-01-14",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "ATUALIZAR MODELO DO CVAZ",
+      "detalhamento": "XARTU >>> MACBAT5"
+    },
+    {
+      "cliente": "AUTOMETAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-01-14",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "ULTIMA CONEXÃO 12/01"
+    },
+    {
+      "cliente": "PEPSICO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-01-14",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "ULTIMA CONEXÃO 10/01"
+    },
+    {
+      "cliente": "SSM INDUSTRIAL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-14",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "EM PROCESSO DE MUDANÇA. SERÁ DISTRATADO"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-14",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "HEINEKEN GUABIRABA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-14",
+      "defeito": "N/A",
+      "acao": "DESATIVAR DO GÁS ONLINE",
+      "detalhamento": "ERPM REMOVIDA"
+    },
+    {
+      "cliente": "HEINEKEN IGARASSU",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-14",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DISTRATO EM ANDAMENTO. AGUARDANDO CJUR"
+    },
+    {
+      "cliente": "ONDUNORTE",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-14",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "CLIENTE VOLTOU A CONSUMIR"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-01-21",
+      "defeito": "N/A",
+      "acao": "REALIZAR PREDITIVAS",
+      "detalhamento": "ÁREA NORTE"
+    },
+    {
+      "cliente": "POSTO BR – ALPES SUIÇOS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-21",
+      "defeito": "OUTROS",
+      "acao": "REALIZAR ALINHAMENTO DE LEITURA",
+      "detalhamento": "MVAZ SUBSTITUÍDO EM 20/01"
+    },
+    {
+      "cliente": "ETC GARANHUNS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-21",
+      "defeito": "N/A",
+      "acao": "SUBSTITUIÇÃO DO CVAZ",
+      "detalhamento": "ATENDIMENTO DO PAC"
+    },
+    {
+      "cliente": "POSTO IND - PETRO CABO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-01-21",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 17/01 - 16:00h | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "ASA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-01-21",
+      "defeito": "N/A",
+      "acao": "VERIFICAR VARIAÇÃO NO SENSOR ZSL-B",
+      "detalhamento": "GÁS ONLINE INDICANDO VARIAÇÃO DE FORMA INTERMITENTE"
+    },
+    {
+      "cliente": "SSM INDUSTRIAL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-21",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "EM PROCESSO DE MUDANÇA. SERÁ DISTRATADO"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-21",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "VIVIX",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-01-28",
+      "defeito": "N/A",
+      "acao": "ACOMPANHAMENTO SYSPRO",
+      "detalhamento": "HABILITAÇÃO SAÍDA DE PULSO HF | TROCA MÓDULO CPU"
+    },
+    {
+      "cliente": "ETC 402",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-28",
+      "defeito": "N/A",
+      "acao": "TREINAMENTO SYSPRO EM CAMPO",
+      "detalhamento": "NOVO SISTEMA DE MEDIÇÃO"
+    },
+    {
+      "cliente": "POSTO IND - PETROCAL CAXANGÁ",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-01-28",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "QUEDA 220V - 26/01"
+    },
+    {
+      "cliente": "MASTERFOODS",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-01-28",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "VERIFICAR INFRA DE TELEMETRIA | TROCA ERPM 26/01"
+    },
+    {
+      "cliente": "VENOSAN",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-01-28",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 26/01"
+    },
+    {
+      "cliente": "SSM INDUSTRIAL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-28",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "EM PROCESSO DE MUDANÇA. SERÁ DISTRATADO"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-28",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "CIA DA DELICIA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-01-28",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS INSTANTÂNEOS NO GÁS ONLINE"
+    },
+    {
+      "cliente": "MASTERFOODS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-02-03",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR PAINEL",
+      "detalhamento": "INFRA DE TELEMETRIA CONCLUÍDA"
+    },
+    {
+      "cliente": "CAPRICHE (GL ALIMENTOS)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-02-03",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 28/01 | SEM INDICAÇÃO DE QUEDA DE 220V"
+    },
+    {
+      "cliente": "BRF (SADIA)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-02-03",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "VERIFICAR FALTA DE 220V",
+      "detalhamento": "QUEDA EM 26/01 (17:00H)"
+    },
+    {
+      "cliente": "ACUMULADORES MOURA UN 1",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-02-04",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VER FALTA DE 220V | TROCAR BATERIA",
+      "detalhamento": "QUEDA EM 27/01 (14:00H)"
+    },
+    {
+      "cliente": "P. IMPÉRIO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-02-03",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR PAINEL",
+      "detalhamento": "INFRA DE TELEMETRIA CONCLUÍDA"
+    },
+    {
+      "cliente": "P. CABANGA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-02-03",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VER FALTA DE 220V | TROCAR BATERIA",
+      "detalhamento": "QUEDA EM 31/01 (13:00H)"
+    },
+    {
+      "cliente": "PEPSICO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-02-03",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 28/01 | SEM INDICAÇÃO DE QUEDA DE 220V"
+    },
+    {
+      "cliente": "P. BEZERRA DE MENEZES",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-02-03",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE 220V",
+      "detalhamento": "QUEDA EM 28/01 (02:00H)"
+    },
+    {
+      "cliente": "P. CIDADE CARPINA",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-02-03",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE 220V",
+      "detalhamento": "QUEDA EM 23/01 (22:00H)"
+    },
+    {
+      "cliente": "SSM INDUSTRIAL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-02-03",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "EM PROCESSO DE MUDANÇA. SERÁ DISTRATADO"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-02-03",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "CIA DA DELICIA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-02-03",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS INSTANTÂNEOS NO GÁS ONLINE"
+    },
+    {
+      "cliente": "POSTO BR - BANDEIRANTE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-02-11",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 04/02 NO GÁS ONLINE"
+    },
+    {
+      "cliente": "POSTO IND - PETRO ABDIAS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-02-11",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "CONSIDERAR TROCA DA BATERIA | QUEDA 220V EM 10/02"
+    },
+    {
+      "cliente": "POSTO IND - CONCORDE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-02-11",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "QUEDA 220V EM 04/02"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-02-11",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "CIA DA DELICIA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-02-11",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS INSTANTÂNEOS NO GÁS ONLINE"
+    },
+    {
+      "cliente": "-",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-02-25",
+      "defeito": "N/A",
+      "acao": "TROCA CVAZ",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "-",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-02-25",
+      "defeito": "N/A",
+      "acao": "FÉRIAS",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "-",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-02-25",
+      "defeito": "N/A",
+      "acao": "TROCA CVAZ",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO IND - GMV",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-02-26",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "AGUARDAR RETORNO DA GETI | COLETAR MEDIÇÃO",
+      "detalhamento": "ANÁLISE DA GETI SOBRE BLOQUEIO CHIP VIVO"
+    },
+    {
+      "cliente": "POSTO IND - MM PETROLEO TACARUNA",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-02-26",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "AGUARDAR RETORNO DA GETI | COLETAR MEDIÇÃO",
+      "detalhamento": "ANÁLISE DA GETI SOBRE BLOQUEIO CHIP VIVO"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-02-25",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "CIA DA DELICIA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-02-25",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS INSTANTÂNEOS NO GÁS ONLINE"
+    },
+    {
+      "cliente": "POSTO - ROTA BULTRINS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-03-11",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR PAINEL (LEVAR FLEX E BATERIA)",
+      "detalhamento": "INFRA DE TELEMETRIA CONCLUÍDA | PAINEL ENERGIZADO"
+    },
+    {
+      "cliente": "POSTO - MM TACARUNA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-03-11",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "TROCA CVAZ",
+      "detalhamento": "CVAZ INSTALADO APRESENTANDO FALHA NA PRESSÃO"
+    },
+    {
+      "cliente": "POSTO - ECO VITÓRIA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-03-11",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 28/02"
+    },
+    {
+      "cliente": "POSTO - ARCO-ÍRIS POMBOS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-03-11",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 05/03"
+    },
+    {
+      "cliente": "POSTO PICHILAU CARUARU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-03-11",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "VERIFICAR PROBLEMA RECORRENTE DE QUEDA DE 220V",
+      "detalhamento": "TELEMETRIA OK | BATERIA ATUANDO"
+    },
+    {
+      "cliente": "-",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-03-11",
+      "defeito": "N/A",
+      "acao": "TROCA CVAZ",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-03-11",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "CIA DA DELICIA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-03-11",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS INSTANTÂNEOS NO GÁS ONLINE"
+    },
+    {
+      "cliente": "UNILEVER IGARASSU",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-03-25",
+      "defeito": "OUTROS",
+      "acao": "INTEGRAÇÃO SMS | REALIZAR ALINHAMENTO DE LEITURA",
+      "detalhamento": "MVAZ SUBSTITUÍDO EM 24/03"
+    },
+    {
+      "cliente": "WLC HAKATA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-03-26",
+      "defeito": "N/A",
+      "acao": "TROCA CVAZ",
+      "detalhamento": "ATENDIMENTO DO PAC"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-03-25",
+      "defeito": "N/A",
+      "acao": "REALIZAR PREDITIVAS",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO TANCREDO NEVES",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-03-25",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "INTEGRAR CVAZ SUBSTITUÍDO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "DURATEX",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-03-25",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "VERIFICAR FALTA DE ALIMENTAÇÃO 220V (RECORRENTE)",
+      "detalhamento": "POSSÍVEL PROBLEMA NA FONTE"
+    },
+    {
+      "cliente": "REVERSE AMBIENTAL",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-03-25",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "VERIFICAR FALTA DE ALIMENTAÇÃO 220V",
+      "detalhamento": "QUEDA 19/03"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-03-25",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "CIA DA DELICIA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-03-25",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS INSTANTÂNEOS NO GÁS ONLINE"
+    },
+    {
+      "cliente": "POSTO ONZE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-04-01",
+      "defeito": "FALHA NO PULSO",
+      "acao": "VERIFICAR ALINHAMENTO DE LEITURA | TESTES DE PULSO",
+      "detalhamento": "GÁS ONLINE INDICANDO PICOS DE VAZÃO"
+    },
+    {
+      "cliente": "POSTO CEMOPEL 2",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-04-01",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "SUBSTITUIR CVAZ",
+      "detalhamento": "CVAZ INDICANDO PRESSÃO ZERO (ERRO)"
+    },
+    {
+      "cliente": "POSTO PETRÓLEO GÁS (NORTEBRAZ 2)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-04-01",
+      "defeito": "N/A",
+      "acao": "TROCAR FLEX (FALHA NA INDICAÇÃO DE PIT DE REDE)",
+      "detalhamento": "GÁS ONLINE INDICANDO FALHA NAS PORTAS ANALÓGICAS"
+    },
+    {
+      "cliente": "POSTO TANCREDO NEVES",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-04-01",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "SUBSTITUIR CVAZ",
+      "detalhamento": "FALHA NA ESCRITA REMOTA DA CROMA"
+    },
+    {
+      "cliente": "INGREDION",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-04-01",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "SUBSTITUIR CVAZ",
+      "detalhamento": "FALHA NA ELETRÔNICA (P E T ZERO EM ALGUNS MOMENTOS)"
+    },
+    {
+      "cliente": "NIAGRO",
+      "executante": "HUGO",
+      "area": "OUTRO",
+      "data": "2025-04-01",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "CLIENTE ACIONADO PARA VERIFICAR DISPONIBILIDADE DE ENERGIA"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-04-01",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "BAIXO CUSTO DA EE. GCVI COBRARÁ CUMRPIMENTO DO CONTRATO"
+    },
+    {
+      "cliente": "CIA DA DELICIA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-04-01",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS INSTANTÂNEOS NO GÁS ONLINE"
+    },
+    {
+      "cliente": "CBA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-04-29",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "VERIFICAR ALIMENTAÇÃO 220V",
+      "detalhamento": "TELEMETRIA FUNCIONANDO VIA BATERIA"
+    },
+    {
+      "cliente": "POSTO CARTAXO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-04-29",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO 220V | TROCAR BATERIA",
+      "detalhamento": "BATERIA AFUNDOU COM MENOS DE 12H"
+    },
+    {
+      "cliente": "AGC",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-04-29",
+      "defeito": "N/A",
+      "acao": "CONFIRMAR ALINHAMENTO DE LEITURA",
+      "detalhamento": "SUSPEITA DE FALHA NO PULSO"
+    },
+    {
+      "cliente": "POSTO JUSTINO XAVIER",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-04-29",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "VERIFICAR ALIMENTAÇÃO 220V",
+      "detalhamento": "TELEMETRIA FUNCIONANDO VIA BATERIA"
+    },
+    {
+      "cliente": "POSTO ANDALUZIA (PETROVIA - CAMARAGIBE)",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-04-29",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR POSSIBILIDADE DE INTEGRAÇÃO",
+      "detalhamento": "AVALIAR CONCLUSÃO DA MRS E DISPONIBILIDADE DE ENERGIA (VECTOR)"
+    },
+    {
+      "cliente": "POSTO PETROCAL CONSELHEIRO (VERALI)",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-04-29",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA NO CVAZ",
+      "detalhamento": "FLEX OK (ENVIANDO DADOS DELA). FALHA NO CVAZ APÓS FALTA/RETORNO DE 220V."
+    },
+    {
+      "cliente": "POSTO ARCO ÍRIS - POMBOS",
+      "executante": "R. PEREIRA",
+      "area": "OUTRO",
+      "data": "2025-04-29",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "BAIXAR RELATÓRIO DO CVAZ E REGISTRAR FOTO DAS LEITURAS DO MVAZ E CVAZ"
+    },
+    {
+      "cliente": "FGS GERAÇÃO",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-04-29",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "GCVI COBRARÁ CUMRPIMENTO DO CONTRATO. REMOVIDO CVAZ"
+    },
+    {
+      "cliente": "SSM",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-04-29",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "EM VIA DE DISTRATO. REMOVIDO CVAZ E PAINEL"
+    },
+    {
+      "cliente": "CIA DA DELICIA",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-04-29",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS INSTANTÂNEOS NO GÁS ONLINE"
+    },
+    {
+      "cliente": "-",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-05-06",
+      "defeito": "N/A",
+      "acao": "REALIZAR PREDITIVA DA ÁREA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO CAMPEÃO PAUDALHO",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-05-06",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 28/04 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "POSTO PEREIRA E LUCENA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-05-06",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR PAINEL (ERPM + ERP)",
+      "detalhamento": "INFRA OK | PAINEL ENERGIZADO"
+    },
+    {
+      "cliente": "POSTO ARCO ÍRIS POMBOS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-05-06",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | SUBSTITUIR FLEX",
+      "detalhamento": "DADOS ATÉ 22/04"
+    },
+    {
+      "cliente": "-",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-05-06",
+      "defeito": "N/A",
+      "acao": "REALIZAR PREDITIVA DA ÁREA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-05-06",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "CIA DA DELÍCIA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-05-13",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "Dados até 09/05"
+    },
+    {
+      "cliente": "GNV - MASTERGAS GRAVATÁ",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-05-13",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO ENTRE CVAZ E FLEX",
+      "detalhamento": "FLEX conectada e enviando dados dela"
+    },
+    {
+      "cliente": "POSTO TOTAL - IBIZA II",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-05-13",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "Dados até 08/05"
+    },
+    {
+      "cliente": "-",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-05-13",
+      "defeito": "N/A",
+      "acao": "REALIZAR PREDITIVA DA ÁREA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-05-13",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "CIA DA DELÍCIA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-05-20",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "Dados até 09/05"
+    },
+    {
+      "cliente": "POSTO ANDALUZIA (PETROVIA - CAMARAGIBE)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-05-20",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "Dados até 16/05"
+    },
+    {
+      "cliente": "-",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-05-20",
+      "defeito": "N/A",
+      "acao": "REALIZAR PREDITIVA DA ÁREA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-05-20",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "CIA DA DELÍCIA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-05-27",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO CVAZ",
+      "detalhamento": "MODEM CONECTADO E ENVIANDO DADOS APENAS DA FLEX"
+    },
+    {
+      "cliente": "POSTO BR REAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-05-27",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO CVAZ",
+      "detalhamento": "MODEM CONECTADO E ENVIANDO DADOS APENAS DA FLEX"
+    },
+    {
+      "cliente": "AGENDA INTERIOR",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-05-27",
+      "defeito": "-",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "REVERSE AMBIENTAL",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-05-27",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO EXTERNA",
+      "detalhamento": "QUEDA 220V - 19/05 | DADOS ATÉ 23/05"
+    },
+    {
+      "cliente": "POSTO FÓRMULA IBURA",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-05-27",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 25/05"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-05-27",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "DURATEX",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-02",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V DO PAINEL",
+      "detalhamento": "CLIENTE INFORMOU QUE SEU DISJUNTOR ESTÁ OK"
+    },
+    {
+      "cliente": "ETC 422 - CABO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-02",
+      "defeito": "N/A",
+      "acao": "RESTABELECER COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "RELIGAR A COMUNICAÇÃO 485 DO FLOBOSS NA FLEX"
+    },
+    {
+      "cliente": "CIA DA DELÍCIA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-03",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER TELEMETRIA",
+      "detalhamento": "REINSTALAR FLEX E CVAZ TESTADOS NO LABORATÓRIO"
+    },
+    {
+      "cliente": "CBA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-03",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | TROCAR CHIP VIVO",
+      "detalhamento": "COMUNICAÇÃO INTERMITENTE COM A OPERADORA VIVO"
+    },
+    {
+      "cliente": "IACIL (CARUARU)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-06-02",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "VERIFICAR INFRA | COLETAR DADOS DE MEDIÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "MARNOL (CARUARU)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-06-02",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "VERIFICAR INFRA | COLETAR DADOS DE MEDIÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-06-02",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "EXPOMETAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-10",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK | PROBLEMA SEMELHANTE À CIA DA DELÍCIA"
+    },
+    {
+      "cliente": "CBA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-10",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "JOSINALDO ENTRARÁ EM CONTATO COM O CLIENTE"
+    },
+    {
+      "cliente": "ACHÉ",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-11",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "JOSINALDO ENTRARÁ EM CONTATO COM O CLIENTE"
+    },
+    {
+      "cliente": "ETC 422 - CABO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-11",
+      "defeito": "N/A",
+      "acao": "RESTABELECER COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DEIXAR APENAS O FLOBOSS CONECTADO NA FLEX PARA AVALIAÇÃO"
+    },
+    {
+      "cliente": "POSTO TAPAJÓS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-06-10",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR PAINEL",
+      "detalhamento": "FALTA FLEX E BATERIA"
+    },
+    {
+      "cliente": "RETIFICADOR OLINDA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-06-11",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "INSTALAR/INTEGRAR MODEM CARMEL",
+      "detalhamento": "AGENDA COM JOSINALDO + GDIS"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-06-10",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO REAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-06-17",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 11/06 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "POSTO TAPAJÓS (NAZARÉ)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-06-17",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR PAINEL",
+      "detalhamento": "FALTA FLEX E BATERIA"
+    },
+    {
+      "cliente": "ARGAMASSA DO MESTRE (NAZARÉ)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-06-17",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | LEVANTAR PENDÊNCIAS",
+      "detalhamento": "AGENDA COM PEDRO FIDELES"
+    },
+    {
+      "cliente": "ETC 422 - CABO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-06-17",
+      "defeito": "N/A",
+      "acao": "REALIZAR TESTES DE INTEGRAÇÃO DA SDO 422",
+      "detalhamento": "ATUALMENTE CONECTADA FLEX E FLOBOSS"
+    },
+    {
+      "cliente": "PAMESA 1",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-06-17",
+      "defeito": "FALHA NO PULSO",
+      "acao": "CONFIRMAR ALINHAMENTO DE LEITURA",
+      "detalhamento": "GÁS ONLINE INDICA PICO DE VAZÃO INCOERENTE NO DIA 10/06"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-06-17",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO FÁBRICA GOIANA",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-06-25",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "QUEDA 220V - 21/06"
+    },
+    {
+      "cliente": "ONDUNORTE",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-06-25",
+      "defeito": "FALHA NO PULSO",
+      "acao": "CONFIRMAR ALINHAMENTO DE LEITURA",
+      "detalhamento": "GÁS ONLINE INDICANDO VAZÃO ZERO COM PERFIL DE PRESSÃO DINÂMICA"
+    },
+    {
+      "cliente": "ISOESTE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-06-25",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO ENTRE CVAZ E FLEX",
+      "detalhamento": "DADOS DA FLEX OK"
+    },
+    {
+      "cliente": "MASSA PRONTA (ARGAMASSA DO MESTRE - NAZARÉ)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-06-25",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "NORAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-06-25",
+      "defeito": "N/A",
+      "acao": "RETIRAR CHIP CLARO E COLOCAR VIVO",
+      "detalhamento": "CHIP CLARO SERÁ UTILIZADO NA ETC SUAPE"
+    },
+    {
+      "cliente": "ETC 186 - SUAPE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-06-25",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "SUBSTITUIR CHIP (INSTALAR CHIP DA CLARO A SER RETIRADO DA NORAL)",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "PAMESA 1",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-06-25",
+      "defeito": "FALHA NO PULSO",
+      "acao": "CONFIRMAR ALINHAMENTO DE LEITURA",
+      "detalhamento": "GÁS ONLINE INDICA NOVO PICO DE VAZÃO INCOERENTE NO DIA 22/06"
+    },
+    {
+      "cliente": "ETC 422 - CABO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-06-27",
+      "defeito": "N/A",
+      "acao": "INSTALAR MODEM CARMEL PARA SDO | DEIXAR FLEX PARA FLOBOSS",
+      "detalhamento": "PEGAR MODEM CARMEL NO LAB GMAR SEXTA DE MANHÃ"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-06-25",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO TANCREDO NEVES",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-07-01",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "ISOESTE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-07-01",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO ENTRE CVAZ E FLEX",
+      "detalhamento": "DADOS DA FLEX OK"
+    },
+    {
+      "cliente": "POSTO PETRÓLEO GÁS (NORTEBRAZ 2)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-07-01",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER TELEMETRIA",
+      "detalhamento": "CONSIDERAR TROCA DE FLEX"
+    },
+    {
+      "cliente": "ETC 422 - CABO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-07-01",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER TELEMETRIA",
+      "detalhamento": "VERIFICAR INTEGRAÇÃO SDO X MODEM CARMEL"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-07-01",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "EXPOMETAL",
+      "executante": "R. PEREIRA",
+      "area": "OUTRO",
+      "data": "2025-07-08",
+      "defeito": "FALHA NO PULSO",
+      "acao": "VERIFICAR ALINHAMENTO DE LEITURA | TESTES DE PULSO",
+      "detalhamento": "SUSPEITA DE FALHA NO PULSO"
+    },
+    {
+      "cliente": "ONDUNORTE",
+      "executante": "R. PEREIRA",
+      "area": "OUTRO",
+      "data": "2025-07-08",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR LEITURA DO MEDIDOR TURBINA",
+      "detalhamento": "CVAZ COM PROBLEMA"
+    },
+    {
+      "cliente": "P. PETRO JÓQUEI",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-07-08",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 06/07"
+    },
+    {
+      "cliente": "P. BEZERRA DE MENEZES",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-07-08",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-07-08",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "-",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-07-08",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO PETROCAL CASA AMARELA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-08-12",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR DISPONIBILIDADE DE 220V",
+      "detalhamento": "INTEGRAÇÃO DO PAINEL PENDENTE"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-08-12",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR INTEGRIDADE DO MVAZ E CVAZ",
+      "detalhamento": "AGENDAR IDA COM ESCOLTA (CONTRATO GDIS)"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-08-12",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "BENTELER",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-08-26",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK"
+    },
+    {
+      "cliente": "POSTO IND - ONZE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-08-26",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR POSSIBILIDADE DE INTEGRAÇÃO",
+      "detalhamento": "AVALIAR AVANÇO DA INFRA NA NOVA ERPM"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-08-26",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "AGENDAR IDA COM ESCOLTA (CONTRATO GDIS)"
+    },
+    {
+      "cliente": "MARI 2",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-08-26",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | INSTALAR CVAZ",
+      "detalhamento": "INSTALAÇÃO DO PAINEL PENDENTE (MRS)"
+    },
+    {
+      "cliente": "NORAL 2",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-08-26",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK"
+    },
+    {
+      "cliente": "BENTELER",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-09-02",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK ATÉ 31/08"
+    },
+    {
+      "cliente": "POSTO IND - ONZE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-09-02",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR POSSIBILIDADE DE INTEGRAÇÃO",
+      "detalhamento": "AVALIAR AVANÇO DA INFRA NA NOVA ERPM"
+    },
+    {
+      "cliente": "BRASIL KIRIN IGARASSU (IBI)",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-09-02",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO",
+      "detalhamento": "QUEDA 220V | TROCAR BATERIA"
+    },
+    {
+      "cliente": "POSTO PETRO JÓQUEI",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-09-01",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO",
+      "detalhamento": "QUEDA 220V | TROCAR BATERIA"
+    },
+    {
+      "cliente": "POSTO JUSTINO XAVIER",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-09-01",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | INSTALAR FLEX",
+      "detalhamento": "FLEX REMOVIDA P/ GERDAU"
+    },
+    {
+      "cliente": "INDORAMA FIBRAS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-09-01",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO",
+      "detalhamento": "QUEDA 220V"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-09-16",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "CIPAN",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-09-16",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK"
+    },
+    {
+      "cliente": "MONDELEZ",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-09-16",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER TELEMETRIA",
+      "detalhamento": "DADOS ATÉ 12/09"
+    },
+    {
+      "cliente": "CALIBRAÇÃO | AGENDA TRESCAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-09-16",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2025-09-16",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR VOLUME ZERO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO REAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-09-23",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO SERRA V",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-09-23",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO",
+      "detalhamento": "QUEDA DE 220V"
+    },
+    {
+      "cliente": "FAL",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-09-23",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO | TROCAR BATERIA",
+      "detalhamento": "QUEDA DE 220V"
+    },
+    {
+      "cliente": "POSTO JUSTINO XAVIER",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-09-23",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "COMUNICAÇÃO INTERMITENTE"
+    },
+    {
+      "cliente": "POSTO PICHILAU CARUARU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-09-23",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO",
+      "detalhamento": "CONTATAR EQUIPE GDIS/CARUARU"
+    },
+    {
+      "cliente": "AGENDA TRESCAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-09-23",
+      "defeito": "N/A",
+      "acao": "VERIFICAR AGENDA COM PEDRO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO COSMORAMA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-09-23",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO | TROCAR BATERIA",
+      "detalhamento": "QUEDA DE 220V"
+    },
+    {
+      "cliente": "LACTALIS",
+      "executante": "CLEBSON",
+      "area": "OUTRO",
+      "data": "2025-09-23",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "REALIZAR DIAGNÓSTICO REMOTO | RESET DE CHIP",
+      "detalhamento": "DESCONECTADO ONTEM  -22/09"
+    },
+    {
+      "cliente": "LABORATÓRIO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-10-01",
+      "defeito": "N/A",
+      "acao": "TESTE FLEX VIA ETHERNET",
+      "detalhamento": "APLICAÇÃO GNC IGARASSU"
+    },
+    {
+      "cliente": "ARGAMASSA DO MESTRE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-10-01",
+      "defeito": "FALHA NO PULSO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR PULSO/ALINHAMENTO LEITURA",
+      "detalhamento": "GÁS ONLINE INDICANDO INCONSISTÊNCIA"
+    },
+    {
+      "cliente": "TERPHANE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-10-01",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ANDAMENTO DA INFRA PELA DIPON",
+      "detalhamento": "ERPM SUBSTITUÍDA ONTEM"
+    },
+    {
+      "cliente": "SM GESSO",
+      "executante": "CLEBSON",
+      "area": "OUTRO",
+      "data": "2025-10-01",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "REALIZAR DIAGNÓSTICO REMOTO | RESET DE CHIP",
+      "detalhamento": "DESCONECTADO ONTEM - 30/09"
+    },
+    {
+      "cliente": "QUARTZOLIT",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-10-07",
+      "defeito": "N/A",
+      "acao": "INTEGRAÇÃO SMS",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-10-07",
+      "defeito": "N/A",
+      "acao": "REALIZAR PREDITIVAS DA ÁREA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "TERPHANE PDP",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-10-07",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "ERPM SUBSTITUÍDA"
+    },
+    {
+      "cliente": "TERPHANE UTILIDADES",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-10-07",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "ERPM SUBSTITUÍDA"
+    },
+    {
+      "cliente": "POSTO COSTA DOURADA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-10-07",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 04/10"
+    },
+    {
+      "cliente": "UNILEVER IGARASSU",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-10-14",
+      "defeito": "OUTROS",
+      "acao": "REALIZAR ALINHAMENTO DE LEITURA (TROCA MVAZ À TARDE)",
+      "detalhamento": "CONFIRMAR LIBERAÇÃO COM Mª CLARA"
+    },
+    {
+      "cliente": "TROCAR CVAZ",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-10-14",
+      "defeito": "N/A",
+      "acao": "ATENDIMENTO DO PAC",
+      "detalhamento": "CVAZ'S LIBERADOS NO LABORATÓRIO"
+    },
+    {
+      "cliente": "POSTO CEMOCABO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-10-14",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "QUEDA DE 220V EM 09/10"
+    },
+    {
+      "cliente": "SM GESSO",
+      "executante": "CLEBSON",
+      "area": "OUTRO",
+      "data": "2025-10-14",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "TRATAR COM OPERADORA",
+      "detalhamento": "DADOS ATÉ 12/10"
+    },
+    {
+      "cliente": "WLC",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-10-29",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO (TROCA ERPM)",
+      "detalhamento": "VERIFICAR INFRA PARA RESTABELECER TELEMETRIA"
+    },
+    {
+      "cliente": "POSTO ECO VITÓRIA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-10-29",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "VERIFICAR FALHA DE COMUNICAÇÃO DO CVAZ (23/10)",
+      "detalhamento": "FLEX CONECTADA E ENVIANDO DADOS DELA"
+    },
+    {
+      "cliente": "AUTOMETAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-10-29",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO (TROCA ERPM)",
+      "detalhamento": "VERIFICAR INFRA PARA RESTABELECER TELEMETRIA"
+    },
+    {
+      "cliente": "POSTO COSTA DOURADA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-10-29",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "QUEDA DE 220V EM 19/10"
+    },
+    {
+      "cliente": "CALIBRAÇÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-11-03",
+      "defeito": "N/A",
+      "acao": "AGENDA TRESCAL",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "WLC",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-11-03",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO (TROCA ERPM)",
+      "detalhamento": "VERIFICAR INFRA PARA RESTABELECER TELEMETRIA"
+    },
+    {
+      "cliente": "AUTOMETAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-11-03",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO (TROCA ERPM)",
+      "detalhamento": "VERIFICAR INFRA PARA RESTABELECER TELEMETRIA"
+    },
+    {
+      "cliente": "SHOPPING GUARARAPES",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-11-03",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO SÃO CRISTÓVÃO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-11-03",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-11-04",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "MARI 2",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-11-04",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "ISOESTE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-11-04",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-11-04",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO PETRO JÓQUEI",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-11-11",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR CONCLUSÃO DA INFRA",
+      "detalhamento": "MRS AJUSTANDO INFRA DA ALIMENTAÇÃO 220V"
+    },
+    {
+      "cliente": "AGENDA INTERIOR",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-11-11",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "AUTOMETAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-11-11",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "SEM FLEX VINCULADA NO GÁS ONLINE"
+    },
+    {
+      "cliente": "POSTO SÃO CRISTÓVÃO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-11-11",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 04/11 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "M DIAS BRANCO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-11-11",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 10/11 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "POSTO REAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-11-18",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "DADOS ATÉ 14/11"
+    },
+    {
+      "cliente": "ECO POSTO VITÓRIA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-11-18",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "DADOS ATÉ 14/11"
+    },
+    {
+      "cliente": "BELLA VITA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-11-18",
+      "defeito": "N/A",
+      "acao": "DESCONECTAR CVAZ E DESENERGIZAR PAINEL",
+      "detalhamento": "GDIS REALIZARÁ REMOÇÃO DA ERPM HOJE (18/11)"
+    },
+    {
+      "cliente": "POSTO REAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-11-25",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "DADOS ATÉ 14/11"
+    },
+    {
+      "cliente": "POSTO AUTOPETRO CAMARAGIBE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-11-25",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "DADOS ATÉ 19/11"
+    },
+    {
+      "cliente": "BELLA VITA",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-11-25",
+      "defeito": "N/A",
+      "acao": "AVALIAR EVOLUÇÃO DA INFRA DE TELEMETRIA",
+      "detalhamento": "COMISSIONAMENTO DA NOVA ERPM PROGRAMADO PARA 26/11"
+    },
+    {
+      "cliente": "SOLENIS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-12-16",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK | FALHA NO CVAZ DESDE 14/12"
+    },
+    {
+      "cliente": "POSTO AUTOPETRO CAMARAGIBE",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-12-16",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR TELEMETRIA",
+      "detalhamento": "DADOS ATÉ 19/11"
+    },
+    {
+      "cliente": "POSTO VOLTA AO MUNDO",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-12-16",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR TELEMETRIA",
+      "detalhamento": "DADOS ATÉ 05/12"
+    },
+    {
+      "cliente": "ISOESTE",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2025-12-16",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR INFRA DE TELEMETRIA",
+      "detalhamento": "ESTAÇÃO SUBSTITUÍDA"
+    },
+    {
+      "cliente": "ETC BIOMETANO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-12-16",
+      "defeito": "N/A",
+      "acao": "ACOMPANHAMENTO DE TERCEIROS (TORMENE)",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO PICHILAU CARUARU",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-12-23",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 19/12"
+    },
+    {
+      "cliente": "ETC BIOMETANO",
+      "executante": "CLEBSON",
+      "area": "OUTRO",
+      "data": "2025-12-22",
+      "defeito": "N/A",
+      "acao": "RESTABELECER TELEMETRIA",
+      "detalhamento": "ACOMPANHAR LOCAL LINK"
+    },
+    {
+      "cliente": "POSTO AUTOPETRO CAMARAGIBE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2025-12-23",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 19/11"
+    },
+    {
+      "cliente": "BELLA VITA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-12-23",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "CLIENTE ESTAVA COM PENDÊNCIAS DE EE E REDE INTERNA"
+    },
+    {
+      "cliente": "POSTO CEMOCABO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-12-23",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "SEM DADOS DESDE 21/12"
+    },
+    {
+      "cliente": "POSTO AUTOPETRO CAMARAGIBE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-12-30",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 19/11"
+    },
+    {
+      "cliente": "ARGAMASSA DO MESTRE | MASSA PRONTA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2025-12-30",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 25/12"
+    },
+    {
+      "cliente": "BELLA VITA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-12-30",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "CLIENTE ESTAVA COM PENDÊNCIAS DE EE E REDE INTERNA"
+    },
+    {
+      "cliente": "DEXCO | DURATEX",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2025-12-30",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "SEM DADOS DESDE 25/12"
+    },
+    {
+      "cliente": "POSTO AUTOPETRO CAMARAGIBE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-01-05",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 19/11"
+    },
+    {
+      "cliente": "CBA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-01-05",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 30/12"
+    },
+    {
+      "cliente": "BELLA VITA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-01-05",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "CLIENTE ESTAVA COM PENDÊNCIAS DE EE E REDE INTERNA"
+    },
+    {
+      "cliente": "INDORAMA FIBRAS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-01-05",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS DESDE 04/01"
+    },
+    {
+      "cliente": "POSTO FONSECA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-01-06",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS DESDE 05/01"
+    },
+    {
+      "cliente": "POSTO AUTOPETRO CAMARAGIBE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-01-13",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 19/11"
+    },
+    {
+      "cliente": "MOURA 04",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-01-14",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | TROCAR CVAZ",
+      "detalhamento": "FLEX OK"
+    },
+    {
+      "cliente": "BELLA VITA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-01-13",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "CLIENTE ESTAVA COM PENDÊNCIAS DE EE E REDE INTERNA"
+    },
+    {
+      "cliente": "POSTO PG AEROPORTO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-01-13",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 08/01"
+    },
+    {
+      "cliente": "SHOPPING TACARUNA - COCÇÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-01-20",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 15/01"
+    },
+    {
+      "cliente": "POSTO AMIGÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-01-20",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 15/01"
+    },
+    {
+      "cliente": "EXPOMETAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-01-20",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA NO CVAZ",
+      "detalhamento": "FLEX CONECTADA E ENVIANDO DADOS DELA"
+    },
+    {
+      "cliente": "POSTO AUTOPETRO CAMARAGIBE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-01-20",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "DADOS ATÉ 19/11 | 220V DO POSTO PENDENTE"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-01-20",
+      "defeito": "N/A",
+      "acao": "REALIZAR PREDITIVAS DA ÁREA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "EXPOMETAL",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-01-27",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "FLEX CONECTADA E ENVIANDO DADOS DELA"
+    },
+    {
+      "cliente": "POSTO PICHILAU CARUARU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-01-27",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTAR DE 220V",
+      "detalhamento": "POSTO INFORMOU INSTABILIDADE DA NEOENERGIA"
+    },
+    {
+      "cliente": "CROMATÓGRAFO 422 / 186",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-01-27",
+      "defeito": "N/A",
+      "acao": "AGENDA COM DELMAR",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "CROM 341/370",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-02",
+      "defeito": "N/A",
+      "acao": "AGENDA TRESCAL",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO BR REAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-02",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO 220V",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "EXPOMETAL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-02",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "INFRA ELETRODUTO/CABO REFEITA PELA MRS"
+    },
+    {
+      "cliente": "AGENDA INTERIOR",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-02-02",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "ETC BIOMETANO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-02-03",
+      "defeito": "N/A",
+      "acao": "COLETAR RELATÓRIOS DE CONSUMO",
+      "detalhamento": "FECHAMENTO MÊS"
+    },
+    {
+      "cliente": "SHOPPING TACARUNA - COCÇÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-10",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "VERIFICAR INFRA PARA RESTABELECER TELEMETRIA"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-02-10",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "ETC BIOMETANO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-02-10",
+      "defeito": "FALHA NO PULSO",
+      "acao": "VERIFICAR FALHA NO PULSO/ALINHAMENTO DE LEITURA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "INDORAMA POLÍMEROS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-02-10",
+      "defeito": "FALHA NO PULSO",
+      "acao": "VERIFICAR FALHA NO PULSO/ALINHAMENTO DE LEITURA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "SHOPPING TACARUNA - COCÇÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-19",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR INTEGRAÇÃO DO PAINEL",
+      "detalhamento": "VERIFICAR INFRA PARA RESTABELECER TELEMETRIA"
+    },
+    {
+      "cliente": "POSTO CANCUM III",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-19",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR INTEGRAÇÃO DO PAINEL",
+      "detalhamento": "CLIENTE NOVO"
+    },
+    {
+      "cliente": "KLABIN",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-19",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "DADOS ATÉ 12/02"
+    },
+    {
+      "cliente": "POSTO SERRA V",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-19",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "DADOS ATÉ 15/02"
+    },
+    {
+      "cliente": "RAYMUNDO DA FONTE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-19",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER ALIMENTAÇÃO 220V",
+      "detalhamento": "DADOS ATÉ 15/02"
+    },
+    {
+      "cliente": "ÁREA NORTE",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-02-19",
+      "defeito": "N/A",
+      "acao": "DAR SUPORTE NAS DEMANDAS DO NORTE",
+      "detalhamento": "VERIFICAR LOGÍSTICA COM BRUNO"
+    },
+    {
+      "cliente": "ALPEK",
+      "executante": "CLEBSON",
+      "area": "OUTRO",
+      "data": "2026-02-19",
+      "defeito": "FALHA NO PULSO",
+      "acao": "VERIFICAR FALHA NO PULSO/ALINHAMENTO DE LEITURA",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "SHOPPING TACARUNA - COCÇÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-24",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR INTEGRAÇÃO DO PAINEL",
+      "detalhamento": "VERIFICAR INFRA PARA RESTABELECER TELEMETRIA"
+    },
+    {
+      "cliente": "POSTO ROTA BULTRINS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-02-24",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO 220V",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "ALPARGATAS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-02-24",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO 220V",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO CIDADE CARPINA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-02-24",
+      "defeito": "FALHA NO PULSO",
+      "acao": "REALIZAR ALINHAMENTO DE LEITURA (TROCA MVAZ)",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "PEPSICO",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-02-24",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR EVOLUÇÃO DA INFRA",
+      "detalhamento": "ERPM SUBSTITUÍDA"
+    },
+    {
+      "cliente": "ETC BIOMETANO",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-02-24",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "VERIFICAR ALIMENTAÇÃO DO SISTEMA DE TELEMETRIA",
+      "detalhamento": "SUSPEITA DE QUEDA RECORRENTE NO DR"
+    },
+    {
+      "cliente": "ALPEK (H2 / PET / PTA)",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-02-24",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR CVAZ",
+      "detalhamento": "SUSPEITA DE FALHA NA CPU DO ROC 809"
+    },
+    {
+      "cliente": "SHOPPING TACARUNA - COCÇÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-03-02",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR INTEGRAÇÃO DO PAINEL",
+      "detalhamento": "VERIFICAR INFRA PARA RESTABELECER TELEMETRIA"
+    },
+    {
+      "cliente": "POSTO ROTA BULTRINS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-03-02",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO 220V",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "PEPSICO",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-03-02",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR EVOLUÇÃO DA INFRA",
+      "detalhamento": "ERPM SUBSTITUÍDA"
+    },
+    {
+      "cliente": "ÍSIS LATICÍNIOS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-03-02",
+      "defeito": "N/A",
+      "acao": "REALIZAR ALINHAMENTO DE LEITURA (TROCA MVAZ)",
+      "detalhamento": "ATENDIMENTO DO PAC"
+    },
+    {
+      "cliente": "ALPEK (H2 / PET / PTA)",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-02",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR CVAZ",
+      "detalhamento": "VERIFICAR CONFIGURAÇÃO DOS DADOS DO ROC 809"
+    },
+    {
+      "cliente": "ECOPOSTO SUAPE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-02",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER TELEMETRIA",
+      "detalhamento": "MODEM REMOVIDO PARA TESTES NA ALPEK"
+    },
+    {
+      "cliente": "ETC BIOMETANO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-03",
+      "defeito": "N/A",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "FECHAMENTO MÊS"
+    },
+    {
+      "cliente": "ARA TÊXTIL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-03-10",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR DADOS DO CVAZ",
+      "detalhamento": "FLEX ENVIANDO DADOS DO MODEM"
+    },
+    {
+      "cliente": "BRF SADIA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-03-11",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 08/03"
+    },
+    {
+      "cliente": "POSTO GPA CARUARU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-03-11",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 08/03"
+    },
+    {
+      "cliente": "POSTO ORLA (PETROLINA)",
+      "executante": "HUGO",
+      "area": "OUTRO",
+      "data": "2026-03-10",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 08/03"
+    },
+    {
+      "cliente": "PEPSICO",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-03-10",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR EVOLUÇÃO DA INFRA",
+      "detalhamento": "ERPM SUBSTITUÍDA"
+    },
+    {
+      "cliente": "REVERSE",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-03-10",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR TELEMETRIA",
+      "detalhamento": "CLIENTE SEM CONSUMO"
+    },
+    {
+      "cliente": "ETC BIOMETANO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-10",
+      "defeito": "N/A",
+      "acao": "AGENDA COM TORMENE",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO CARTAXO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-03-17",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 15/03"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-03-17",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "POSTO ORLA (PETROLINA)",
+      "executante": "HUGO",
+      "area": "OUTRO",
+      "data": "2026-03-17",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO DO PAINEL",
+      "detalhamento": "DADOS ATÉ 08/03"
+    },
+    {
+      "cliente": "PEPSICO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-17",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR PAINEL DE TELEMETRIA",
+      "detalhamento": "INFRA DE ALIMENTAÇÃO CONCLUÍDA PELA MRS"
+    },
+    {
+      "cliente": "BIMBO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-17",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR TELEMETRIA",
+      "detalhamento": "DADOS ATÉ 13/03 | SEM INDICAÇÃO DE QUEDA DE EE"
+    },
+    {
+      "cliente": "REVERSE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-17",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR TELEMETRIA",
+      "detalhamento": "CLIENTE RESOLVEU PROBLEMA NO QUADRO DE EE"
+    },
+    {
+      "cliente": "CERVEJARIA PETRÓPOLIS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-03-24",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | REINTEGRAR PAINEL",
+      "detalhamento": "PAINEL SUBSTITUÍDO PELA MRS"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-03-26",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "POSTO CMA CANDEIAS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-24",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK | CVAZ OK ATE 23/03"
+    },
+    {
+      "cliente": "BALL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-03-24",
+      "defeito": "FALHA NO PULSO",
+      "acao": "ALINHAMENTO DE LEITURA",
+      "detalhamento": "TROCA DO MVAZ REALIZADA EM 23/03"
+    },
+    {
+      "cliente": "MARILAN",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-04-01",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK | CVAZ ATÉ 30/03"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-01",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "POSTO CAMPEÃO PAUDALHO",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-01",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VEIRIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 31/03"
+    },
+    {
+      "cliente": "ACUMULADORES MOURA UN 04",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-01",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "ALINHAR AÇÃO COM A GDIS",
+      "detalhamento": "POSSÍVEL DESARME DENTRO DO PAINEL DE TELEMETRIA"
+    },
+    {
+      "cliente": "ACUMULADORES MOURA UN 14",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-01",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "ALINHAR AÇÃO COM A GDIS",
+      "detalhamento": "POSSÍVEL DESARME DENTRO DO PAINEL DE TELEMETRIA"
+    },
+    {
+      "cliente": "PREDITIVAS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-04-01",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "-",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-04-07",
+      "defeito": "N/A",
+      "acao": "-",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-07",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "ACUMULADORES MOURA UN 04",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-07",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VEIRIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 31/03"
+    },
+    {
+      "cliente": "VETRUS COGERAÇÃO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-04-07",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VEIRIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 04/04"
+    },
+    {
+      "cliente": "POSTO VIA MANGUE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-04-07",
+      "defeito": "FALHA NO PULSO",
+      "acao": "VERIFICAR SUSPEITA DE TRAVAMENTO DO MVAZ",
+      "detalhamento": "GÁS ONLINE SEM INDICAR VAZÃO PARA PRESSÃO DINÂMICA"
+    },
+    {
+      "cliente": "POSTO SERRA II",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "14/abr",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 13/04"
+    },
+    {
+      "cliente": "POSTO SÃO SEBASTIÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "14/abr",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 12/04"
+    },
+    {
+      "cliente": "POSTO TAPAJÓS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "14/abr",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 07/04"
+    },
+    {
+      "cliente": "ALPARGATAS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "14/abr",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 13/04"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "14/abr",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 13/04"
+    },
+    {
+      "cliente": "AGENDA TRESCAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "14/abr",
+      "defeito": "N/A",
+      "acao": "CALIBRAÇÃO EM CAMPO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "14/abr",
+      "defeito": "N/A",
+      "acao": "UTILIZAR DADOS EXTRAÍDOS ONTEM",
+      "detalhamento": "VISITA ANTECIPADA DEVIDO À DISPONIBILIDADE DA ESCOLTA"
+    },
+    {
+      "cliente": "BENTELER",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "14/abr",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "DADOS ATÉ 23:00H - 13/04"
+    },
+    {
+      "cliente": "CHLORUM",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "14/abr",
+      "defeito": "N/A",
+      "acao": "VERIFICAR CADASTRO DO UNIGÁS",
+      "detalhamento": "LIBERAÇÃO DE CONSUMO PREVISTA PARA HOJE (14/04)"
+    },
+    {
+      "cliente": "POSTO PRINCESA ISABEL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "14/abr",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "CLIENTE AINDA COM PENDÊNCIAS PARA OPERAÇÃO"
+    },
+    {
+      "cliente": "BENTELER",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-04-22",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK | CVAZ SEM DADOS DESDE 13/04"
+    },
+    {
+      "cliente": "POSTO BARROS E ALMEIDA (5 ESTRELAS)",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-04-22",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK | CVAZ SEM DADOS DESDE 20/04"
+    },
+    {
+      "cliente": "POSTO SERVICAR OLINDA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-04-22",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "ALPARGATAS",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-22",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK | CVAZ SEM DADOS DESDE 14/04"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-22",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 13/04"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-22",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "VETRUS COGERAÇÃO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-04-22",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VEIRIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 16/04"
+    },
+    {
+      "cliente": "GENERAL GOODS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-04-22",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO PRINCESA ISABEL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-04-22",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "CLIENTE AINDA COM PENDÊNCIAS PARA OPERAÇÃO"
+    },
+    {
+      "cliente": "POSTO DOZE (EX - P. REAL)",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-04-28",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VEIRIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 27/04"
+    },
+    {
+      "cliente": "POSTO SUPERGÁS - IGARASSU",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-04-28",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | AVALIAR INTERFERÊNCIA DA OBRA",
+      "detalhamento": "ESTAÇÃO SERÁ SUBSTITUÍDA"
+    },
+    {
+      "cliente": "POSTO CAMPEÃO PAUDALHO",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-28",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VEIRIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 27/04"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-28",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 13/04"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-04-28",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "REVERSE AMBIENTAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-04-28",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 24/04"
+    },
+    {
+      "cliente": "POSTO PRINCESA ISABEL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-04-28",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "CLIENTE AINDA COM PENDÊNCIAS PARA OPERAÇÃO"
+    },
+    {
+      "cliente": "POSTO SERRA II",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-04",
+      "defeito": "N/A",
+      "acao": "AVALIAR INTEGRIDADE DO SISTEMA DE TELEMETRIA",
+      "detalhamento": "ALAGAMENTO NA ALTURA DA CAIXA DE JUNÇÃO"
+    },
+    {
+      "cliente": "POSTO PRINCESA ISABEL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-04",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR TELEMETRIA",
+      "detalhamento": "CLIENTE INICIOU OPERAÇÃO"
+    },
+    {
+      "cliente": "POSTO SUPERGÁS - IGARASSU",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-04",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | AVALIAR INTERFERÊNCIA DA OBRA",
+      "detalhamento": "ESTAÇÃO SERÁ SUBSTITUÍDA"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-05-04",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 13/04"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-05-04",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "REVERSE AMBIENTAL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-05-04",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 24/04"
+    },
+    {
+      "cliente": "POSTO DUQUE DE CAXIAS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-13",
+      "defeito": "N/A",
+      "acao": "FAZER PERMUTA DO CVAZ PARA AJUSTE DO RANGE DE PRESSÃO",
+      "detalhamento": "LEVAR CVAZ RETIRADO DO POSTO PRINCESA ISABEL"
+    },
+    {
+      "cliente": "POSTO PRINCESA ISABEL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-13",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "INSTALAR CVAZ | INTEGRAR TELEMETRIA",
+      "detalhamento": "INSTALAR CVAZ RETIRADO DO POSTO DUQUE DE CAXIAS"
+    },
+    {
+      "cliente": "PITU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-05-12",
+      "defeito": "FALHA NO PULSO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA NO PULSO | TROCAR CVAZ",
+      "detalhamento": "VERIFICAR PROBLEMA NA SAÍDA DE PULSO E ANTECIPAR PAC CVAZ"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-05-12",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "POSTO PRINCESA ISABEL",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-12",
+      "defeito": "N/A",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR DISPONIBILIDADE DA EE | REMOVER CVAZ",
+      "detalhamento": "CVAZ SERÁ TROCADO COM O DO POSTO DUQUE DE CAXIAS"
+    },
+    {
+      "cliente": "CERVEJARIA PETRÓPOLIS",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-12",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "TESTAR FLEX / CHIP"
+    },
+    {
+      "cliente": "CBA",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-12",
+      "defeito": "FALHA NO PULSO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA NO PULSO",
+      "detalhamento": "VERIFICAR PROBLEMA NA SAÍDA DE PULSO"
+    },
+    {
+      "cliente": "POSTO SUPERGÁS IGARASSU",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-12",
+      "defeito": "N/A",
+      "acao": "INSPECIONAR CONCLUSÃO DA TELEMETRIA",
+      "detalhamento": "CRIAR OS DE VISITA TÉCNICA"
+    },
+    {
+      "cliente": "POSTO BOM SUCESSO",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-12",
+      "defeito": "N/A",
+      "acao": "IDENTIFICAR DERIVAÇÃO DA EE DO CLIENTE",
+      "detalhamento": "CRIAR OS DE VISITA TÉCNICA"
+    },
+    {
+      "cliente": "UNILEVER IGARASSU",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-12",
+      "defeito": "N/A",
+      "acao": "VERIFICAR INFRA DE TELEMETRIA DA NOVA ESTAÇÃO",
+      "detalhamento": "CRIAR OS DE VISITA TÉCNICA"
+    },
+    {
+      "cliente": "POSTO PETROCAL CORDEIRO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-19",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 17/05"
+    },
+    {
+      "cliente": "POSTO CEMOPEL GRAÇAS",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-19",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR INFRA DE TELEMETRIA",
+      "detalhamento": "MRS REALIZANDO A SUBSTITUIÇÃO DO PAINEL"
+    },
+    {
+      "cliente": "PAULISTEX",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-19",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 13/05 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "BRASPEL",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-19",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 13/05"
+    },
+    {
+      "cliente": "POSTO IGUEP",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-19",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "QUEDA RECORRENTE NA ALIMENTAÇÃO 220V"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-05-20",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "MAURICÉA RAÇÕES",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-05-19",
+      "defeito": "AGUARDANDO COMISSIONAMENTO",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "UNILEVER IGARASSU",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-26",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO / INTEGRAR PAINEL DE TELEMETRIA",
+      "detalhamento": "ERPM SUBSTITUÍDA"
+    },
+    {
+      "cliente": "POSTO BARROS E ALMEIDA (5 ESTRELAS)",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-05-26",
+      "defeito": "N/A",
+      "acao": "VERIFICAR ALINHAMENTO DE LEITURA / INTEGRIDADE DO SISTEMA",
+      "detalhamento": "CLIENTE QUESTIONANDO FATURA ALTA"
+    },
+    {
+      "cliente": "MAURICÉA RAÇÕES",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-05-26",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO / INTEGRAR PAINEL DE TELEMETRIA",
+      "detalhamento": "PROVIDENCIAR TROCA DO CADEADO (ACESSO AO PAINEL)"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-05-27",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "BRASPEL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-05-26",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 20/05 | CLIENTE REALIZOU ALTERAÇÃO NO QUADRO DE EE"
+    },
+    {
+      "cliente": "POSTO COSTA DOURADA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-05-26",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 20/05 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "POSTO PG AEROPORTO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-05-26",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 20/05 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "POSTO PICHILAU SUL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-05-26",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 22/05 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "SM GESSO",
+      "executante": "HUGO",
+      "area": "OUTRO",
+      "data": "2026-05-26",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 25/05 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "PAULISTEX",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-05-26",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR DADOS DO GÁS ONLINE",
+      "detalhamento": "SUSPEITA DE FALHA DESCARTADA. CLIENTE COM BAIXO CONSUMO"
+    },
+    {
+      "cliente": "UNILEVER IGARASSU",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-06-02",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO / INTEGRAR PAINEL DE TELEMETRIA",
+      "detalhamento": "ERPM SUBSTITUÍDA"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-06-02",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "BRASPEL",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-06-01",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 20/05 | CLIENTE REALIZOU ALTERAÇÃO NO QUADRO DE EE"
+    },
+    {
+      "cliente": "POSTO BRAZ E FILHOS",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-06-01",
+      "defeito": "N/A",
+      "acao": "VERIFICAR DADO INCOERENTE NA PRESSÃO",
+      "detalhamento": "POSSÍVEL FECHAMETO DE VÁLVULA"
+    },
+    {
+      "cliente": "POSTO PG AEROPORTO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-06-01",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 20/05 | SEM INDICAÇÃO DE QUEDA 220V"
+    },
+    {
+      "cliente": "REVERSE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-06-01",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 29/05"
+    },
+    {
+      "cliente": "MAURICÉA RAÇÕES",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-06-02",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "1ª MEDIÇÃO OCORRERÁ NA PRÓXIMA SEMANA"
+    },
+    {
+      "cliente": "BRASPEL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-06-02",
+      "defeito": "N/A",
+      "acao": "PROJETAR LEITURA COLETADA EM 01/06",
+      "detalhamento": "CLIENTE SEM TELEMETRIA"
+    },
+    {
+      "cliente": "BALL",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-06-02",
+      "defeito": "N/A",
+      "acao": "UTILIZADOS DADOS INSTANTÂNEOS DO GÁS ONLINE",
+      "detalhamento": "ÚLTIMO DADO ÀS 03:24h - 02/06"
+    },
+    {
+      "cliente": "LAFEPE",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-06-09",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 03/06"
+    },
+    {
+      "cliente": "MAURICÉA RAÇÕES",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-09",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO / INTEGRAR PAINEL DE TELEMETRIA",
+      "detalhamento": "1ª MEDIÇÃO"
+    },
+    {
+      "cliente": "CIPAN",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-09",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 07/06"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-10",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO / INTEGRAR PAINEL DE TELEMETRIA",
+      "detalhamento": "ALINHAR COM GDIS ACOMPANHAMENTO DE ESCOLTA"
+    },
+    {
+      "cliente": "REVERSE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-06-09",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "MODEM CONECTADO E DADOS DA FLEX OK | CVAZ ATÉ 03/06"
+    },
+    {
+      "cliente": "POSTO CANCUN III",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-06-16",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 09/06"
+    },
+    {
+      "cliente": "POSTO PETROCAL CORDEIRO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-06-16",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 15/06"
+    },
+    {
+      "cliente": "POSTO MASTERGÁS GRAVATÁ (GNV)",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-16",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO / VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 15/06 | POSSÍVEL PROBLEMA NO CHIP VIVO"
+    },
+    {
+      "cliente": "CERÂMICA MARI",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-16",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO / VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 15/06 | POSSÍVEL PROBLEMA NO CHIP VIVO"
+    },
+    {
+      "cliente": "NEOVIA",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-16",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 15/06"
+    },
+    {
+      "cliente": "POSTO PG AEROPORTO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-06-16",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO / VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 15/06 | POSSÍVEL PROBLEMA NO CHIP VIVO"
+    },
+    {
+      "cliente": "POSTO SERVICAR OLINDA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-06-30",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 26/06"
+    },
+    {
+      "cliente": "AMBEV",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-06-30",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO / VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 29/06"
+    },
+    {
+      "cliente": "POSTO IBIZA II",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-30",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 28/06"
+    },
+    {
+      "cliente": "MOURA 14",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-30",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 29/06"
+    },
+    {
+      "cliente": "MAURICEA RAÇÕES",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-06-30",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 27/06"
+    },
+    {
+      "cliente": "REVERSE",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-06-30",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO / VERIFICAR FALHA DE COMUNICAÇÃO",
+      "detalhamento": "DADOS ATÉ 20/06 | POSSÍVEL PROBLEMA NO CHIP VIVO"
+    },
+    {
+      "cliente": "PETROCAL CONSELHEIRO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-06-30",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR FALTA DE ALIMENTAÇÃO | TROCAR BATERIA",
+      "detalhamento": "DADOS ATÉ 29/06 | BATERIA PRATICAMENTE NÃO ATUOU"
+    },
+    {
+      "cliente": "POSTO VOLTA AO MUNDO",
+      "executante": "PEDRO",
+      "area": "OUTRO",
+      "data": "2026-07-01",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "PAINEL REMOVIDO / OBRAS DE RELOCAÇÃO DA ERPM PELA GDIS"
+    },
+    {
+      "cliente": "POSTO PETRO AGAMENON",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-07-21",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "VERIFICAR POSSIBILIDADE DE INTEGRAÇÃO"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-07-22",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "ESCOLTA AGENDADA COM GDIS"
+    },
+    {
+      "cliente": "LAFEPE",
+      "executante": "PEDRO",
+      "area": "OUTRO",
+      "data": "2026-07-21",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO VOLTA AO MUNDO",
+      "executante": "PEDRO",
+      "area": "OUTRO",
+      "data": "2026-07-21",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "PAINEL REMOVIDO / OBRAS DE RELOCAÇÃO DA ERPM PELA GDIS"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-07-21",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO PETRO AGAMENON",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-07-28",
+      "defeito": "COMISSIONAMENTO DA TELEMETRIA",
+      "acao": "COLETAR MEDIÇÃO | INTEGRAR PAINEL",
+      "detalhamento": "PAINEL ENERGIZADO | FALTA BARREIRA DO CVAZ"
+    },
+    {
+      "cliente": "POSTO PETROCAL CORDEIRO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-07-28",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO E TROCAR BATERIA",
+      "detalhamento": "BATERIA DEFICIENTE"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-07-28",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "AGENDAR ESCOLTA COM GDIS"
+    },
+    {
+      "cliente": "MAURICEIA RAÇÕES",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-07-28",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "PERQUÍMICA",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-07-28",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "MODEM CONECTADO E DADOS DA FLEX OK"
+    },
+    {
+      "cliente": "SHOPPING RECIFE COCÇÃO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-07-28",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "PAINEL REMOVIDO / OBRAS DE RELOCAÇÃO DA ERPM PELA GDIS"
+    },
+    {
+      "cliente": "POSTO VOLTA AO MUNDO",
+      "executante": "PEDRO",
+      "area": "OUTRO",
+      "data": "2026-07-28",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "PAINEL REMOVIDO / OBRAS DE RELOCAÇÃO DA ERPM PELA GDIS"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-07-28",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "-"
+    },
+    {
+      "cliente": "POSTO MM TACARUNA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-08-03",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VEIRIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS DA FLEX OK | CVAZ EM FALHA A PARTIR DE 28/07"
+    },
+    {
+      "cliente": "POSTO PRINCESA ISABEL",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-08-03",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO",
+      "detalhamento": "QUEDA DE 220V EM 24/07"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-08-04",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "AGENDAR ESCOLTA COM GDIS"
+    },
+    {
+      "cliente": "MAURICEIA RAÇÕES",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-08-04",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO",
+      "detalhamento": "VERIFICAR AGENDA COM JOSINALDO"
+    },
+    {
+      "cliente": "POSTO IBIZA II",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-08-04",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO E TROCA BATERIA",
+      "detalhamento": "QUEDA DE 220V EM 02/08 COM AFUNDAMENTO IMEDIATO DA BATERIA"
+    },
+    {
+      "cliente": "POSTO CJCM AEROPORTO",
+      "executante": "RUBENING",
+      "area": "SUL",
+      "data": "2026-08-03",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO",
+      "detalhamento": "DADOS ATÉ 30/07"
+    },
+    {
+      "cliente": "POSTO VOLTA AO MUNDO",
+      "executante": "PEDRO",
+      "area": "OUTRO",
+      "data": "2026-08-04",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "PAINEL REMOVIDO / OBRAS DE RELOCAÇÃO DA ERPM PELA GDIS"
+    },
+    {
+      "cliente": "SHOPPING RECIFE COCÇÃO",
+      "executante": "R. PEREIRA",
+      "area": "OUTRO",
+      "data": "2026-08-04",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "PAINEL REMOVIDO / OBRAS DE RELOCAÇÃO DA ERPM PELA GDIS"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-08-03",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "-"
+    }
+  ],
+  "mesAtual": [
+    {
+      "cliente": "LAVANDERIA NAPOLITANA",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-08-11",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "CLIENTE MIGROU PARA O SEMANAL (PERÍODO DE TESTES: 3 MESES)"
+    },
+    {
+      "cliente": "SHOPPING RECIFE COCÇÃO",
+      "executante": "BRUNO FM",
+      "area": "NORTE",
+      "data": "2026-08-11",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "PAINEL REMOVIDO / OBRAS DE RELOCAÇÃO DA ERPM PELA GDIS"
+    },
+    {
+      "cliente": "GERDAU",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-08-11",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER TELEMETRIA",
+      "detalhamento": "AGENDAR ESCOLTA COM GDIS | ATIVIDADE EM CONJUNTO COM MRS"
+    },
+    {
+      "cliente": "POSTO PG CAMARAGIBE - FILIAL 1",
+      "executante": "ILTEARLE",
+      "area": "OESTE",
+      "data": "2026-08-11",
+      "defeito": "MODEM DESCONECTADO",
+      "acao": "COLETAR MEDIÇÃO | RESTABELECER TELEMETRIA",
+      "detalhamento": "DADOS ATÉ 06/08"
+    },
+    {
+      "cliente": "POSTO VOLTA AO MUNDO",
+      "executante": "PEDRO",
+      "area": "OUTRO",
+      "data": "2026-08-11",
+      "defeito": "INFRA DE TELEMETRIA PENDENTE",
+      "acao": "COLETAR MEDIÇÃO",
+      "detalhamento": "PAINEL REMOVIDO / OBRAS DE RELOCAÇÃO DA ERPM PELA GDIS"
+    },
+    {
+      "cliente": "MAURICEIA RAÇÕES",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-08-12",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO",
+      "detalhamento": "VERIFICAR CORREÇÃO DO PONTO DE ALIMENTAÇÃO DO CLIENTE"
+    },
+    {
+      "cliente": "PERQUÍMICA",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-08-12",
+      "defeito": "FALHA NO CVAZ",
+      "acao": "COLETAR MEDIÇÃO | VEIRIFICAR COMUNICAÇÃO DO CVAZ",
+      "detalhamento": "DADOS ATÉ 10/08 | AGUARDAR ATÉ 12/08"
+    },
+    {
+      "cliente": "RESIQ",
+      "executante": "JOSINALDO",
+      "area": "OUTRO",
+      "data": "2026-08-12",
+      "defeito": "FALTA DE ALIMENTAÇÃO EXT.",
+      "acao": "COLETAR MEDIÇÃO | VERIFICAR ALIMENTAÇÃO",
+      "detalhamento": "VERIFICAR TRATATIVAS COM JOSINALDO"
+    },
+    {
+      "cliente": "CERÂMICA MARI 2",
+      "executante": "MEDIÇÃO",
+      "area": "OUTRO",
+      "data": "2026-08-11",
+      "defeito": "N/A",
+      "acao": "CONSIDERAR CONSUMO ZERO",
+      "detalhamento": "-"
+    }
+  ]
+}

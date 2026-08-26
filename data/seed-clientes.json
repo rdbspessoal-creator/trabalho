@@ -1,0 +1,1808 @@
+[
+  {
+    "cliente": "ERPM.00913 - ERPM LAFEPE",
+    "codigo": "ERPM.00913",
+    "nome": "ERPM LAFEPE",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00026 - CM POSTO APR OLINDA",
+    "codigo": "CM.00026",
+    "nome": "CM POSTO APR OLINDA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00043 - POSTO ROTA BULTRINS",
+    "codigo": "CM.00043",
+    "nome": "POSTO ROTA BULTRINS",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CRM.00502 - CRM HAKATA - KARINTÓ",
+    "codigo": "CRM.00502",
+    "nome": "CRM HAKATA - KARINTÓ",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ETC.00004 - ETC 378 - PAULISTA",
+    "codigo": "ETC.00004",
+    "nome": "ETC 378 - PAULISTA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00570 - ERPM LCT MATERIAIS PLASTICOS LTDA",
+    "codigo": "ERPM.00570",
+    "nome": "ERPM LCT MATERIAIS PLASTICOS LTDA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00583 - ERPM POSTO NATAL",
+    "codigo": "ERPM.00583",
+    "nome": "ERPM POSTO NATAL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00586 - ERPM POSTO ECOVIP",
+    "codigo": "ERPM.00586",
+    "nome": "ERPM POSTO ECOVIP",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00735 - ERPM POSTO PRESSGÁS",
+    "codigo": "ERPM.00735",
+    "nome": "ERPM POSTO PRESSGÁS",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00772 - ERPM POSTO CARTAXO",
+    "codigo": "ERPM.00772",
+    "nome": "ERPM POSTO CARTAXO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00801 - ERPM POSTO PETROCAL OLINDA",
+    "codigo": "ERPM.00801",
+    "nome": "ERPM POSTO PETROCAL OLINDA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00013 - CM POSTO NVC ENCRUZILHADA",
+    "codigo": "CM.00013",
+    "nome": "CM POSTO NVC ENCRUZILHADA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00838 - ERPM POSTO PERIMETRAL",
+    "codigo": "ERPM.00838",
+    "nome": "ERPM POSTO PERIMETRAL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00846 - ERPM POSTO ECOPOSTO BEBERIBE",
+    "codigo": "ERPM.00846",
+    "nome": "ERPM POSTO ECOPOSTO BEBERIBE",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00896 - ERPM POSTO BR PAULISTA",
+    "codigo": "ERPM.00896",
+    "nome": "ERPM POSTO BR PAULISTA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CROM.00004-3 - ETC 370 - IGARASSU 2",
+    "codigo": "CROM.00004-3",
+    "nome": "ETC 370 - IGARASSU 2",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00581 - ERPM POSTO CEMOPEL OLINDA",
+    "codigo": "ERPM.00581",
+    "nome": "ERPM POSTO CEMOPEL OLINDA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ETC.00001 - ETC 341 - GOIANA II",
+    "codigo": "ETC.00001",
+    "nome": "ETC 341 - GOIANA II",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ETC.00002 - ETC 365 - IGARASSU I",
+    "codigo": "ETC.00002",
+    "nome": "ETC 365 - IGARASSU I",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ETC.00003 - ETC 370 - IGARASSU II",
+    "codigo": "ETC.00003",
+    "nome": "ETC 370 - IGARASSU II",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00875 - ERPM POSTO GUARANI",
+    "codigo": "ERPM.00875",
+    "nome": "ERPM POSTO GUARANI",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00562 - ERPM POSTO 5 ESTRELAS",
+    "codigo": "ERPM.00562",
+    "nome": "ERPM POSTO 5 ESTRELAS",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00585 - ERPM POSTO ONZE",
+    "codigo": "ERPM.00585",
+    "nome": "ERPM POSTO ONZE",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00587 - ERPM POSTO REAL",
+    "codigo": "ERPM.00587",
+    "nome": "ERPM POSTO REAL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00591 - ERPM POSTO SÃO JANUÁRIO",
+    "codigo": "ERPM.00591",
+    "nome": "ERPM POSTO SÃO JANUÁRIO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00629 - ERPM POSTO PETRO CAXANGÁ",
+    "codigo": "ERPM.00629",
+    "nome": "ERPM POSTO PETRO CAXANGÁ",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00632 - ERPM POSTO PETROCAL CAXANGÁ",
+    "codigo": "ERPM.00632",
+    "nome": "ERPM POSTO PETROCAL CAXANGÁ",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00676 - ERPM POSTO DUQUE DE CAXIAS 1",
+    "codigo": "ERPM.00676",
+    "nome": "ERPM POSTO DUQUE DE CAXIAS 1",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00695 - ERPM POSTO SÃO SEBASTIÃO",
+    "codigo": "ERPM.00695",
+    "nome": "ERPM POSTO SÃO SEBASTIÃO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00721 - ERPM UNILEVER IGARASSU",
+    "codigo": "ERPM.00721",
+    "nome": "ERPM UNILEVER IGARASSU",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00746 - ERPM VIVIX",
+    "codigo": "ERPM.00746",
+    "nome": "ERPM VIVIX",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00754 - ERPM FIAT",
+    "codigo": "ERPM.00754",
+    "nome": "ERPM FIAT",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00775 - ERPM GALVANISA",
+    "codigo": "ERPM.00775",
+    "nome": "ERPM GALVANISA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00792 - ERPM EXPOMETAL",
+    "codigo": "ERPM.00792",
+    "nome": "ERPM EXPOMETAL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00797 - ERPM METALFLEX",
+    "codigo": "ERPM.00797",
+    "nome": "ERPM METALFLEX",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00852 - ERPM POSTO MARIA DE LOURDES",
+    "codigo": "ERPM.00852",
+    "nome": "ERPM POSTO MARIA DE LOURDES",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00877 - ERPM HEMOBRÁS",
+    "codigo": "ERPM.00877",
+    "nome": "ERPM HEMOBRÁS",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00881 - ERPM POSTO SERVICAR OLINDA",
+    "codigo": "ERPM.00881",
+    "nome": "ERPM POSTO SERVICAR OLINDA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00900 - ERPM FRANGO FORMOSO",
+    "codigo": "ERPM.00900",
+    "nome": "ERPM FRANGO FORMOSO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00905 - ERPM FIPEL",
+    "codigo": "ERPM.00905",
+    "nome": "ERPM FIPEL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00911 - ERPM POSTO SERRA 2",
+    "codigo": "ERPM.00911",
+    "nome": "ERPM POSTO SERRA 2",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00765 - BRASIL KIRIN IGARASSU (IBI)",
+    "codigo": "ERPM.00765",
+    "nome": "BRASIL KIRIN IGARASSU (IBI)",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CRM.02856 - CRM CIA DA DELÍCIA",
+    "codigo": "CRM.02856",
+    "nome": "CRM CIA DA DELÍCIA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00835 - ERPM SANDENE",
+    "codigo": "ERPM.00835",
+    "nome": "ERPM SANDENE",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00039 - CM POSTO NVC MADALENA",
+    "codigo": "CM.00039",
+    "nome": "CM POSTO NVC MADALENA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00005 - CM POSTO PETROCAL ROSARINHO",
+    "codigo": "CM.00005",
+    "nome": "CM POSTO PETROCAL ROSARINHO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00008 - CM POSTO AMIGÃO",
+    "codigo": "CM.00008",
+    "nome": "CM POSTO AMIGÃO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00010 - CM POSTO CEMOPEL GRAÇAS",
+    "codigo": "CM.00010",
+    "nome": "CM POSTO CEMOPEL GRAÇAS",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00044 - POSTO PETROCAL CASA AMARELA",
+    "codigo": "CM.00044",
+    "nome": "POSTO PETROCAL CASA AMARELA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00561 - ERPM ONDUNORTE",
+    "codigo": "ERPM.00561",
+    "nome": "ERPM ONDUNORTE",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00564 - ERPM POSTO SUPERGÁS",
+    "codigo": "ERPM.00564",
+    "nome": "ERPM POSTO SUPERGÁS",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00575 - ERPM MASTERFOODS",
+    "codigo": "ERPM.00575",
+    "nome": "ERPM MASTERFOODS",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00577 - ERPM ARA TÊXTIL",
+    "codigo": "ERPM.00577",
+    "nome": "ERPM ARA TÊXTIL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00650 - ERPM AMBEV",
+    "codigo": "ERPM.00650",
+    "nome": "ERPM AMBEV",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00767 - ERPM ITAIPAVA",
+    "codigo": "ERPM.00767",
+    "nome": "ERPM ITAIPAVA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00808 - ERPM BENTELER",
+    "codigo": "ERPM.00808",
+    "nome": "ERPM BENTELER",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00809 - ERPM MARILAN",
+    "codigo": "ERPM.00809",
+    "nome": "ERPM MARILAN",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00837 - ERPM POSTO BOM SUCESSO",
+    "codigo": "ERPM.00837",
+    "nome": "ERPM POSTO BOM SUCESSO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00839 - ERPM POSTO SERRA V",
+    "codigo": "ERPM.00839",
+    "nome": "ERPM POSTO SERRA V",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00847 - ERPM SMALT BRASIL",
+    "codigo": "ERPM.00847",
+    "nome": "ERPM SMALT BRASIL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00859 - ERPM YPÊ ITAPISSUMA",
+    "codigo": "ERPM.00859",
+    "nome": "ERPM YPÊ ITAPISSUMA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00880 - ERPM QUARTZOLIT",
+    "codigo": "ERPM.00880",
+    "nome": "ERPM QUARTZOLIT",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00915 - ERPM VENOSAN",
+    "codigo": "ERPM.00915",
+    "nome": "ERPM VENOSAN",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00040 - CM POSTO FÉLIX JANGA",
+    "codigo": "CM.00040",
+    "nome": "CM POSTO FÉLIX JANGA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00578 - ERPM POSTO ATLÂNTIDA",
+    "codigo": "ERPM.00578",
+    "nome": "ERPM POSTO ATLÂNTIDA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00563 - ERPM POSTO CEMOPEL IGARASSU",
+    "codigo": "ERPM.00563",
+    "nome": "ERPM POSTO CEMOPEL IGARASSU",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00009 - CM POSTO APM OLINDA",
+    "codigo": "CM.00009",
+    "nome": "CM POSTO APM OLINDA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00018 - CM POSTO PETROCAL TORRE",
+    "codigo": "CM.00018",
+    "nome": "CM POSTO PETROCAL TORRE",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00031 - CM POSTO INTERNACIONAL",
+    "codigo": "CM.00031",
+    "nome": "CM POSTO INTERNACIONAL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00032 - CM POSTO PETROCAL CORDEIRO",
+    "codigo": "CM.00032",
+    "nome": "CM POSTO PETROCAL CORDEIRO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00592 - ERPM PAULISTEX",
+    "codigo": "ERPM.00592",
+    "nome": "ERPM PAULISTEX",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00595 - ERPM RENDA",
+    "codigo": "ERPM.00595",
+    "nome": "ERPM RENDA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00627 - ERPM POSTO PETRO AGAMENON",
+    "codigo": "ERPM.00627",
+    "nome": "ERPM POSTO PETRO AGAMENON",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00636 - ERPM SHOPPING CENTER TACARUNA",
+    "codigo": "ERPM.00636",
+    "nome": "ERPM SHOPPING CENTER TACARUNA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00731 - ERPM RAYMUNDO DA FONTE",
+    "codigo": "ERPM.00731",
+    "nome": "ERPM RAYMUNDO DA FONTE",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00776 - ERPM KLABIN",
+    "codigo": "ERPM.00776",
+    "nome": "ERPM KLABIN",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CROM.00002-7 - ERPM KLABIN",
+    "codigo": "CROM.00002-7",
+    "nome": "ERPM KLABIN",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00780 - ERPM POSTO BANDEIRANTES",
+    "codigo": "ERPM.00780",
+    "nome": "ERPM POSTO BANDEIRANTES",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00843 - ERPM POSTO TACARUNA",
+    "codigo": "ERPM.00843",
+    "nome": "ERPM POSTO TACARUNA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00869 - ERPM CBA",
+    "codigo": "ERPM.00869",
+    "nome": "ERPM CBA",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00872 - ERPM MUSASHI",
+    "codigo": "ERPM.00872",
+    "nome": "ERPM MUSASHI",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00916 - ERPM POSTO VIEIRA E RABELO",
+    "codigo": "ERPM.00916",
+    "nome": "ERPM POSTO VIEIRA E RABELO",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "ERPM.00930 - INNOVATIVE WATER CARE – SOLENIS",
+    "codigo": "ERPM.00930",
+    "nome": "INNOVATIVE WATER CARE – SOLENIS",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "CM.00014 - CM POSTO CAPITAL DO FORRÓ",
+    "codigo": "CM.00014",
+    "nome": "CM POSTO CAPITAL DO FORRÓ",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00022 - CM POSTO FÉLIX COMBUSTÍVEL",
+    "codigo": "CM.00022",
+    "nome": "CM POSTO FÉLIX COMBUSTÍVEL",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00027 - CM POSTO NOSSA SENHORA DA CONCEIÇÃO",
+    "codigo": "CM.00027",
+    "nome": "CM POSTO NOSSA SENHORA DA CONCEIÇÃO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00028 - CM POSTO CAÇULINHA IV",
+    "codigo": "CM.00028",
+    "nome": "CM POSTO CAÇULINHA IV",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00037 - CM POSTO PETRO NUNES",
+    "codigo": "CM.00037",
+    "nome": "CM POSTO PETRO NUNES",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CRM.01933 - CRM HOSPITAL UNIMED RECIFE IV - CLIMATIZAÇÃO",
+    "codigo": "CRM.01933",
+    "nome": "CRM HOSPITAL UNIMED RECIFE IV - CLIMATIZAÇÃO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00617 - ERPM POSTO C. TORREÃO",
+    "codigo": "ERPM.00617",
+    "nome": "ERPM POSTO C. TORREÃO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00621 - ERPM POSTO IBIZA 1",
+    "codigo": "ERPM.00621",
+    "nome": "ERPM POSTO IBIZA 1",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00622 - ERPM POSTO IBIZA 2",
+    "codigo": "ERPM.00622",
+    "nome": "ERPM POSTO IBIZA 2",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00724 - ERPM LUZARTE",
+    "codigo": "ERPM.00724",
+    "nome": "ERPM LUZARTE",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CRM.03147 - IACIL",
+    "codigo": "CRM.03147",
+    "nome": "IACIL",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00927 - MARNOL MÁRMORES ARTÍSTICOS DO NORDESTE EIRELI",
+    "codigo": "ERPM.00927",
+    "nome": "MARNOL MÁRMORES ARTÍSTICOS DO NORDESTE EIRELI",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00766 - ERPM HOSPITAL PORTUGUÊS",
+    "codigo": "ERPM.00766",
+    "nome": "ERPM HOSPITAL PORTUGUÊS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00770 - ERPM MOURA 1",
+    "codigo": "ERPM.00770",
+    "nome": "ERPM MOURA 1",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00771 - ERPM MOURA 4",
+    "codigo": "ERPM.00771",
+    "nome": "ERPM MOURA 4",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00777 - ERPM CERÂMICA MARI",
+    "codigo": "ERPM.00777",
+    "nome": "ERPM CERÂMICA MARI",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00928 - CERÂMICA MARI 2 (MORAES ARTEFATOS CERÂMICOS 2)",
+    "codigo": "ERPM.00928",
+    "nome": "CERÂMICA MARI 2 (MORAES ARTEFATOS CERÂMICOS 2)",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00778 - ERPM VITAMASSA",
+    "codigo": "ERPM.00778",
+    "nome": "ERPM VITAMASSA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00789 - ERPM FLOCOMIL",
+    "codigo": "ERPM.00789",
+    "nome": "ERPM FLOCOMIL",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00800 - ERPM POSTO PICHILAU CARUARU",
+    "codigo": "ERPM.00800",
+    "nome": "ERPM POSTO PICHILAU CARUARU",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00818 - ERPM POSTO CRUZEIRO",
+    "codigo": "ERPM.00818",
+    "nome": "ERPM POSTO CRUZEIRO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00856 - ERPM DPA NESTLÉ",
+    "codigo": "ERPM.00856",
+    "nome": "ERPM DPA NESTLÉ",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00903 - ERPM MOURA 14",
+    "codigo": "ERPM.00903",
+    "nome": "ERPM MOURA 14",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00908 - ERPM POSTO GPA (ROTA 232)",
+    "codigo": "ERPM.00908",
+    "nome": "ERPM POSTO GPA (ROTA 232)",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ETC.00010 - ETC GARANHUNS",
+    "codigo": "ETC.00010",
+    "nome": "ETC GARANHUNS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CROM.00005-1 - ERP 402.4 CARUARU",
+    "codigo": "CROM.00005-1",
+    "nome": "ERP 402.4 CARUARU",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERP.00073 - ERP 402.4 - CARUARU",
+    "codigo": "ERP.00073",
+    "nome": "ERP 402.4 - CARUARU",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERP.00095 - ERP 402.7 - BELO JARDIM",
+    "codigo": "ERP.00095",
+    "nome": "ERP 402.7 - BELO JARDIM",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00036 - CM POSTO ALBATEX",
+    "codigo": "CM.00036",
+    "nome": "CM POSTO ALBATEX",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00046 - CM POSTO DM CAMARAGIBE",
+    "codigo": "CM.00046",
+    "nome": "CM POSTO DM CAMARAGIBE",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00619 - ERPM POSTO GMV",
+    "codigo": "ERPM.00619",
+    "nome": "ERPM POSTO GMV",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00623 - ERPM POSTO CAMPOS DE MORAIS",
+    "codigo": "ERPM.00623",
+    "nome": "ERPM POSTO CAMPOS DE MORAIS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00624 - ERPM POSTO PETRÓLEO GÁS",
+    "codigo": "ERPM.00624",
+    "nome": "ERPM POSTO PETRÓLEO GÁS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00626 - ERPM POSTO PETRO ABDIAS",
+    "codigo": "ERPM.00626",
+    "nome": "ERPM POSTO PETRO ABDIAS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00628 - ERPM POSTO PETRO JOQUEI",
+    "codigo": "ERPM.00628",
+    "nome": "ERPM POSTO PETRO JOQUEI",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00002 - POSTO IMPERIO ABDIAS",
+    "codigo": "ERPM.00002",
+    "nome": "POSTO IMPERIO ABDIAS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00633 - ERPM POSTO VOLTA AO MUNDO",
+    "codigo": "ERPM.00633",
+    "nome": "ERPM POSTO VOLTA AO MUNDO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00798 - ERPM POSTO SUPRAGÁS CAMARAGIBE",
+    "codigo": "ERPM.00798",
+    "nome": "ERPM POSTO SUPRAGÁS CAMARAGIBE",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00045 - POSTO ANDALUZIA CAMARAGIBE",
+    "codigo": "CM.00045",
+    "nome": "POSTO ANDALUZIA CAMARAGIBE",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00820 - ERPM POSTO IGUEP",
+    "codigo": "ERPM.00820",
+    "nome": "ERPM POSTO IGUEP",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00833 - ERPM POSTO AUTOPETRO CAMARAGIBE",
+    "codigo": "ERPM.00833",
+    "nome": "ERPM POSTO AUTOPETRO CAMARAGIBE",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00863 - ERPM POSTO BEZERRA DE MENEZES",
+    "codigo": "ERPM.00863",
+    "nome": "ERPM POSTO BEZERRA DE MENEZES",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00871 - ERPM NEOVIA",
+    "codigo": "ERPM.00871",
+    "nome": "ERPM NEOVIA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00889 - ERPM DUPÉ",
+    "codigo": "ERPM.00889",
+    "nome": "ERPM DUPÉ",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00890 - ERPM POSTO CIDADE CARPINA",
+    "codigo": "ERPM.00890",
+    "nome": "ERPM POSTO CIDADE CARPINA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00922 - POSTO TAPAJÓS",
+    "codigo": "ERPM.00922",
+    "nome": "POSTO TAPAJÓS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00929 - MASSA PRONTA (ARGAMASSAS DO MESTRE)",
+    "codigo": "ERPM.00929",
+    "nome": "MASSA PRONTA (ARGAMASSAS DO MESTRE)",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00895 - ERPM POSTO BR JOCKEY",
+    "codigo": "ERPM.00895",
+    "nome": "ERPM POSTO BR JOCKEY",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00901 - ERPM POSTO CAMPEÃO",
+    "codigo": "ERPM.00901",
+    "nome": "ERPM POSTO CAMPEÃO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00001 - CM MONDELEZ (EX-KRAFT FOODS)",
+    "codigo": "CM.00001",
+    "nome": "CM MONDELEZ (EX-KRAFT FOODS)",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00011 - CM POSTO SÃO PAULO VITÓRIA",
+    "codigo": "CM.00011",
+    "nome": "CM POSTO SÃO PAULO VITÓRIA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00638 - ERPM OWENS & ILLINOIS VITÓRIA",
+    "codigo": "ERPM.00638",
+    "nome": "ERPM OWENS & ILLINOIS VITÓRIA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00639 - ERPM POSTO BONANÇA",
+    "codigo": "ERPM.00639",
+    "nome": "ERPM POSTO BONANÇA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00641 - ERPM ECO POSTO VITÓRIA",
+    "codigo": "ERPM.00641",
+    "nome": "ERPM ECO POSTO VITÓRIA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00645 - ERPM PITU",
+    "codigo": "ERPM.00645",
+    "nome": "ERPM PITU",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00646 - ERPM BRF",
+    "codigo": "ERPM.00646",
+    "nome": "ERPM BRF",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00717 - ERPM FAL",
+    "codigo": "ERPM.00717",
+    "nome": "ERPM FAL",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00718 - ERPM POSTO ALPES SUIÇOS",
+    "codigo": "ERPM.00718",
+    "nome": "ERPM POSTO ALPES SUIÇOS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00730 - ERPM ISOESTE",
+    "codigo": "ERPM.00730",
+    "nome": "ERPM ISOESTE",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00739 - ERPM NISSIN",
+    "codigo": "ERPM.00739",
+    "nome": "ERPM NISSIN",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00745 - ERPM POSTO CARRETEIRO",
+    "codigo": "ERPM.00745",
+    "nome": "ERPM POSTO CARRETEIRO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00865 - ERPM POSTO ARCO-ÍRIS",
+    "codigo": "ERPM.00865",
+    "nome": "ERPM POSTO ARCO-ÍRIS",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00642 - ERPM POSTO MASTERGÁS GRAVATÁ",
+    "codigo": "ERPM.00642",
+    "nome": "ERPM POSTO MASTERGÁS GRAVATÁ",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ETC.00006 - ETC 402 - JABOATÃO",
+    "codigo": "ETC.00006",
+    "nome": "ETC 402 - JABOATÃO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CROM.00009 - ERP - 402.1 - VITÓRIA - CROMATOGRAFO",
+    "codigo": "CROM.00009",
+    "nome": "ERP - 402.1 - VITÓRIA - CROMATOGRAFO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERP.00072 - ERP 402.1 - VITÓRIA 1",
+    "codigo": "ERP.00072",
+    "nome": "ERP 402.1 - VITÓRIA 1",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00023 - CM POSTO FEDERAL CURADÃO",
+    "codigo": "CM.00023",
+    "nome": "CM POSTO FEDERAL CURADÃO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00608 - ERPM GERDAU",
+    "codigo": "ERPM.00608",
+    "nome": "ERPM GERDAU",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ETC.00005 - ETC 395 - RECIFE",
+    "codigo": "ETC.00005",
+    "nome": "ETC 395 - RECIFE",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERP.00135 - ERP 395.10 - INTERLIGAÇÃO RECIFE-JABOATÃO",
+    "codigo": "ERP.00135",
+    "nome": "ERP 395.10 - INTERLIGAÇÃO RECIFE-JABOATÃO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00613 - ERPM POSTO BR CEASA",
+    "codigo": "ERPM.00613",
+    "nome": "ERPM POSTO BR CEASA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00920 - POSTO JUSTINO E XAVIER",
+    "codigo": "ERPM.00920",
+    "nome": "POSTO JUSTINO E XAVIER",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00644 - ERPM POSTO VILA BELLA",
+    "codigo": "ERPM.00644",
+    "nome": "ERPM POSTO VILA BELLA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00750 - ERPM CAPRICCHE",
+    "codigo": "ERPM.00750",
+    "nome": "ERPM CAPRICCHE",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00779 - ERPM CIV VÁRZEA (OWENS E ILLINOIS DO BRASIL)",
+    "codigo": "ERPM.00779",
+    "nome": "ERPM CIV VÁRZEA (OWENS E ILLINOIS DO BRASIL)",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00814 - ERPM TRAMONTINA",
+    "codigo": "ERPM.00814",
+    "nome": "ERPM TRAMONTINA",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00822 - ERPM POSTO OUTLET",
+    "codigo": "ERPM.00822",
+    "nome": "ERPM POSTO OUTLET",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00870 - ERPM AGC",
+    "codigo": "ERPM.00870",
+    "nome": "ERPM AGC",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00904 - ERPM POSTO FIJI",
+    "codigo": "ERPM.00904",
+    "nome": "ERPM POSTO FIJI",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00918 - ERPM ROCA (CELITE)",
+    "codigo": "ERPM.00918",
+    "nome": "ERPM ROCA (CELITE)",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERP.00068 - ERP 395.1 - TIP",
+    "codigo": "ERP.00068",
+    "nome": "ERP 395.1 - TIP",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERP.00069 - ERP 395.2 - CURADO",
+    "codigo": "ERP.00069",
+    "nome": "ERP 395.2 - CURADO",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00020 - CM POSTO ORLA PETROLINA",
+    "codigo": "CM.00020",
+    "nome": "CM POSTO ORLA PETROLINA",
+    "equipe": "AUTOMAÇÃO OESTE/SERTÃO",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "CM.00030 - CM POSTO DISTRITO",
+    "codigo": "CM.00030",
+    "nome": "CM POSTO DISTRITO",
+    "equipe": "AUTOMAÇÃO OESTE/SERTÃO",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00783 - ERPM SM GESSO",
+    "codigo": "ERPM.00783",
+    "nome": "ERPM SM GESSO",
+    "equipe": "AUTOMAÇÃO OESTE/SERTÃO",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00848 - ERPM GYPSUM",
+    "codigo": "ERPM.00848",
+    "nome": "ERPM GYPSUM",
+    "equipe": "AUTOMAÇÃO OESTE/SERTÃO",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00862 - ERPM NIAGRO",
+    "codigo": "ERPM.00862",
+    "nome": "ERPM NIAGRO",
+    "equipe": "AUTOMAÇÃO OESTE/SERTÃO",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ETC.00009 - ETC PETROLINA",
+    "codigo": "ETC.00009",
+    "nome": "ETC PETROLINA",
+    "equipe": "AUTOMAÇÃO OESTE/SERTÃO",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "ERPM.00666 - ERPM INDORAMA FIBRAS",
+    "codigo": "ERPM.00666",
+    "nome": "ERPM INDORAMA FIBRAS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00673 - ERPM POSTO CEMOCABO",
+    "codigo": "ERPM.00673",
+    "nome": "ERPM POSTO CEMOCABO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00697 - ERPM POSTO TOTAL CABO (SÃO CRISTOVÃO)",
+    "codigo": "ERPM.00697",
+    "nome": "ERPM POSTO TOTAL CABO (SÃO CRISTOVÃO)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00698 - ERPM PAMESA 1 (INDÚSTRIA)",
+    "codigo": "ERPM.00698",
+    "nome": "ERPM PAMESA 1 (INDÚSTRIA)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00699 - ERPM PAMESA 2 (COGERAÇÃO)",
+    "codigo": "ERPM.00699",
+    "nome": "ERPM PAMESA 2 (COGERAÇÃO)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00700 - ERPM PEPSICO",
+    "codigo": "ERPM.00700",
+    "nome": "ERPM PEPSICO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00701 - ERPM PERQUÍMICA",
+    "codigo": "ERPM.00701",
+    "nome": "ERPM PERQUÍMICA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00704 - ERPM BALL BEVERAGE",
+    "codigo": "ERPM.00704",
+    "nome": "ERPM BALL BEVERAGE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00706 - ERPM SHOPPING RECIFE",
+    "codigo": "ERPM.00706",
+    "nome": "ERPM SHOPPING RECIFE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00711 - ERPM TERPHANE",
+    "codigo": "ERPM.00711",
+    "nome": "ERPM TERPHANE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00757 - ERPM IRAÊTA",
+    "codigo": "ERPM.00757",
+    "nome": "ERPM IRAÊTA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00793 - ERPM SHOPPING RIO MAR",
+    "codigo": "ERPM.00793",
+    "nome": "ERPM SHOPPING RIO MAR",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00811 - ERPM INDUSTRIA ACHÉ",
+    "codigo": "ERPM.00811",
+    "nome": "ERPM INDUSTRIA ACHÉ",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00827 - ERPM FGS",
+    "codigo": "ERPM.00827",
+    "nome": "ERPM FGS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00897 - ERPM BRASPEL",
+    "codigo": "ERPM.00897",
+    "nome": "ERPM BRASPEL",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00907 - ERPM POSTO BARRA DE JANGADA",
+    "codigo": "ERPM.00907",
+    "nome": "ERPM POSTO BARRA DE JANGADA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CROM.00003-5 - ETC 422 - CABO",
+    "codigo": "CROM.00003-5",
+    "nome": "ETC 422 - CABO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CROM.00001-9 - ETC 186 - SUAPE",
+    "codigo": "CROM.00001-9",
+    "nome": "ETC 186 - SUAPE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ETC.00008 - ETC 186 - SUAPE",
+    "codigo": "ETC.00008",
+    "nome": "ETC 186 - SUAPE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ETC.00007 - ETC 422 - CABO",
+    "codigo": "ETC.00007",
+    "nome": "ETC 422 - CABO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00021 - CM POSTO CABANGA",
+    "codigo": "CM.00021",
+    "nome": "CM POSTO CABANGA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00041 - CM POSTO ASSIS PEDROSA",
+    "codigo": "CM.00041",
+    "nome": "CM POSTO ASSIS PEDROSA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00042 - CM POSTO MAIS IBURA (FÓRMULA IBURA)",
+    "codigo": "CM.00042",
+    "nome": "CM POSTO MAIS IBURA (FÓRMULA IBURA)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00657 - ERPM CERÂMICA MONTE CARLO (DURATEX)",
+    "codigo": "ERPM.00657",
+    "nome": "ERPM CERÂMICA MONTE CARLO (DURATEX)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00671 - ERPM POSTO IND - PG AEROPORTO",
+    "codigo": "ERPM.00671",
+    "nome": "ERPM POSTO IND - PG AEROPORTO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00674 - ERPM POSTO DELMIRO GOUVEIA",
+    "codigo": "ERPM.00674",
+    "nome": "ERPM POSTO DELMIRO GOUVEIA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00675 - ERPM POSTO IND PETRÓLEO SUAPE BR",
+    "codigo": "ERPM.00675",
+    "nome": "ERPM POSTO IND PETRÓLEO SUAPE BR",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00677 - ERPM POSTO ESSO NASSAU (SAMPAIO) -  CJCM IMBIRIBEIRA",
+    "codigo": "ERPM.00677",
+    "nome": "ERPM POSTO ESSO NASSAU (SAMPAIO) -  CJCM IMBIRIBEIRA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00681 - ERPM POSTO MAC PETRÓLEO",
+    "codigo": "ERPM.00681",
+    "nome": "ERPM POSTO MAC PETRÓLEO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00683 - ERPM POSTO MATHIAS DE ALBUQUERQUE (CUNHA)",
+    "codigo": "ERPM.00683",
+    "nome": "ERPM POSTO MATHIAS DE ALBUQUERQUE (CUNHA)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00684 - ERPM POSTO AC COMBUSTÍVEIS",
+    "codigo": "ERPM.00684",
+    "nome": "ERPM POSTO AC COMBUSTÍVEIS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00685 - ERPM POSTO IND - SANTO ANTÔNIO - EX NODEPEL",
+    "codigo": "ERPM.00685",
+    "nome": "ERPM POSTO IND - SANTO ANTÔNIO - EX NODEPEL",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00686 - ERPM POSTO PETROCABO",
+    "codigo": "ERPM.00686",
+    "nome": "ERPM POSTO PETROCABO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00762 - ERPM FORTLEV",
+    "codigo": "ERPM.00762",
+    "nome": "ERPM FORTLEV",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00819 - ERPM POSTO GUARUJÁ",
+    "codigo": "ERPM.00819",
+    "nome": "ERPM POSTO GUARUJÁ",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00829 - ERPM POSTO VIA GÁS IBURA",
+    "codigo": "ERPM.00829",
+    "nome": "ERPM POSTO VIA GÁS IBURA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00861 - ERPM SHOPPING GUARARAPES",
+    "codigo": "ERPM.00861",
+    "nome": "ERPM SHOPPING GUARARAPES",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00866 - ERPM REVERSE",
+    "codigo": "ERPM.00866",
+    "nome": "ERPM REVERSE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00874 - ERPM POSTO COSTA DOURADA",
+    "codigo": "ERPM.00874",
+    "nome": "ERPM POSTO COSTA DOURADA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00878 - ERPM POSTO FONSECA",
+    "codigo": "ERPM.00878",
+    "nome": "ERPM POSTO FONSECA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00892 - ERPM COCA COLA SUAPE",
+    "codigo": "ERPM.00892",
+    "nome": "ERPM COCA COLA SUAPE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00910 - ERPM ASA",
+    "codigo": "ERPM.00910",
+    "nome": "ERPM ASA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00012 - CM POSTO AYRTON SENNA",
+    "codigo": "CM.00012",
+    "nome": "CM POSTO AYRTON SENNA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00017 - CM POSTO CMA CANDEIAS",
+    "codigo": "CM.00017",
+    "nome": "CM POSTO CMA CANDEIAS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00025 - CM POSTO COSMORAMA",
+    "codigo": "CM.00025",
+    "nome": "CM POSTO COSMORAMA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00051 - POSTO SÃO DOMINGOS",
+    "codigo": "CM.00051",
+    "nome": "POSTO SÃO DOMINGOS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00033 - CM POSTO GE JABOATÃO",
+    "codigo": "CM.00033",
+    "nome": "CM POSTO GE JABOATÃO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00886 - ERPM ISIS LATICÍNIOS",
+    "codigo": "ERPM.00886",
+    "nome": "ERPM ISIS LATICÍNIOS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ETC.00011 - ETC JABOATÃO 2 - BIOMETANO",
+    "codigo": "ETC.00011",
+    "nome": "ETC JABOATÃO 2 - BIOMETANO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00038 - CM POSTO PORTO DE GALINHAS",
+    "codigo": "CM.00038",
+    "nome": "CM POSTO PORTO DE GALINHAS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CRM.02336 - CRM NANNAI RESORT",
+    "codigo": "CRM.02336",
+    "nome": "CRM NANNAI RESORT",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CRM.02836 - CRM GENERAL GOODS",
+    "codigo": "CRM.02836",
+    "nome": "CRM GENERAL GOODS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00689 - ERPM POSTO PORTO SEGURO",
+    "codigo": "ERPM.00689",
+    "nome": "ERPM POSTO PORTO SEGURO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00690 - ERPM POSTO RAIMUNDO FÉLIX",
+    "codigo": "ERPM.00690",
+    "nome": "ERPM POSTO RAIMUNDO FÉLIX",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00693 - ERPM POSTO SHELL PRAZERES",
+    "codigo": "ERPM.00693",
+    "nome": "ERPM POSTO SHELL PRAZERES",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00696 - ERPM POSTO TANCREDO NEVES",
+    "codigo": "ERPM.00696",
+    "nome": "ERPM POSTO TANCREDO NEVES",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00743 - ERPM ALUNE (NORAL)",
+    "codigo": "ERPM.00743",
+    "nome": "ERPM ALUNE (NORAL)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00810 - ERPM POSTO BRAZ E FILHOS",
+    "codigo": "ERPM.00810",
+    "nome": "ERPM POSTO BRAZ E FILHOS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00830 - ERPM POSTO SÃO JOSÉ (VIA MANGUE)",
+    "codigo": "ERPM.00830",
+    "nome": "ERPM POSTO SÃO JOSÉ (VIA MANGUE)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00868 - ERPM ENOTEL",
+    "codigo": "ERPM.00868",
+    "nome": "ERPM ENOTEL",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00887 - ERPM POSTO SERVICAR PIEDADE",
+    "codigo": "ERPM.00887",
+    "nome": "ERPM POSTO SERVICAR PIEDADE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00912 - ERPM POSTO PETROCAL BOA VIAGEM",
+    "codigo": "ERPM.00912",
+    "nome": "ERPM POSTO PETROCAL BOA VIAGEM",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00921 - ERPM M ANDRADE",
+    "codigo": "ERPM.00921",
+    "nome": "ERPM M ANDRADE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00006 - CM POSTO PETROCAL CONSELHEIRO",
+    "codigo": "CM.00006",
+    "nome": "CM POSTO PETROCAL CONSELHEIRO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00007 - CM POSTO CONCORDE",
+    "codigo": "CM.00007",
+    "nome": "CM POSTO CONCORDE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00024 - CM POSTO MAMELUCO",
+    "codigo": "CM.00024",
+    "nome": "CM POSTO MAMELUCO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CM.00035 - CM POSTO RECH",
+    "codigo": "CM.00035",
+    "nome": "CM POSTO RECH",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00662 - ERPM INGREDION",
+    "codigo": "ERPM.00662",
+    "nome": "ERPM INGREDION",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CROM.00006 - ERP - CORN (INGREDION) - CROMATOGRAFO",
+    "codigo": "CROM.00006",
+    "nome": "ERP - CORN (INGREDION) - CROMATOGRAFO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00663 - ERPM RESIQ",
+    "codigo": "ERPM.00663",
+    "nome": "ERPM RESIQ",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00667 - ERPM INDORAMA POLÍMEROS",
+    "codigo": "ERPM.00667",
+    "nome": "ERPM INDORAMA POLÍMEROS",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00670 - ERPM POSTO ABASTEÇA CAVALEIRO",
+    "codigo": "ERPM.00670",
+    "nome": "ERPM POSTO ABASTEÇA CAVALEIRO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00702 - ERPM BIMBO (PLUS VITA)",
+    "codigo": "ERPM.00702",
+    "nome": "ERPM BIMBO (PLUS VITA)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00712 - ERPM UNILEVER IPOJUCA (IGL)",
+    "codigo": "ERPM.00712",
+    "nome": "ERPM UNILEVER IPOJUCA (IGL)",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00768 - ERPM M DIAS BRANCO VITARELA",
+    "codigo": "ERPM.00768",
+    "nome": "ERPM M DIAS BRANCO VITARELA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CROM.00007 - ERPM - M DIAS BRANCO - CROMATOGRAFO",
+    "codigo": "CROM.00007",
+    "nome": "ERPM - M DIAS BRANCO - CROMATOGRAFO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00788 - ERPM AUTOMETAL",
+    "codigo": "ERPM.00788",
+    "nome": "ERPM AUTOMETAL",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00854 - ERPM POSTO PICHILAU SUL",
+    "codigo": "ERPM.00854",
+    "nome": "ERPM POSTO PICHILAU SUL",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00867 - ERPM POSTO ROTA PETRÓLEO",
+    "codigo": "ERPM.00867",
+    "nome": "ERPM POSTO ROTA PETRÓLEO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00876 - ERPM BELLA VITA",
+    "codigo": "ERPM.00876",
+    "nome": "ERPM BELLA VITA",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00917 - ERPM POSTO 5 ESTRELAS - CABO",
+    "codigo": "ERPM.00917",
+    "nome": "ERPM POSTO 5 ESTRELAS - CABO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "ERPM.00737 - ERPM PETROQUÍMICA SUAPE",
+    "codigo": "ERPM.00737",
+    "nome": "ERPM PETROQUÍMICA SUAPE",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "CROM.00008 - ETC JABOATÃO 2 (BIOMETANO) - CROMATOGRAFO",
+    "codigo": "CROM.00008",
+    "nome": "ETC JABOATÃO 2 (BIOMETANO) - CROMATOGRAFO",
+    "equipe": "AUTOMAÇÃO SUL",
+    "area": "SUL"
+  },
+  {
+    "cliente": "POSTO PRINCESA ISABEL",
+    "codigo": "",
+    "nome": "POSTO PRINCESA ISABEL",
+    "equipe": "AUTOMAÇÃO NORTE",
+    "area": "NORTE"
+  },
+  {
+    "cliente": "MAURICEIA RAÇÕES",
+    "codigo": "",
+    "nome": "MAURICEIA RAÇÕES",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "MAURICÉA RAÇÕES",
+    "codigo": "",
+    "nome": "MAURICÉA RAÇÕES",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  },
+  {
+    "cliente": "MAURICEA RAÇÕES",
+    "codigo": "",
+    "nome": "MAURICEA RAÇÕES",
+    "equipe": "AUTOMAÇÃO OESTE",
+    "area": "OESTE"
+  }
+]
