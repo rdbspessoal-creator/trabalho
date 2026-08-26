@@ -1,26 +1,39 @@
 # Sistema de Mapeamento de Demandas de Medição
 
-Ferramenta autocontida (HTML + CSS + JS vanilla) para consolidar e gerenciar as
-demandas semanais de fechamento de medição em três áreas — **Norte (Bruno)**,
-**Sul (Rubening)** e **Oeste (Iltearle)** — a partir de imagens de tabelas
-(planilhas fotografadas/print) ou lançamento manual, com correlação
-automática **Cliente → Área → Técnico**.
+Ferramenta autocontida — um único arquivo HTML, sem instalação, sem backend —
+para consolidar e gerenciar as demandas semanais de fechamento de medição em
+três áreas — **Norte (Bruno)**, **Sul (Rubening)** e **Oeste (Iltearle)** — a
+partir de documentos (imagem ou PDF da tabela semanal) ou lançamento manual,
+com correlação automática **Cliente → Área → Técnico**.
 
-Abra `sistema_demandas_medicao.html` num navegador (ou publique como Artifact
-no Claude.ai) para usar o sistema. Os dados reais (histórico + base de
-clientes, ver abaixo) já vêm carregados automaticamente na primeira execução.
+Abra `sistema_demandas_medicao.html` num navegador (basta dar duplo-clique —
+não precisa de servidor) ou publique como Artifact no Claude.ai. Os dados
+reais (histórico + base de clientes, ver abaixo) e toda a lógica (`core.js`)
+já vêm **embutidos no próprio arquivo** e carregados automaticamente na
+primeira execução — não há nenhuma configuração manual a fazer.
 
 ## Estrutura do repositório
 
 ```
-sistema_demandas_medicao.html   # aplicação (abas: Nova Demanda, Histórico, Correlações, Resumo, Dados)
-core.js                         # lógica de negócio pura (normalização, correlação, parsing da matriz)
-data/seed-clientes.json         # base de clientes REAL (258 registros, gerada de CLIENTES_X_EQUIPE.xlsx)
-data/seed-demandas.json         # histórico REAL (428 registros, gerado de Demanda_de_Medição_Modelo.xlsx)
-scripts/convert_xlsx_to_seed.py # script que gerou os dois JSONs acima a partir das planilhas originais
-test/fixture-imagem-teste.json  # transcrição fiel da imagem padrão de teste (tabela em formato matriz)
-test/run-tests.js               # testes automatizados (node test/run-tests.js)
+sistema_demandas_medicao.html    # aplicação FINAL, autocontida (abra direto no navegador)
+core.js                          # lógica de negócio pura — fonte de verdade, embutida no HTML no build
+data/seed-clientes.json          # base de clientes REAL (258 registros) — fonte de verdade, embutida no build
+data/seed-demandas.json          # histórico REAL (428 registros) — fonte de verdade, embutida no build
+scripts/convert_xlsx_to_seed.py  # gera os dois JSONs acima a partir das planilhas .xlsx originais
+scripts/build_standalone.py      # embute core.js + os dois JSONs dentro de sistema_demandas_medicao.html
+test/fixture-imagem-teste.json   # transcrição fiel da imagem padrão de teste (tabela em formato matriz)
+test/run-tests.js                # testes automatizados (node test/run-tests.js)
 ```
+
+`sistema_demandas_medicao.html` é o artefato final — **um único arquivo**,
+sem `<script src>` externo, sem `fetch()` de arquivo local: `core.js` e os
+dois JSONs de seed estão embutidos dentro dele (em `<script id="coreJsInline">`
+e `<script type="application/json" id="seedClientesData"/"seedDemandasData">`).
+Isso é o que permite abri-lo direto com duplo-clique (`file://`), sem
+precisar de servidor. Depois de editar `core.js`, `data/seed-clientes.json`
+ou `data/seed-demandas.json`, rode `python3 scripts/build_standalone.py`
+para propagar a mudança ao HTML final (idempotente — pode rodar quantas
+vezes for preciso).
 
 ## Dados reais embutidos
 
@@ -141,8 +154,8 @@ um palpite, exatamente o comportamento descrito na seção 8 da especificação.
    candidatos mais parecidos e aplica retroativamente a todos os registros
    daquele cliente, última leva consolidada agrupada por técnico, impressão/
    exportação.
-6. **Dados** — importar uma atualização das planilhas (ver abaixo), configurar
-   chave de API (uso fora do Claude.ai), apagar dados locais.
+6. **Dados** — importar uma atualização das planilhas (ver abaixo), apagar
+   dados locais (restaura o histórico original embutido).
 
 ## Atualizando a base de clientes/histórico
 
@@ -159,26 +172,33 @@ rode novamente `scripts/convert_xlsx_to_seed.py` (substitui os arquivos em
   `"area"`, seguindo a mesma regra `execToArea` usada no restante do sistema).
   Esse import **acrescenta** ao histórico já salvo (não substitui).
 
-## Onde a leitura de imagem por IA funciona
+## Leitura automática de imagem/PDF — sem configuração manual
 
-- **Como Artifact dentro do Claude.ai**: a chamada à API Anthropic é
-  proxied automaticamente pela plataforma, sem chave.
-- **Arquivo aberto fora do Claude.ai**: o navegador bloqueia a chamada direta
-  por CORS sem uma chave própria. Configure uma em **Dados → Chave de API
-  Anthropic**; ela é enviada com `x-api-key` +
-  `anthropic-dangerous-direct-browser-access: true` e fica salva só no
-  `localStorage` deste navegador. Recomenda-se, sempre que possível, usar o
-  sistema como Artifact dentro do Claude.ai.
+Não existe campo de chave de API na interface. O upload aceita **imagem
+(foto/print) ou PDF** — para PDF, o arquivo é enviado inteiro como documento
+para o modelo (a Claude API lê PDFs nativamente, sem precisar convertê-los
+em imagem antes). A chamada à API Anthropic funciona automaticamente:
+
+- **Como Artifact dentro do Claude.ai** (uso recomendado): a chamada é
+  proxied pela própria plataforma — funciona de imediato, sem nenhuma
+  configuração.
+- **Arquivo aberto fora do Claude.ai** (`file://`, direto no navegador): a
+  extração automática por IA não tem como funcionar sem chave (o navegador
+  bloqueia a chamada direta à API por CORS) — a interface mostra esse aviso
+  na hora, mas **não** oferece um campo para colar uma chave manualmente.
+  Todo o resto do sistema (lançamento manual, histórico, correlações,
+  resumo) funciona normalmente offline, já com os 428 registros e 258
+  clientes reais carregados.
 - `max_tokens` é fixo em 1000 (padrão da API); para tabelas muito grandes
-  (~15+ linhas), a interface já avisa para dividir a imagem em duas.
+  (~15+ linhas), a interface já avisa para dividir em duas imagens/páginas.
 
 ## Armazenamento
 
 Detecção automática: `window.storage` (Claude.ai Artifact, dados privados por
 usuário) quando disponível, caindo para `localStorage` do navegador caso
 contrário — mesma interface assíncrona, mesmas chaves
-(`demandas-registros-v1`, `correlacoes-overrides-v1`,
-`anthropic-api-key-v1`, `clientes-base-v1`, `seed-carregado-v1`).
+(`demandas-registros-v1`, `correlacoes-overrides-v1`, `clientes-base-v1`,
+`seed-carregado-v1`).
 
 ## Testes
 
