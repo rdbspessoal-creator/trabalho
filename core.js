@@ -201,6 +201,112 @@
     return /^\d{4}-\d{2}-\d{2}$/.test(s || '');
   }
 
+  // ---------------------------------------------------------------------
+  // Importação de tabela colada (Excel/CSV/TSV) — sem IA, 100% local.
+  // ---------------------------------------------------------------------
+
+  function detectDelimiter(line) {
+    if (line.includes('\t')) return '\t';
+    if (line.includes(';')) return ';';
+    if (line.includes(',')) return ',';
+    return null;
+  }
+
+  function splitRow(line, delim) {
+    if (delim) return line.split(delim).map((c) => c.trim());
+    return line.trim().split(/\s{2,}/).map((c) => c.trim());
+  }
+
+  function findCol(normalizedHeader, candidates) {
+    for (const cand of candidates) {
+      const i = normalizedHeader.findIndex((h) => h.includes(cand));
+      if (i >= 0) return i;
+    }
+    return -1;
+  }
+
+  function cellDate(cell) {
+    if (!cell) return '';
+    return isValidIsoDate(cell) ? cell : brDateToIso(cell);
+  }
+
+  /**
+   * Interpreta texto colado (copiado de uma planilha Excel — tabulado — ou
+   * CSV/TSV exportado) na mesma estrutura que a extração por imagem produz:
+   * { formato: 'A'|'B', linhas: [...] }, consumível por ingestParsedImage.
+   * Primeira linha não vazia = cabeçalho; detecta o formato pelos nomes de
+   * coluna (formato B tem TELEMETRIA/CVAZ/PULSO/ENERGIA/INFRA PENDENTE).
+   */
+  function parsePastedTable(text) {
+    const lines = (text || '').split(/\r?\n/).filter((l) => l.trim() !== '');
+    if (!lines.length) return { formato: 'A', linhas: [] };
+
+    const delim = detectDelimiter(lines[0]);
+    const header = splitRow(lines[0], delim);
+    const normHeader = header.map(normalize);
+
+    const isFormatB = normHeader.some(
+      (h) => h.includes('TELEMETRIA') || h.includes('CVAZ') || h.includes('PULSO') || h.includes('ENERGIA') || h.includes('INFRA PENDENTE')
+    );
+    const formato = isFormatB ? 'B' : 'A';
+    const linhas = [];
+
+    if (formato === 'A') {
+      const iCliente = findCol(normHeader, ['CLIENTE', 'ESTACAO']);
+      const iExecutante = findCol(normHeader, ['EXECUTANTE', 'TECNICO']);
+      const iData = findCol(normHeader, ['DATA']);
+      const iDefeito = findCol(normHeader, ['DEFEITO']);
+      const iAcao = findCol(normHeader, ['ACAO']);
+      const iDetalhamento = findCol(normHeader, ['DETALHAMENTO', 'COMENTARIO']);
+      for (let r = 1; r < lines.length; r++) {
+        const cells = splitRow(lines[r], delim);
+        const cliente = (iCliente >= 0 ? cells[iCliente] : '') || '';
+        if (!cliente.trim()) continue;
+        linhas.push({
+          cliente: cliente.trim(),
+          executante: iExecutante >= 0 ? (cells[iExecutante] || '').trim() : '',
+          data: cellDate(cells[iData]),
+          defeito: iDefeito >= 0 ? (cells[iDefeito] || '').trim() : '',
+          acao: iAcao >= 0 ? (cells[iAcao] || '').trim() : '',
+          detalhamento: iDetalhamento >= 0 ? (cells[iDetalhamento] || '').trim() : '',
+          confianca: 'alta',
+        });
+      }
+    } else {
+      const iEstacao = findCol(normHeader, ['ESTACAO', 'CLIENTE']);
+      const iData = findCol(normHeader, ['DATA']);
+      const iDemanda = findCol(normHeader, ['DEMANDA MEDICAO']);
+      const iTelemetria = findCol(normHeader, ['TELEMETRIA']);
+      const iEnergia = findCol(normHeader, ['ENERGIA']);
+      const iInfra = findCol(normHeader, ['INFRA PENDENTE']);
+      const iCvaz = findCol(normHeader, ['CVAZ']);
+      const iPulso = findCol(normHeader, ['PULSO']);
+      const iComentarios = findCol(normHeader, ['COMENTARIO']);
+      for (let r = 1; r < lines.length; r++) {
+        const cells = splitRow(lines[r], delim);
+        const estacao = (iEstacao >= 0 ? cells[iEstacao] : '') || '';
+        if (!estacao.trim()) continue;
+        const marked = (i) => i >= 0 && !!(cells[i] || '').trim();
+        const comentarios = iComentarios >= 0 ? (cells[iComentarios] || '').trim() : '';
+        const energia = marked(iEnergia);
+        const confianca = /220\s*V/i.test(comentarios) && !energia ? 'baixa' : 'alta';
+        linhas.push({
+          estacao: estacao.trim(),
+          data: cellDate(cells[iData]),
+          demandaMedicao: marked(iDemanda),
+          telemetria: marked(iTelemetria),
+          energia,
+          infraPendente: marked(iInfra),
+          cvaz: marked(iCvaz),
+          pulso: marked(iPulso),
+          comentarios,
+          confianca,
+        });
+      }
+    }
+    return { formato, linhas };
+  }
+
   return {
     normalize,
     areaToTecnico,
@@ -215,5 +321,6 @@
     matrixRowToDemanda,
     brDateToIso,
     isValidIsoDate,
+    parsePastedTable,
   };
 });

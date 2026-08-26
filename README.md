@@ -67,9 +67,20 @@ Para re-gerar os JSONs a partir de versões atualizadas das planilhas:
 python3 scripts/convert_xlsx_to_seed.py <Demanda_de_Medição_Modelo.xlsx> <CLIENTES_X_EQUIPE.xlsx>
 ```
 
-## Extração de dados a partir de imagem — a imagem padrão de teste
+## Importação de relatório — colar da planilha ou anexar .csv/.tsv
 
-O sistema reconhece dois formatos de tabela numa imagem:
+O sistema **não faz leitura de foto/PDF por IA** — uma versão anterior tentava
+chamar a API da Anthropic direto do navegador (`fetch` para
+`api.anthropic.com`), o que é bloqueado tanto rodando como Artifact (a CSP do
+Artifact só permite requisições para o próprio host e para o Google Fonts)
+quanto fora dele (CORS, sem chave), e por isso sempre resultava em erro. A
+importação de relatório agora é **100% local, sem rede**: copie o intervalo de
+células direto da planilha do Excel (`Ctrl+C` → colar na caixa de texto da aba
+**Nova Demanda**, mantém a tabulação entre colunas) ou anexe um `.csv`/`.tsv`/
+`.txt` exportado — em ambos os casos o parsing roda no próprio navegador
+(`core.js`, função `parsePastedTable`).
+
+O sistema reconhece dois formatos de tabela pelo cabeçalho (primeira linha):
 
 - **Formato A** — colunas de texto livre: Cliente, Executante, Data, Defeito,
   Ação, Detalhamento.
@@ -78,16 +89,15 @@ O sistema reconhece dois formatos de tabela numa imagem:
   ENERGIA (220V), INFRA PENDENTE, DADOS DO CVAZ, PULSO, Comentários, com
   células marcadas "X".
 
-### Decisão de design: extração híbrida (IA + regra determinística)
+### Decisão de design: extração determinística, sem IA
 
-A especificação original previa que a IA calculasse os textos de `defeito` e
-`acao` diretamente. Neste pacote, o cálculo desses dois campos foi movido
-para **`core.js` (determinístico)**: a IA (quando disponível) só precisa
-identificar **quais colunas estão marcadas** em cada linha — algo que um
-modelo de visão faz de forma confiável — e o texto final de `defeito`/`acao`
-é montado por uma função pura, testável, sem depender da aritmética textual
-do modelo. Isso é o que garante que os dados são extraídos **fielmente e de
-forma reprodutível** a cada execução, inclusive contra a imagem em anexo.
+O cálculo de `defeito`/`acao` para o formato matriz é feito por
+**`core.js` (determinístico)**: `parsePastedTable` só precisa identificar
+**quais colunas estão marcadas** em cada linha colada — e o texto final de
+`defeito`/`acao` é montado por uma função pura, testável, sem depender de
+nenhum modelo externo. Isso garante que os dados são extraídos **fielmente e
+de forma reprodutível** a cada execução, inclusive contra a tabela do relatório
+semanal em anexo (basta copiá-la do Excel e colar).
 
 Mapeamento (`core.js`, funções `matrixToDefeito` / `matrixToAcao`):
 
@@ -134,12 +144,13 @@ um palpite, exatamente o comportamento descrito na seção 8 da especificação.
 
 ## Uso no dia a dia
 
-1. **Nova Demanda** → arraste/selecione a foto da tabela semanal (ou use a
-   câmera no celular). As linhas extraídas caem numa tabela de **conferência**
+1. **Nova Demanda** → cole a tabela semanal copiada do Excel (ou anexe um
+   `.csv`/`.tsv`). As linhas importadas caem numa tabela de **conferência**
    100% editável — cliente, técnico, área (select), data, defeito, ação,
-   detalhamento — com selos de alerta para data inválida, confiança baixa da
-   IA, e status de correlação (✔ ok / ~ sugerido / ⚠ sem correlação). Dá para
-   corrigir qualquer campo, salvar uma correlação a partir da própria linha
+   detalhamento — com selos de alerta para data inválida, confiança baixa
+   (inconsistência entre colunas marcadas e o comentário), e status de
+   correlação (✔ ok / ~ sugerido / ⚠ sem correlação). Dá para corrigir
+   qualquer campo, salvar uma correlação a partir da própria linha
    (💾), remover linhas (✕), ou lançar uma demanda manualmente.
 2. **Consolidar demandas** grava tudo em `state.demandas` — antes disso, o
    sistema checa duplicidade (mesmo cliente normalizado + mesma data já no
@@ -172,29 +183,30 @@ rode novamente `scripts/convert_xlsx_to_seed.py` (substitui os arquivos em
   `"area"`, seguindo a mesma regra `execToArea` usada no restante do sistema).
   Esse import **acrescenta** ao histórico já salvo (não substitui).
 
-## Leitura automática de imagem/PDF — sem configuração manual
+## Importação — sem configuração manual, sem chamadas de rede
 
-Não existe campo de chave de API na interface. O upload aceita **imagem
-(foto/print) ou PDF** — para PDF, o arquivo é enviado inteiro como documento
-para o modelo (a Claude API lê PDFs nativamente, sem precisar convertê-los
-em imagem antes). A chamada à API Anthropic funciona automaticamente:
+O upload/colagem de relatório não depende de nenhuma chave de API nem de
+conectividade — funciona igual em qualquer ambiente (Artifact do Claude.ai,
+`file://` direto no navegador, ou servido por qualquer servidor estático):
 
-- **Como Artifact dentro do Claude.ai** (uso recomendado): a chamada é
-  proxied pela própria plataforma — funciona de imediato, sem nenhuma
-  configuração.
-- **Arquivo aberto fora do Claude.ai** (`file://`, direto no navegador): a
-  extração automática por IA não tem como funcionar sem chave (o navegador
-  bloqueia a chamada direta à API por CORS) — a interface mostra esse aviso
-  na hora, mas **não** oferece um campo para colar uma chave manualmente.
-  Todo o resto do sistema (lançamento manual, histórico, correlações,
-  resumo) funciona normalmente offline, já com os 428 registros e 258
-  clientes reais carregados.
-- `max_tokens` é fixo em 1000 (padrão da API); para tabelas muito grandes
-  (~15+ linhas), a interface já avisa para dividir em duas imagens/páginas.
+- Cole o intervalo copiado do Excel na caixa de texto da aba **Nova Demanda**
+  e clique em "Importar texto colado", **ou**
+- anexe um arquivo `.csv`/`.tsv`/`.txt` exportado da planilha.
+
+Em ambos os casos o parsing roda inteiramente no navegador
+(`core.js#parsePastedTable`), sem enviar nada para fora da máquina do
+usuário. Para tabelas muito grandes, não há limite artificial de linhas —
+o único cuidado é manter a primeira linha como cabeçalho (Cliente/Executante/
+Data/... ou Estação/Data/Telemetria/...) para que o formato seja reconhecido.
+
+Exportar CSV do histórico (aba **Histórico** → "Exportar CSV") usa a
+capacidade nativa de download quando disponível como Artifact
+(`window.claude.use('downloads')`), com fallback automático para o link de
+blob tradicional quando o arquivo é aberto direto no navegador.
 
 ## Armazenamento
 
-Detecção automática: `window.storage` (Claude.ai Artifact, dados privados por
+Detecção automática: capacidade de artefato do Claude.ai (dados privados por
 usuário) quando disponível, caindo para `localStorage` do navegador caso
 contrário — mesma interface assíncrona, mesmas chaves
 (`demandas-registros-v1`, `correlacoes-overrides-v1`, `clientes-base-v1`,
@@ -206,13 +218,15 @@ contrário — mesma interface assíncrona, mesmas chaves
 node test/run-tests.js
 ```
 
-18 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
+23 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
 determinística de defeito/ação/data/comentário + sinalização de confiança
 baixa), o algoritmo de correlação contra a **base de clientes real** de 258
 registros (match direto, lacuna já resolvida, lacuna genuína ainda em
 aberto, override manual, derivação de área a partir do executante em
-registros de histórico), e a contagem de registros do seed real
-(419 + 9 = 428).
+registros de histórico), a contagem de registros do seed real (419 + 9 = 428),
+e o parser de tabela colada/`.csv` (`parsePastedTable`): reconhecimento dos
+dois formatos pelo cabeçalho, conversão de data BR→ISO, flags de coluna
+marcada, sinalização de confiança baixa e descarte de linhas em branco.
 
 ## Limitações conhecidas / próximos passos
 

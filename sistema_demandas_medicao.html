@@ -141,21 +141,22 @@
   <!-- ===================== NOVA DEMANDA ===================== -->
   <section class="tab active" id="tab-nova">
     <div class="card no-print">
-      <h2>Upload de documento</h2>
+      <h2>Importar relatório (colar da planilha ou anexar .csv/.tsv)</h2>
       <div class="dropzone" id="dropzone">
-        📄 Arraste a tabela semanal aqui (imagem ou PDF), clique para escolher, ou use a câmera<br>
-        <input type="file" id="fileInput" accept="image/*,application/pdf,.pdf" multiple style="display:none;">
-        <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;">
+        📋 Cole aqui o intervalo copiado do Excel (Ctrl+C na planilha → clique aqui → Ctrl+V), ou solte/escolha um arquivo .csv/.tsv/.txt<br>
+        <textarea id="pasteArea" placeholder="Cole a tabela aqui (com o cabeçalho na primeira linha)…" style="width:100%; min-height:90px; margin-top:10px; font-family:inherit;"></textarea>
+        <input type="file" id="fileInput" accept=".csv,.tsv,.txt,text/csv,text/plain" multiple style="display:none;">
         <div style="margin-top:10px;">
+          <button class="btn small" id="btnImportPaste" type="button">Importar texto colado</button>
           <button class="btn secondary small" id="btnPickFile" type="button">Escolher arquivo(s)</button>
-          <button class="btn secondary small" id="btnCamera" type="button">📸 Usar câmera</button>
         </div>
       </div>
       <div class="hint">
-        Aceita imagens (foto/print) e arquivos PDF. Duas tabelas são reconhecidas automaticamente:
-        <b>colunas de texto livre</b> (Cliente/Executante/Data/Defeito/Ação/Detalhamento)
-        e <b>matriz/checklist</b> (Estação/Data/DEMANDA MEDIÇÃO/TELEMETRIA/ENERGIA(220V)/INFRA PENDENTE/DADOS DO CVAZ/PULSO/Comentários — marcadas com "X").
-        Para tabelas grandes (~15+ linhas), prefira dividir em duas imagens/páginas.
+        Duas tabelas são reconhecidas automaticamente pelo cabeçalho: <b>colunas de texto livre</b>
+        (Cliente/Executante/Data/Defeito/Ação/Detalhamento) e <b>matriz/checklist</b>
+        (Estação/Data/DEMANDA MEDIÇÃO/TELEMETRIA/ENERGIA(220V)/INFRA PENDENTE/DADOS DO CVAZ/PULSO/Comentários —
+        marcadas com "X"). Este sistema roda 100% offline/local — não há leitura automática de foto/PDF por IA;
+        copie e cole o intervalo de células direto da planilha (mantém tabulação) ou anexe um .csv/.tsv exportado.
       </div>
       <div id="imgStatus" class="hint"></div>
     </div>
@@ -538,6 +539,112 @@
     return /^\d{4}-\d{2}-\d{2}$/.test(s || '');
   }
 
+  // ---------------------------------------------------------------------
+  // Importação de tabela colada (Excel/CSV/TSV) — sem IA, 100% local.
+  // ---------------------------------------------------------------------
+
+  function detectDelimiter(line) {
+    if (line.includes('\t')) return '\t';
+    if (line.includes(';')) return ';';
+    if (line.includes(',')) return ',';
+    return null;
+  }
+
+  function splitRow(line, delim) {
+    if (delim) return line.split(delim).map((c) => c.trim());
+    return line.trim().split(/\s{2,}/).map((c) => c.trim());
+  }
+
+  function findCol(normalizedHeader, candidates) {
+    for (const cand of candidates) {
+      const i = normalizedHeader.findIndex((h) => h.includes(cand));
+      if (i >= 0) return i;
+    }
+    return -1;
+  }
+
+  function cellDate(cell) {
+    if (!cell) return '';
+    return isValidIsoDate(cell) ? cell : brDateToIso(cell);
+  }
+
+  /**
+   * Interpreta texto colado (copiado de uma planilha Excel — tabulado — ou
+   * CSV/TSV exportado) na mesma estrutura que a extração por imagem produz:
+   * { formato: 'A'|'B', linhas: [...] }, consumível por ingestParsedImage.
+   * Primeira linha não vazia = cabeçalho; detecta o formato pelos nomes de
+   * coluna (formato B tem TELEMETRIA/CVAZ/PULSO/ENERGIA/INFRA PENDENTE).
+   */
+  function parsePastedTable(text) {
+    const lines = (text || '').split(/\r?\n/).filter((l) => l.trim() !== '');
+    if (!lines.length) return { formato: 'A', linhas: [] };
+
+    const delim = detectDelimiter(lines[0]);
+    const header = splitRow(lines[0], delim);
+    const normHeader = header.map(normalize);
+
+    const isFormatB = normHeader.some(
+      (h) => h.includes('TELEMETRIA') || h.includes('CVAZ') || h.includes('PULSO') || h.includes('ENERGIA') || h.includes('INFRA PENDENTE')
+    );
+    const formato = isFormatB ? 'B' : 'A';
+    const linhas = [];
+
+    if (formato === 'A') {
+      const iCliente = findCol(normHeader, ['CLIENTE', 'ESTACAO']);
+      const iExecutante = findCol(normHeader, ['EXECUTANTE', 'TECNICO']);
+      const iData = findCol(normHeader, ['DATA']);
+      const iDefeito = findCol(normHeader, ['DEFEITO']);
+      const iAcao = findCol(normHeader, ['ACAO']);
+      const iDetalhamento = findCol(normHeader, ['DETALHAMENTO', 'COMENTARIO']);
+      for (let r = 1; r < lines.length; r++) {
+        const cells = splitRow(lines[r], delim);
+        const cliente = (iCliente >= 0 ? cells[iCliente] : '') || '';
+        if (!cliente.trim()) continue;
+        linhas.push({
+          cliente: cliente.trim(),
+          executante: iExecutante >= 0 ? (cells[iExecutante] || '').trim() : '',
+          data: cellDate(cells[iData]),
+          defeito: iDefeito >= 0 ? (cells[iDefeito] || '').trim() : '',
+          acao: iAcao >= 0 ? (cells[iAcao] || '').trim() : '',
+          detalhamento: iDetalhamento >= 0 ? (cells[iDetalhamento] || '').trim() : '',
+          confianca: 'alta',
+        });
+      }
+    } else {
+      const iEstacao = findCol(normHeader, ['ESTACAO', 'CLIENTE']);
+      const iData = findCol(normHeader, ['DATA']);
+      const iDemanda = findCol(normHeader, ['DEMANDA MEDICAO']);
+      const iTelemetria = findCol(normHeader, ['TELEMETRIA']);
+      const iEnergia = findCol(normHeader, ['ENERGIA']);
+      const iInfra = findCol(normHeader, ['INFRA PENDENTE']);
+      const iCvaz = findCol(normHeader, ['CVAZ']);
+      const iPulso = findCol(normHeader, ['PULSO']);
+      const iComentarios = findCol(normHeader, ['COMENTARIO']);
+      for (let r = 1; r < lines.length; r++) {
+        const cells = splitRow(lines[r], delim);
+        const estacao = (iEstacao >= 0 ? cells[iEstacao] : '') || '';
+        if (!estacao.trim()) continue;
+        const marked = (i) => i >= 0 && !!(cells[i] || '').trim();
+        const comentarios = iComentarios >= 0 ? (cells[iComentarios] || '').trim() : '';
+        const energia = marked(iEnergia);
+        const confianca = /220\s*V/i.test(comentarios) && !energia ? 'baixa' : 'alta';
+        linhas.push({
+          estacao: estacao.trim(),
+          data: cellDate(cells[iData]),
+          demandaMedicao: marked(iDemanda),
+          telemetria: marked(iTelemetria),
+          energia,
+          infraPendente: marked(iInfra),
+          cvaz: marked(iCvaz),
+          pulso: marked(iPulso),
+          comentarios,
+          confianca,
+        });
+      }
+    }
+    return { formato, linhas };
+  }
+
   return {
     normalize,
     areaToTecnico,
@@ -552,6 +659,7 @@
     matrixRowToDemanda,
     brDateToIso,
     isValidIsoDate,
+    parsePastedTable,
   };
 });
 
@@ -708,101 +816,60 @@ document.getElementById('tabNav').addEventListener('click', (e)=>{
 });
 
 // ---------------------------------------------------------------------
-// NOVA DEMANDA — Upload de imagem
+// NOVA DEMANDA — Importar tabela colada / arquivo .csv-.tsv (100% local)
 // ---------------------------------------------------------------------
 const dropzone = document.getElementById('dropzone');
 const fileInput = document.getElementById('fileInput');
-const cameraInput = document.getElementById('cameraInput');
+const pasteArea = document.getElementById('pasteArea');
 document.getElementById('btnPickFile').addEventListener('click', ()=>fileInput.click());
-document.getElementById('btnCamera').addEventListener('click', ()=>cameraInput.click());
+document.getElementById('btnImportPaste').addEventListener('click', ()=>{
+  importPastedText(pasteArea.value, 'texto colado');
+});
 dropzone.addEventListener('click', (e)=>{ if(e.target===dropzone) fileInput.click(); });
 ['dragover'].forEach(ev=>dropzone.addEventListener(ev, e=>{e.preventDefault(); dropzone.classList.add('drag');}));
 ['dragleave','drop'].forEach(ev=>dropzone.addEventListener(ev, e=>{e.preventDefault(); dropzone.classList.remove('drag');}));
 dropzone.addEventListener('drop', e=>{ handleFiles(e.dataTransfer.files); });
 fileInput.addEventListener('change', e=>{ handleFiles(e.target.files); fileInput.value=''; });
-cameraInput.addEventListener('change', e=>{ handleFiles(e.target.files); cameraInput.value=''; });
 
-function fileToBase64(file){
+function fileToText(file){
   return new Promise((resolve,reject)=>{
     const r = new FileReader();
-    r.onload = ()=>resolve(r.result.split(',')[1]);
+    r.onload = ()=>resolve(r.result);
     r.onerror = reject;
-    r.readAsDataURL(file);
+    r.readAsText(file, 'utf-8');
   });
-}
-
-function isPdf(file){
-  return file.type === 'application/pdf' || /\.pdf$/i.test(file.name || '');
-}
-
-const IMAGE_PROMPT = `Você vai ler uma tabela em um documento (imagem ou PDF) sobre demandas de medição. Se o documento tiver várias páginas, processe todas. Existem DOIS formatos possíveis — identifique automaticamente qual está no documento:
-
-FORMATO A — colunas de texto livre: Cliente, Executante, Data, Defeito, Ação, Detalhamento.
-Retorne cada linha com os campos correspondentes diretamente.
-
-FORMATO B — matriz/checklist: colunas "Estação", "Data", "DEMANDA MEDIÇÃO", "TELEMETRIA", "ENERGIA (220V)", "INFRA PENDENTE", "DADOS DO CVAZ", "PULSO", "Comentários", com células marcadas "X".
-Para este formato, NÃO calcule defeito/ação — apenas retorne, por linha, quais colunas estão marcadas com X (booleans) e os campos estacao/data/comentarios. O cálculo de defeito/ação é feito de forma determinística fora da IA.
-
-IMPORTANTE: mantenha o texto do campo "cliente"/"estacao" EXATAMENTE como aparece na imagem (não remova prefixos como "ERPM -", não corrija abreviações, não traduza).
-
-Datas: converta para "YYYY-MM-DD". Se ilegível/ausente, retorne "".
-
-Marque "confianca": "baixa" quando algum campo daquela linha estiver borrado, ambíguo, ou inconsistente com outra parte da mesma linha (ex.: comentário menciona "220V" mas a coluna ENERGIA (220V) não parece marcada).
-
-Responda ESTRITAMENTE em JSON (sem markdown, sem texto fora do JSON), no formato:
-{
-  "formato": "A" | "B",
-  "linhas": [
-    // se formato A:
-    {"cliente":"","executante":"","data":"","defeito":"","acao":"","detalhamento":"","confianca":"alta|baixa"}
-    // se formato B:
-    // {"estacao":"","data":"","demandaMedicao":true,"telemetria":false,"energia":false,"infraPendente":false,"cvaz":false,"pulso":false,"comentarios":"","confianca":"alta|baixa"}
-  ]
-}`;
-
-async function callClaudeVision(base64, mediaType, pdf){
-  const contentBlock = pdf
-    ? {type:'document', source:{type:'base64', media_type:'application/pdf', data: base64}}
-    : {type:'image', source:{type:'base64', media_type: mediaType, data: base64}};
-  const body = {
-    model: 'claude-sonnet-4-6',
-    max_tokens: 1000,
-    messages: [{
-      role: 'user',
-      content: [ contentBlock, {type:'text', text: IMAGE_PROMPT} ]
-    }]
-  };
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method:'POST',
-    headers: {'content-type':'application/json'},
-    body: JSON.stringify(body)
-  });
-  if(!res.ok){
-    const t = await res.text().catch(()=> '');
-    throw new Error('Falha na API (' + res.status + '): ' + t.slice(0,200));
-  }
-  const data = await res.json();
-  const text = (data.content||[]).map(c=>c.text||'').join('');
-  const jsonStr = text.slice(text.indexOf('{'), text.lastIndexOf('}')+1);
-  return JSON.parse(jsonStr);
 }
 
 async function handleFiles(fileList){
-  const files = Array.from(fileList||[]).filter(f=>f.type.startsWith('image/') || isPdf(f));
+  const files = Array.from(fileList||[]);
   if(!files.length) return;
   const statusEl = document.getElementById('imgStatus');
   for(const file of files){
-    const pdf = isPdf(file);
     statusEl.textContent = `Lendo "${file.name}"...`;
     try{
-      const base64 = await fileToBase64(file);
-      const parsed = await callClaudeVision(base64, file.type || 'image/png', pdf);
-      ingestParsedImage(parsed, file.name);
-      statusEl.textContent = `"${file.name}" processada.`;
+      const text = await fileToText(file);
+      importPastedText(text, file.name);
+      statusEl.textContent = `"${file.name}" processado.`;
     }catch(err){
-      statusEl.textContent = `Erro ao ler "${file.name}": ${err.message}. A leitura automática de documentos requer executar este sistema como Artifact dentro do Claude.ai.`;
+      statusEl.textContent = `Erro ao ler "${file.name}": ${err.message}`;
     }
   }
+}
+
+function importPastedText(text, origemLabel){
+  const statusEl = document.getElementById('imgStatus');
+  if(!text || !text.trim()){
+    statusEl.textContent = 'Nada para importar — cole a tabela ou escolha um arquivo.';
+    return;
+  }
+  const parsed = C.parsePastedTable(text);
+  if(!parsed.linhas.length){
+    statusEl.textContent = `Nenhuma linha reconhecida em "${origemLabel}". Confira se a primeira linha é o cabeçalho (Cliente/Executante/Data/... ou Estação/Data/Telemetria/...).`;
+    return;
+  }
+  ingestParsedImage(parsed, origemLabel);
+  statusEl.textContent = `"${origemLabel}" importado (formato ${parsed.formato}).`;
+  pasteArea.value = '';
 }
 
 function ingestParsedImage(parsed, filename){
@@ -817,7 +884,7 @@ function ingestParsedImage(parsed, filename){
       rec = { cliente:row.cliente||'', executante:row.executante||'', data: C.isValidIsoDate(row.data)? row.data : C.brDateToIso(row.data), defeito:row.defeito||'', acao:row.acao||'', detalhamento:row.detalhamento||'', confianca: row.confianca||'alta' };
     }
     if(!rec.cliente) return;
-    addToStaging(rec, 'imagem');
+    addToStaging(rec, 'importado');
     added++;
   });
   toast(`${added} linha(s) importada(s) de "${filename}" para a conferência.`);
@@ -1123,11 +1190,27 @@ document.getElementById('btnExportCsv').addEventListener('click', ()=>{
   downloadFile('historico_demandas.csv', csvRows.join('\n'), 'text/csv;charset=utf-8');
 });
 function csvEsc(v){ v=String(v??''); return /[;"\n]/.test(v) ? '"'+v.replace(/"/g,'""')+'"' : v; }
-function downloadFile(name, content, mime){
-  const blob = new Blob([content], {type:mime});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download=name; a.click();
-  URL.revokeObjectURL(url);
+async function downloadFile(name, content, mime){
+  if(window.claude && typeof window.claude.use === 'function'){
+    try{
+      const downloads = await window.claude.use('downloads');
+      if(downloads){
+        await downloads.save({filename:name, data:content});
+        toast(`Arquivo "${name}" salvo.`);
+        return;
+      }
+    }catch(err){
+      // ambiente sem permissão de download nativo (ou recusado) — cai para o link de blob abaixo
+    }
+  }
+  try{
+    const blob = new Blob([content], {type:mime});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download=name; a.click();
+    URL.revokeObjectURL(url);
+  }catch(err){
+    toast('Não foi possível baixar o arquivo neste ambiente.');
+  }
 }
 
 // ---------------------------------------------------------------------

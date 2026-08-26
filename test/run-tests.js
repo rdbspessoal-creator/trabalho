@@ -174,5 +174,64 @@ test('seed-demandas.json tem 419 registros de HISTÓRICO_ORIGINAL e 9 de MÊS_AT
   assert.strictEqual(seed.mesAtual.length, 9);
 });
 
+console.log('\nImportação de tabela colada (Excel/CSV/TSV) — parsePastedTable\n');
+
+test('formato A: cabeçalho de texto livre é reconhecido e linhas viram registros', () => {
+  const texto = [
+    'CLIENTE\tEXECUTANTE\tDATA\tDEFEITO\tAÇÃO\tDETALHAMENTO',
+    'ERPM - GERDAU\tILTEARLE\t11/08/2026\tMODEM DESCONECTADO\tCOLETAR MEDIÇÃO\tAGENDAR ESCOLTA',
+  ].join('\n');
+  const r = Core.parsePastedTable(texto);
+  assert.strictEqual(r.formato, 'A');
+  assert.strictEqual(r.linhas.length, 1);
+  assert.strictEqual(r.linhas[0].cliente, 'ERPM - GERDAU');
+  assert.strictEqual(r.linhas[0].data, '2026-08-11');
+  assert.strictEqual(r.linhas[0].defeito, 'MODEM DESCONECTADO');
+});
+
+test('formato B: cabeçalho matriz/checklist é reconhecido, "X" vira flag e datas BR viram ISO', () => {
+  const texto = [
+    'Estação\tData\tDEMANDA MEDIÇÃO\tTELEMETRIA\tENERGIA (220V)\tINFRA PENDENTE\tDADOS DO CVAZ\tPULSO\tComentários',
+    'ERPM - GERDAU\t03/08/2026\tX\tX\tX\t\tX\t\tSem dados desde 30/6',
+  ].join('\n');
+  const r = Core.parsePastedTable(texto);
+  assert.strictEqual(r.formato, 'B');
+  assert.strictEqual(r.linhas.length, 1);
+  const linha = r.linhas[0];
+  assert.strictEqual(linha.estacao, 'ERPM - GERDAU');
+  assert.strictEqual(linha.data, '2026-08-03');
+  assert.strictEqual(linha.telemetria, true);
+  assert.strictEqual(linha.energia, true);
+  assert.strictEqual(linha.infraPendente, false);
+  assert.strictEqual(linha.pulso, false);
+  const d = Core.matrixRowToDemanda(linha);
+  assert.strictEqual(d.defeito, 'INFRA DE TELEMETRIA PENDENTE | FALTA DE ALIMENTAÇÃO EXT. | FALHA NO CVAZ');
+});
+
+test('formato B: linha sem colunas de defeito marcadas mas comentário cita "220 V" sinaliza confiança baixa', () => {
+  const texto = [
+    'Estação\tData\tDEMANDA MEDIÇÃO\tTELEMETRIA\tENERGIA (220V)\tINFRA PENDENTE\tDADOS DO CVAZ\tPULSO\tComentários',
+    'ERPM - MAURICÉA RAÇÕES\t03/08/2026\tX\tX\t\t\t\t\tSem 220 V e dados desde 31/7',
+  ].join('\n');
+  const r = Core.parsePastedTable(texto);
+  assert.strictEqual(r.linhas[0].confianca, 'baixa');
+});
+
+test('linhas sem valor na coluna de cliente/estação são descartadas (separadores em branco)', () => {
+  const texto = [
+    'CLIENTE\tEXECUTANTE\tDATA\tDEFEITO\tAÇÃO\tDETALHAMENTO',
+    '\t\t11/08/2026\t\t\t',
+    'GERDAU\tILTEARLE\t11/08/2026\tMODEM DESCONECTADO\tCOLETAR MEDIÇÃO\t',
+  ].join('\n');
+  const r = Core.parsePastedTable(texto);
+  assert.strictEqual(r.linhas.length, 1);
+  assert.strictEqual(r.linhas[0].cliente, 'GERDAU');
+});
+
+test('texto vazio retorna zero linhas sem lançar erro', () => {
+  const r = Core.parsePastedTable('   \n  \n');
+  assert.strictEqual(r.linhas.length, 0);
+});
+
 console.log(`\n${passed} passaram, ${failed} falharam.`);
 process.exit(failed ? 1 : 0);
