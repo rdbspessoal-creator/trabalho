@@ -1,0 +1,102 @@
+{
+  "_descricao": "Transcrição fiel da tabela em formato matriz/checklist usada como padrão de teste (seção da tarefa: 'imagem em anexo'). Colunas: Estação | DATA | DEMANDA MEDIÇÃO | TELEMETRIA | ENERGIA (220V) | INFRA PENDENTE | DADOS DO CVAZ | PULSO | COMENTÁRIOS. `demandaMedicao` é ignorado na geração de defeito/ação (é só um flag estrutural do lote, conforme a especificação).",
+  "linhas": [
+    {
+      "estacao": "ERPM - CERÂMICA MARI 2 (MORAES ARTEFATOS CERÂMICOS 2)",
+      "data": "03/08/2026",
+      "demandaMedicao": true,
+      "telemetria": true,
+      "energia": false,
+      "infraPendente": false,
+      "cvaz": true,
+      "pulso": false,
+      "comentarios": "Sem dados desde 13/7",
+      "confianca": "alta"
+    },
+    {
+      "estacao": "ERPM - POSTO IND - VOLTA AO MUNDO",
+      "data": "03/08/2026",
+      "demandaMedicao": true,
+      "telemetria": true,
+      "energia": false,
+      "infraPendente": false,
+      "cvaz": true,
+      "pulso": false,
+      "comentarios": "Sem dados desde 25/6",
+      "confianca": "alta"
+    },
+    {
+      "estacao": "ERPM - GERDAU",
+      "data": "03/08/2026",
+      "demandaMedicao": true,
+      "telemetria": true,
+      "energia": true,
+      "infraPendente": false,
+      "cvaz": true,
+      "pulso": false,
+      "comentarios": "Sem dados desde 30/6",
+      "confianca": "alta"
+    },
+    {
+      "estacao": "ERPM - MAURICÉA RAÇÕES",
+      "data": "03/08/2026",
+      "demandaMedicao": true,
+      "telemetria": true,
+      "energia": false,
+      "infraPendente": false,
+      "cvaz": true,
+      "pulso": false,
+      "comentarios": "Sem 220 V e dados desde 31/7",
+      "confianca": "baixa",
+      "_obs": "confiança marcada como baixa: comentário menciona '220 V' mas a coluna ENERGIA (220V) não está marcada na imagem — inconsistência sinalizada para revisão humana, conforme especificação (badge de alerta de confiança baixa)."
+    },
+    {
+      "estacao": "ERPM - PERQUÍMICA",
+      "data": "03/08/2026",
+      "demandaMedicao": true,
+      "telemetria": true,
+      "energia": false,
+      "infraPendente": false,
+      "cvaz": true,
+      "pulso": false,
+      "comentarios": "Sem dados desde 30/7",
+      "confianca": "alta"
+    },
+    {
+      "estacao": "ERPM - POSTO IND - MM PETROLEO TACARUNA",
+      "data": "03/08/2026",
+      "demandaMedicao": true,
+      "telemetria": true,
+      "energia": false,
+      "infraPendente": false,
+      "cvaz": true,
+      "pulso": false,
+      "comentarios": "Sem dados desde 03/8",
+      "confianca": "alta"
+    },
+    {
+      "estacao": "ERPM - POSTO IND - PRINCESA ISABEL",
+      "data": "03/08/2026",
+      "demandaMedicao": true,
+      "telemetria": false,
+      "energia": true,
+      "infraPendente": false,
+      "cvaz": false,
+      "pulso": false,
+      "comentarios": "Sem 220 v desde 02/8",
+      "confianca": "alta"
+    },
+    {
+      "estacao": "ERPM - SHOPPING RECIFE - COCÇÃO",
+      "data": "03/08/2026",
+      "demandaMedicao": true,
+      "telemetria": false,
+      "energia": true,
+      "infraPendente": false,
+      "cvaz": true,
+      "pulso": false,
+      "comentarios": "Sem 220 V e dados desde 28/7",
+      "confianca": "alta"
+    }
+  ]
+}

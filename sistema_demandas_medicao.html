@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Mapeamento de Demandas de Medição</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#151b23; --panel2:#1b232d; --border:#2b3542;
+    --text:#e6edf3; --muted:#8b98a5;
+    --norte:#3b82f6; --sul:#22c55e; --oeste:#a855f7; --outro:#64748b;
+    --ok:#22c55e; --warn:#eab308; --bad:#ef4444;
+    --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  }
+  header{
+    background:linear-gradient(180deg,#161e29,#0d1117);
+    border-bottom:1px solid var(--border);
+    padding:14px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  header h1{font-size:16px; margin:0; letter-spacing:.5px;}
+  header h1 small{display:block; color:var(--muted); font-weight:400; font-size:11px; margin-top:2px;}
+  .storage-badge{font-size:11px; color:var(--muted); font-family:var(--mono);}
+  nav{display:flex; gap:4px; padding:0 20px; background:#0d1117; border-bottom:1px solid var(--border); overflow-x:auto;}
+  nav button{
+    background:none; border:none; color:var(--muted); padding:12px 16px; cursor:pointer;
+    font-size:13px; font-weight:600; border-bottom:2px solid transparent; white-space:nowrap;
+  }
+  nav button.active{color:var(--text); border-bottom-color:#3b82f6;}
+  nav button:hover{color:var(--text);}
+  main{padding:20px; max-width:1400px; margin:0 auto;}
+  .tab{display:none;}
+  .tab.active{display:block;}
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:16px;}
+  .card h2{margin:0 0 14px; font-size:14px; text-transform:uppercase; letter-spacing:.6px; color:#9fb3c8;}
+  .row{display:flex; gap:10px; flex-wrap:wrap;}
+  .col{flex:1; min-width:160px;}
+  label{display:block; font-size:11px; color:var(--muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:.4px;}
+  input,select,textarea{
+    width:100%; background:var(--panel2); border:1px solid var(--border); color:var(--text);
+    padding:8px 10px; border-radius:6px; font-size:13px; font-family:inherit;
+  }
+  textarea{min-height:60px; resize:vertical;}
+  button.btn{
+    background:#1f6feb; color:#fff; border:none; padding:9px 16px; border-radius:6px;
+    font-size:13px; font-weight:600; cursor:pointer;
+  }
+  button.btn.secondary{background:var(--panel2); border:1px solid var(--border); color:var(--text);}
+  button.btn.danger{background:#3a1216; border:1px solid #5c1c22; color:#ff9b9b;}
+  button.btn.small{padding:5px 10px; font-size:12px;}
+  button.btn:disabled{opacity:.5; cursor:not-allowed;}
+  button.icon-btn{background:none; border:1px solid var(--border); color:var(--muted); border-radius:6px; padding:4px 8px; cursor:pointer; font-size:13px;}
+  button.icon-btn:hover{color:var(--text); border-color:#4a5563;}
+  .dropzone{
+    border:2px dashed var(--border); border-radius:10px; padding:28px; text-align:center; color:var(--muted);
+    cursor:pointer; transition:.15s;
+  }
+  .dropzone.drag{border-color:#3b82f6; background:#132033; color:var(--text);}
+  table{width:100%; border-collapse:collapse; font-size:12.5px;}
+  th{
+    text-align:left; padding:8px 10px; background:var(--panel2); color:var(--muted);
+    font-size:10.5px; text-transform:uppercase; letter-spacing:.4px; border-bottom:1px solid var(--border);
+    cursor:pointer; user-select:none; white-space:nowrap;
+  }
+  th.sortable:hover{color:var(--text);}
+  td{padding:7px 10px; border-bottom:1px solid #1e2732; vertical-align:top;}
+  tr:hover td{background:#111823;}
+  .badge{display:inline-block; padding:2px 8px; border-radius:20px; font-size:10.5px; font-weight:700; letter-spacing:.3px;}
+  .badge.ok{background:#0d2f1a; color:#4ade80;}
+  .badge.sugerido{background:#332b06; color:#fbbf24;}
+  .badge.sem-correlacao{background:#3a1216; color:#f87171;}
+  .badge.historico{background:#1e293b; color:#94a3b8;}
+  .badge.area-NORTE{background:#0b2547; color:#60a5fa;}
+  .badge.area-SUL{background:#0d2b17; color:#4ade80;}
+  .badge.area-OESTE{background:#2a0f3d; color:#c084fc;}
+  .badge.area-OUTRO{background:#26292e; color:#9ca3af;}
+  .pill{display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; cursor:pointer; border:1px solid transparent;}
+  .pill.aberta{background:#332b06; color:#fbbf24; border-color:#5a4a0d;}
+  .pill.resolvida{background:#0d2f1a; color:#4ade80; border-color:#164a26;}
+  .alert-dot{color:var(--warn); font-weight:700; margin-left:4px;}
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-bottom:16px;}
+  .kpi{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:16px;}
+  .kpi .num{font-size:26px; font-weight:800; font-family:var(--mono);}
+  .kpi .lbl{color:var(--muted); font-size:11px; text-transform:uppercase; margin-top:4px;}
+  .area-card{border-left:4px solid var(--border); padding:14px; border-radius:8px; background:var(--panel2); margin-bottom:10px;}
+  .area-card.NORTE{border-left-color:var(--norte);}
+  .area-card.SUL{border-left-color:var(--sul);}
+  .area-card.OESTE{border-left-color:var(--oeste);}
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center;
+    z-index:100; padding:20px;
+  }
+  .modal{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:22px; max-width:600px; width:100%; max-height:85vh; overflow:auto;}
+  .modal h3{margin-top:0;}
+  .toast{
+    position:fixed; bottom:20px; right:20px; background:#16321e; border:1px solid #1f6f3d; color:#c8f4d6;
+    padding:12px 18px; border-radius:8px; font-size:13px; z-index:200; box-shadow:0 4px 20px rgba(0,0,0,.4);
+  }
+  .pagination{display:flex; gap:4px; align-items:center; margin-top:12px; flex-wrap:wrap;}
+  .pagination button{background:var(--panel2); border:1px solid var(--border); color:var(--text); padding:5px 10px; border-radius:6px; cursor:pointer; font-size:12px;}
+  .pagination button.active{background:#1f6feb; border-color:#1f6feb;}
+  .muted{color:var(--muted); font-size:12px;}
+  .hint{font-size:11.5px; color:var(--muted); margin-top:6px; line-height:1.5;}
+  .staging-table select, .staging-table input{padding:5px 7px; font-size:12px;}
+  code{background:var(--panel2); padding:1px 5px; border-radius:4px; font-family:var(--mono);}
+  a.link{color:#58a6ff; cursor:pointer;}
+  @media print{
+    header, nav, .no-print{display:none !important;}
+    body{background:#fff; color:#000;}
+    .card{border:1px solid #ccc; background:#fff;}
+    .tab{display:none !important;}
+    #tab-resumo{display:block !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mapeamento de Demandas de Medição
+    <small>Norte · Bruno &nbsp;|&nbsp; Sul · Rubening &nbsp;|&nbsp; Oeste · Iltearle</small>
+  </h1>
+  <div style="display:flex; align-items:center; gap:10px;">
+    <span class="storage-badge" id="storageBadge">carregando…</span>
+    <button class="btn secondary small no-print" id="btnApiKey" style="display:none;">🔑 Configurar IA</button>
+  </div>
+</header>
+
+<nav id="tabNav">
+  <button data-tab="nova" class="active">➕ Nova Demanda</button>
+  <button data-tab="historico">📋 Histórico</button>
+  <button data-tab="correlacoes">🔗 Correlações</button>
+  <button data-tab="resumo">📊 Resumo</button>
+  <button data-tab="dados">⚙️ Dados</button>
+</nav>
+
+<main>
+
+  <!-- ===================== NOVA DEMANDA ===================== -->
+  <section class="tab active" id="tab-nova">
+    <div class="card no-print">
+      <h2>Upload de imagem</h2>
+      <div class="dropzone" id="dropzone">
+        📷 Arraste imagens da tabela semanal aqui, clique para escolher, ou use a câmera<br>
+        <input type="file" id="fileInput" accept="image/*" multiple style="display:none;">
+        <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;">
+        <div style="margin-top:10px;">
+          <button class="btn secondary small" id="btnPickFile" type="button">Escolher arquivo(s)</button>
+          <button class="btn secondary small" id="btnCamera" type="button">📸 Usar câmera</button>
+        </div>
+      </div>
+      <div class="hint">
+        Duas tabelas são reconhecidas automaticamente: <b>colunas de texto livre</b> (Cliente/Executante/Data/Defeito/Ação/Detalhamento)
+        e <b>matriz/checklist</b> (Estação/Data/DEMANDA MEDIÇÃO/TELEMETRIA/ENERGIA(220V)/INFRA PENDENTE/DADOS DO CVAZ/PULSO/Comentários — marcadas com "X").
+        Para tabelas grandes (~15+ linhas), prefira dividir em duas imagens.
+      </div>
+      <div id="imgStatus" class="hint"></div>
+    </div>
+
+    <div class="card no-print">
+      <h2>Lançamento manual</h2>
+      <div class="row">
+        <div class="col"><label>Cliente</label><input id="mCliente" placeholder="Ex.: ERPM - GERDAU"></div>
+        <div class="col"><label>Executante</label><input id="mExecutante" placeholder="Opcional"></div>
+        <div class="col" style="max-width:160px;"><label>Data</label><input id="mData" type="date"></div>
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <div class="col"><label>Defeito</label><input id="mDefeito"></div>
+        <div class="col"><label>Ação</label><input id="mAcao"></div>
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <div class="col"><label>Detalhamento</label><textarea id="mDetalhamento"></textarea></div>
+      </div>
+      <div style="margin-top:10px;"><button class="btn" id="btnAddManual">Adicionar à conferência</button></div>
+    </div>
+
+    <div class="card">
+      <h2>Conferência (staging) <span class="muted" id="stagingCount"></span></h2>
+      <div style="overflow-x:auto;">
+        <table class="staging-table">
+          <thead><tr>
+            <th>Cliente</th><th>Executante/Técnico</th><th>Área</th><th>Data</th>
+            <th>Defeito</th><th>Ação</th><th>Detalhamento</th><th>Status</th><th class="no-print"></th>
+          </tr></thead>
+          <tbody id="stagingBody"></tbody>
+        </table>
+      </div>
+      <div class="row no-print" style="margin-top:14px; justify-content:space-between;">
+        <span class="muted" id="stagingHint"></span>
+        <div>
+          <button class="btn secondary" id="btnClearStaging">Limpar conferência</button>
+          <button class="btn" id="btnConsolidar">Consolidar demandas</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HISTÓRICO ===================== -->
+  <section class="tab" id="tab-historico">
+    <div class="card no-print">
+      <div class="row">
+        <div class="col"><label>Busca</label><input id="hBusca" placeholder="cliente, defeito, ação, técnico..."></div>
+        <div class="col" style="max-width:150px;"><label>Área</label>
+          <select id="hArea"><option value="">Todas</option><option>NORTE</option><option>SUL</option><option>OESTE</option><option>OUTRO</option></select>
+        </div>
+        <div class="col" style="max-width:170px;"><label>Status correlação</label>
+          <select id="hStatus"><option value="">Todos</option><option value="historico">Histórico</option><option value="ok">Ok</option><option value="sugerido">Sugerido</option><option value="sem-correlacao">Sem correlação</option></select>
+        </div>
+        <div class="col" style="max-width:150px;"><label>Situação</label>
+          <select id="hSituacao"><option value="">Todas</option><option value="aberta">Aberta</option><option value="resolvida">Resolvida</option></select>
+        </div>
+        <div class="col" style="max-width:150px;"><label>De</label><input id="hDe" type="date"></div>
+        <div class="col" style="max-width:150px;"><label>Até</label><input id="hAte" type="date"></div>
+      </div>
+      <div class="row" style="margin-top:10px; justify-content:flex-end;">
+        <button class="btn secondary small" id="btnExportCsv">⬇ Exportar CSV (filtro atual)</button>
+      </div>
+    </div>
+    <div class="card">
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr>
+            <th class="sortable" data-sort="data">Data</th>
+            <th class="sortable" data-sort="cliente">Cliente</th>
+            <th>Técnico</th>
+            <th class="sortable" data-sort="area">Área</th>
+            <th>Defeito</th><th>Ação</th><th>Detalhamento</th>
+            <th>Correlação</th><th>Situação</th><th class="no-print"></th>
+          </tr></thead>
+          <tbody id="histBody"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="histPagination"></div>
+    </div>
+  </section>
+
+  <!-- ===================== CORRELAÇÕES ===================== -->
+  <section class="tab" id="tab-correlacoes">
+    <div class="card no-print">
+      <h2>Cadastrar / atualizar correlação</h2>
+      <div class="row">
+        <div class="col"><label>Cliente (texto como aparece nas demandas)</label><input id="cCliente"></div>
+        <div class="col" style="max-width:180px;"><label>Área</label>
+          <select id="cArea"><option value="NORTE">NORTE — Bruno</option><option value="SUL">SUL — Rubening</option><option value="OESTE">OESTE — Iltearle</option></select>
+        </div>
+        <div style="align-self:flex-end;"><button class="btn" id="btnSaveCorrelacao">Salvar</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row no-print" style="margin-bottom:10px;">
+        <div class="col"><input id="corBusca" placeholder="Buscar cliente/código..."></div>
+        <div class="col" style="max-width:150px;">
+          <select id="corArea"><option value="">Todas áreas</option><option>NORTE</option><option>SUL</option><option>OESTE</option></select>
+        </div>
+        <div class="col" style="max-width:150px;">
+          <select id="corOrigem"><option value="">Base + Manual</option><option value="base">Só base (Excel)</option><option value="override">Só manual</option></select>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr>
+            <th class="sortable" data-csort="cliente">Cliente</th>
+            <th class="sortable" data-csort="codigo">Código</th>
+            <th class="sortable" data-csort="area">Área</th>
+            <th>Técnico</th><th>Origem</th><th class="no-print"></th>
+          </tr></thead>
+          <tbody id="corBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESUMO ===================== -->
+  <section class="tab" id="tab-resumo">
+    <div id="resumoPrintHead" style="display:none;">
+      <h2>Resumo de Demandas de Medição</h2>
+      <p class="muted" id="resumoPrintDate"></p>
+    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="card">
+      <h2>Por área / técnico</h2>
+      <div id="areaCards"></div>
+    </div>
+    <div class="card no-print">
+      <h2>Pendências de correlação <button class="btn secondary small" id="btnWizard" style="float:right;">Resolver pendências</button></h2>
+      <div id="pendenciasList"></div>
+    </div>
+    <div class="card">
+      <h2>Última leva consolidada</h2>
+      <div id="ultimaLeva"></div>
+    </div>
+    <div class="no-print" style="text-align:right;">
+      <button class="btn secondary" id="btnPrint">🖨 Exportar / imprimir</button>
+    </div>
+  </section>
+
+  <!-- ===================== DADOS ===================== -->
+  <section class="tab" id="tab-dados">
+    <div class="card">
+      <h2>Base de clientes carregada</h2>
+      <p class="muted" id="dadosInfo"></p>
+      <p class="hint">
+        Este pacote inclui uma <b>base de clientes de demonstração</b> (poucos registros, apenas para validar o algoritmo
+        de correlação e o fluxo completo). Para produção, importe abaixo o JSON completo gerado a partir de
+        <code>Demanda_de_Medição_Modelo.xlsx</code> (abas HISTÓRICO_ORIGINAL + MÊS_ATUAL → 429 registros) e
+        <code>CLIENTES_X_EQUIPE.xlsx</code> (258 clientes). O formato de cada arquivo é documentado no <code>README.md</code>.
+      </p>
+      <div class="row">
+        <div class="col">
+          <label>Importar base de clientes (JSON — array de {cliente, codigo, nome, equipe, area})</label>
+          <textarea id="importClientes" placeholder='[{"cliente":"ERPM.00913 - ERPM LAFEPE","codigo":"ERPM.00913","nome":"ERPM LAFEPE","equipe":"AUTOMAÇÃO NORTE","area":"NORTE"}, ...]'></textarea>
+          <button class="btn secondary small" id="btnImportClientes" style="margin-top:6px;">Importar clientes</button>
+        </div>
+        <div class="col">
+          <label>Importar histórico de demandas (JSON — array de registros seed)</label>
+          <textarea id="importDemandas" placeholder='[{"cliente":"...","executante":"BRUNO ...","data":"2026-01-05","defeito":"...","acao":"...","detalhamento":"..."}, ...]'></textarea>
+          <button class="btn secondary small" id="btnImportDemandas" style="margin-top:6px;">Importar histórico</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Chave de API Anthropic (leitura de imagem fora do Claude.ai)</h2>
+      <p class="hint">
+        Dentro do Claude.ai (artifact ao vivo) a leitura de imagem funciona automaticamente. Se este arquivo estiver
+        sendo aberto fora do Claude.ai, o navegador bloqueia a chamada direta à API (CORS) sem uma chave própria.
+        A chave é salva apenas no <code>localStorage</code> deste navegador.
+      </p>
+      <div class="row">
+        <div class="col"><input id="apiKeyInput" type="password" placeholder="sk-ant-..."></div>
+        <div><button class="btn secondary" id="btnSaveApiKey">Salvar chave</button></div>
+        <div><button class="btn danger" id="btnClearApiKey">Remover chave</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Manutenção</h2>
+      <button class="btn danger" id="btnResetAll">Apagar todos os dados locais (demandas + overrides + chave)</button>
+    </div>
+  </section>
+
+</main>
+
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+
+<script src="core.js"></script>
+<script>
+(function(){
+'use strict';
+const C = window.DemandasCore;
+
+// ---------------------------------------------------------------------
+// Storage adapter: window.storage (Claude.ai artifact) OU localStorage
+// ---------------------------------------------------------------------
+const hasNativeStorage = (typeof window.storage !== 'undefined' && window.storage && typeof window.storage.get === 'function');
+const storageAdapter = {
+  async get(key, fallback){
+    if(hasNativeStorage){
+      try{ const v = await window.storage.get(key, {shared:false}); return v===undefined||v===null ? fallback : v; }
+      catch(e){ return fallback; }
+    }
+    try{ const raw = localStorage.getItem(key); return raw===null? fallback : JSON.parse(raw); }
+    catch(e){ return fallback; }
+  },
+  async set(key, value){
+    if(hasNativeStorage){
+      try{ await window.storage.set(key, value, {shared:false}); return; } catch(e){/*fallthrough*/}
+    }
+    try{ localStorage.setItem(key, JSON.stringify(value)); } catch(e){}
+  }
+};
+document.getElementById('storageBadge').textContent = hasNativeStorage
+  ? '● dados salvos neste dispositivo (Claude.ai)'
+  : '● dados salvos neste navegador (local)';
+if(!hasNativeStorage){ document.getElementById('btnApiKey').style.display='inline-block'; }
+
+// ---------------------------------------------------------------------
+// Estado
+// ---------------------------------------------------------------------
+const KEY_DEMANDAS='demandas-registros-v1', KEY_OVERRIDES='correlacoes-overrides-v1', KEY_APIKEY='anthropic-api-key-v1', KEY_CLIENTES='clientes-base-v1';
+
+let state = {
+  demandas: [],
+  overrides: {},
+  clientes: [],
+  staging: [],
+  apiKey: '',
+  ultimaLeva: []
+};
+
+function uid(){ return 'd' + Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+
+async function persistDemandas(){ await storageAdapter.set(KEY_DEMANDAS, state.demandas); }
+async function persistOverrides(){ await storageAdapter.set(KEY_OVERRIDES, state.overrides); }
+async function persistClientes(){ await storageAdapter.set(KEY_CLIENTES, state.clientes); }
+
+function toast(msg){
+  const el = document.createElement('div');
+  el.className='toast'; el.textContent=msg;
+  document.getElementById('toastRoot').appendChild(el);
+  setTimeout(()=>el.remove(), 3200);
+}
+
+function correlate(clienteRaw){
+  return C.correlateClient(clienteRaw, state.clientes, state.overrides);
+}
+
+// ---------------------------------------------------------------------
+// Carga inicial
+// ---------------------------------------------------------------------
+async function loadDemoClientes(){
+  try{
+    const res = await fetch('data/seed-clientes-demo.json');
+    if(res.ok) return await res.json();
+  }catch(e){}
+  return [];
+}
+
+async function init(){
+  state.demandas = await storageAdapter.get(KEY_DEMANDAS, []);
+  state.overrides = await storageAdapter.get(KEY_OVERRIDES, {});
+  state.apiKey = await storageAdapter.get(KEY_APIKEY, '');
+  let clientes = await storageAdapter.get(KEY_CLIENTES, null);
+  if(!clientes || !clientes.length){
+    clientes = await loadDemoClientes();
+    await persistClientes();
+  }
+  state.clientes = clientes;
+
+  if(state.apiKey){ document.getElementById('btnApiKey').style.display='inline-block'; }
+  renderAll();
+}
+
+function renderAll(){
+  renderStaging();
+  renderHistorico();
+  renderCorrelacoes();
+  renderResumo();
+  document.getElementById('dadosInfo').textContent =
+    `${state.demandas.length} registros de demanda · ${state.clientes.length} clientes na base · ${Object.keys(state.overrides).length} correlações manuais.`;
+}
+
+// ---------------------------------------------------------------------
+// Tabs
+// ---------------------------------------------------------------------
+document.getElementById('tabNav').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-tab]');
+  if(!btn) return;
+  document.querySelectorAll('#tabNav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+});
+
+// ---------------------------------------------------------------------
+// NOVA DEMANDA — Upload de imagem
+// ---------------------------------------------------------------------
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const cameraInput = document.getElementById('cameraInput');
+document.getElementById('btnPickFile').addEventListener('click', ()=>fileInput.click());
+document.getElementById('btnCamera').addEventListener('click', ()=>cameraInput.click());
+dropzone.addEventListener('click', (e)=>{ if(e.target===dropzone) fileInput.click(); });
+['dragover'].forEach(ev=>dropzone.addEventListener(ev, e=>{e.preventDefault(); dropzone.classList.add('drag');}));
+['dragleave','drop'].forEach(ev=>dropzone.addEventListener(ev, e=>{e.preventDefault(); dropzone.classList.remove('drag');}));
+dropzone.addEventListener('drop', e=>{ handleFiles(e.dataTransfer.files); });
+fileInput.addEventListener('change', e=>{ handleFiles(e.target.files); fileInput.value=''; });
+cameraInput.addEventListener('change', e=>{ handleFiles(e.target.files); cameraInput.value=''; });
+
+function fileToBase64(file){
+  return new Promise((resolve,reject)=>{
+    const r = new FileReader();
+    r.onload = ()=>resolve(r.result.split(',')[1]);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+
+const IMAGE_PROMPT = `Você vai ler uma tabela em uma imagem sobre demandas de medição. Existem DOIS formatos possíveis — identifique automaticamente qual está na imagem:
+
+FORMATO A — colunas de texto livre: Cliente, Executante, Data, Defeito, Ação, Detalhamento.
+Retorne cada linha com os campos correspondentes diretamente.
+
+FORMATO B — matriz/checklist: colunas "Estação", "Data", "DEMANDA MEDIÇÃO", "TELEMETRIA", "ENERGIA (220V)", "INFRA PENDENTE", "DADOS DO CVAZ", "PULSO", "Comentários", com células marcadas "X".
+Para este formato, NÃO calcule defeito/ação — apenas retorne, por linha, quais colunas estão marcadas com X (booleans) e os campos estacao/data/comentarios. O cálculo de defeito/ação é feito de forma determinística fora da IA.
+
+IMPORTANTE: mantenha o texto do campo "cliente"/"estacao" EXATAMENTE como aparece na imagem (não remova prefixos como "ERPM -", não corrija abreviações, não traduza).
+
+Datas: converta para "YYYY-MM-DD". Se ilegível/ausente, retorne "".
+
+Marque "confianca": "baixa" quando algum campo daquela linha estiver borrado, ambíguo, ou inconsistente com outra parte da mesma linha (ex.: comentário menciona "220V" mas a coluna ENERGIA (220V) não parece marcada).
+
+Responda ESTRITAMENTE em JSON (sem markdown, sem texto fora do JSON), no formato:
+{
+  "formato": "A" | "B",
+  "linhas": [
+    // se formato A:
+    {"cliente":"","executante":"","data":"","defeito":"","acao":"","detalhamento":"","confianca":"alta|baixa"}
+    // se formato B:
+    // {"estacao":"","data":"","demandaMedicao":true,"telemetria":false,"energia":false,"infraPendente":false,"cvaz":false,"pulso":false,"comentarios":"","confianca":"alta|baixa"}
+  ]
+}`;
+
+async function callClaudeVision(base64, mediaType){
+  const body = {
+    model: 'claude-sonnet-4-6',
+    max_tokens: 1000,
+    messages: [{
+      role: 'user',
+      content: [
+        {type:'image', source:{type:'base64', media_type: mediaType, data: base64}},
+        {type:'text', text: IMAGE_PROMPT}
+      ]
+    }]
+  };
+  const headers = {'content-type':'application/json'};
+  if(!hasNativeStorage){
+    if(!state.apiKey){ throw new Error('NEEDS_API_KEY'); }
+    headers['x-api-key'] = state.apiKey;
+    headers['anthropic-version'] = '2023-06-01';
+    headers['anthropic-dangerous-direct-browser-access'] = 'true';
+  }
+  const res = await fetch('https://api.anthropic.com/v1/messages', {method:'POST', headers, body:JSON.stringify(body)});
+  if(!res.ok){
+    const t = await res.text().catch(()=> '');
+    throw new Error('Falha na API (' + res.status + '): ' + t.slice(0,200));
+  }
+  const data = await res.json();
+  const text = (data.content||[]).map(c=>c.text||'').join('');
+  const jsonStr = text.slice(text.indexOf('{'), text.lastIndexOf('}')+1);
+  return JSON.parse(jsonStr);
+}
+
+async function handleFiles(fileList){
+  const files = Array.from(fileList||[]).filter(f=>f.type.startsWith('image/'));
+  if(!files.length) return;
+  const statusEl = document.getElementById('imgStatus');
+  for(const file of files){
+    statusEl.textContent = `Lendo "${file.name}"...`;
+    try{
+      const base64 = await fileToBase64(file);
+      const parsed = await callClaudeVision(base64, file.type || 'image/png');
+      ingestParsedImage(parsed, file.name);
+      statusEl.textContent = `"${file.name}" processada.`;
+    }catch(err){
+      if(err.message === 'NEEDS_API_KEY'){
+        statusEl.innerHTML = `Sem chave de API configurada. <a class="link" id="lnkCfgKey">Configurar agora</a>`;
+        document.getElementById('lnkCfgKey').addEventListener('click', openApiKeyModal);
+      } else {
+        statusEl.textContent = `Erro ao ler "${file.name}": ${err.message}`;
+      }
+    }
+  }
+}
+
+function ingestParsedImage(parsed, filename){
+  const linhas = parsed.linhas || [];
+  let added = 0;
+  linhas.forEach(row=>{
+    let rec;
+    if(parsed.formato === 'B'){
+      const d = C.matrixRowToDemanda(row);
+      rec = { cliente:d.cliente, executante:'', data: C.brDateToIso(row.data) || d.data, defeito:d.defeito, acao:d.acao, detalhamento:d.detalhamento, confianca: row.confianca||'alta' };
+    } else {
+      rec = { cliente:row.cliente||'', executante:row.executante||'', data: C.isValidIsoDate(row.data)? row.data : C.brDateToIso(row.data), defeito:row.defeito||'', acao:row.acao||'', detalhamento:row.detalhamento||'', confianca: row.confianca||'alta' };
+    }
+    if(!rec.cliente) return;
+    addToStaging(rec, 'imagem');
+    added++;
+  });
+  toast(`${added} linha(s) importada(s) de "${filename}" para a conferência.`);
+}
+
+function addToStaging(rec, origem){
+  const corr = correlate(rec.cliente);
+  state.staging.push({
+    id: uid(),
+    cliente: rec.cliente,
+    executante: rec.executante || (corr.tecnico||''),
+    tecnico: rec.executante || (corr.tecnico||''),
+    area: corr.area || 'OUTRO',
+    data: rec.data || '',
+    defeito: rec.defeito || '',
+    acao: rec.acao || '',
+    detalhamento: rec.detalhamento || '',
+    origem,
+    status: corr.status,
+    score: corr.score,
+    match: corr.match,
+    confianca: rec.confianca || 'alta'
+  });
+  renderStaging();
+}
+
+// ---------------------------------------------------------------------
+// NOVA DEMANDA — Lançamento manual
+// ---------------------------------------------------------------------
+document.getElementById('btnAddManual').addEventListener('click', ()=>{
+  const cliente = document.getElementById('mCliente').value.trim();
+  if(!cliente){ toast('Informe o cliente.'); return; }
+  addToStaging({
+    cliente,
+    executante: document.getElementById('mExecutante').value.trim(),
+    data: document.getElementById('mData').value,
+    defeito: document.getElementById('mDefeito').value.trim(),
+    acao: document.getElementById('mAcao').value.trim(),
+    detalhamento: document.getElementById('mDetalhamento').value.trim(),
+    confianca: 'alta'
+  }, 'manual');
+  ['mCliente','mExecutante','mData','mDefeito','mAcao','mDetalhamento'].forEach(id=>document.getElementById(id).value='');
+});
+
+// ---------------------------------------------------------------------
+// NOVA DEMANDA — Tabela de conferência
+// ---------------------------------------------------------------------
+function statusBadge(status){
+  const map = {ok:['✔ ok','ok'], sugerido:['~ sugerido','sugerido'], 'sem-correlacao':['⚠ sem correlação','sem-correlacao'], historico:['histórico','historico']};
+  const [label, cls] = map[status] || [status, ''];
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+function renderStaging(){
+  const tbody = document.getElementById('stagingBody');
+  tbody.innerHTML = '';
+  state.staging.forEach(item=>{
+    const tr = document.createElement('tr');
+    const dataAlert = !C.isValidIsoDate(item.data) ? '<span class="alert-dot" title="Data ausente ou inválida">⚠</span>' : '';
+    const confAlert = item.confianca === 'baixa' ? '<span class="alert-dot" title="Confiança baixa na leitura desta linha">⚠IA</span>' : '';
+    tr.innerHTML = `
+      <td><input value="${escAttr(item.cliente)}" data-f="cliente" style="min-width:200px;"></td>
+      <td><input value="${escAttr(item.tecnico)}" data-f="tecnico" style="min-width:110px;"></td>
+      <td>
+        <select data-f="area">
+          ${['NORTE','SUL','OESTE','OUTRO'].map(a=>`<option value="${a}" ${item.area===a?'selected':''}>${a}</option>`).join('')}
+        </select>
+      </td>
+      <td><input type="date" value="${item.data}" data-f="data" style="min-width:130px;">${dataAlert}</td>
+      <td><input value="${escAttr(item.defeito)}" data-f="defeito" style="min-width:160px;"></td>
+      <td><input value="${escAttr(item.acao)}" data-f="acao" style="min-width:160px;"></td>
+      <td><input value="${escAttr(item.detalhamento)}" data-f="detalhamento" style="min-width:160px;"></td>
+      <td>${statusBadge(item.status)}${confAlert}${item.match?`<div class="muted" style="margin-top:2px;">match: ${escHtml(item.match)} (${(item.score*100).toFixed(0)}%)</div>`:''}</td>
+      <td class="no-print" style="white-space:nowrap;">
+        <button class="icon-btn" data-act="save-corr" title="Salvar correlação">💾</button>
+        <button class="icon-btn" data-act="remove" title="Remover">✕</button>
+      </td>
+    `;
+    tr.querySelectorAll('[data-f]').forEach(input=>{
+      input.addEventListener('change', ()=>{
+        const f = input.dataset.f;
+        item[f] = input.value;
+        if(f==='cliente'){
+          const corr = correlate(item.cliente);
+          item.status = corr.status; item.score = corr.score; item.match = corr.match;
+          if(corr.area) item.area = corr.area;
+          renderStaging();
+        }
+      });
+    });
+    tr.querySelector('[data-act="remove"]').addEventListener('click', ()=>{
+      state.staging = state.staging.filter(x=>x.id!==item.id);
+      renderStaging();
+    });
+    tr.querySelector('[data-act="save-corr"]').addEventListener('click', ()=>{
+      if(!item.cliente || item.area==='OUTRO'){ toast('Defina cliente e área antes de salvar a correlação.'); return; }
+      state.overrides[C.normalize(item.cliente)] = {label:item.cliente, area:item.area};
+      persistOverrides();
+      const corr = correlate(item.cliente);
+      item.status = corr.status; item.score = corr.score; item.match = corr.match;
+      renderStaging(); renderCorrelacoes();
+      toast('Correlação salva: ' + item.cliente + ' → ' + item.area);
+    });
+    tbody.appendChild(tr);
+  });
+  document.getElementById('stagingCount').textContent = state.staging.length ? `(${state.staging.length} linha(s))` : '';
+  document.getElementById('stagingHint').textContent = state.staging.length
+    ? `${state.staging.filter(s=>s.status==='sem-correlacao').length} sem correlação · ${state.staging.filter(s=>!C.isValidIsoDate(s.data)).length} com data inválida`
+    : 'Nenhuma linha em conferência.';
+}
+
+document.getElementById('btnClearStaging').addEventListener('click', ()=>{
+  if(!state.staging.length) return;
+  state.staging = [];
+  renderStaging();
+});
+
+document.getElementById('btnConsolidar').addEventListener('click', async ()=>{
+  if(!state.staging.length){ toast('Nada para consolidar.'); return; }
+  const existingKeys = new Set(state.demandas.map(d=>C.normalize(d.cliente)+'|'+d.data));
+  const dupes = state.staging.filter(s=>existingKeys.has(C.normalize(s.cliente)+'|'+s.data));
+  if(dupes.length){
+    showConfirmModal(
+      `${dupes.length} linha(s) parecem duplicadas (mesmo cliente + mesma data já existente no histórico). Consolidar mesmo assim?`,
+      ()=>doConsolidar()
+    );
+  } else {
+    doConsolidar();
+  }
+});
+
+async function doConsolidar(){
+  const now = new Date().toISOString();
+  const novos = state.staging.map(s=>({
+    id: uid(),
+    cliente: s.cliente,
+    executante: s.tecnico,
+    tecnico: s.tecnico,
+    area: s.area,
+    data: s.data,
+    defeito: s.defeito,
+    acao: s.acao,
+    detalhamento: s.detalhamento,
+    origem: s.origem,
+    status: s.status,
+    score: s.score,
+    match: s.match,
+    criadoEm: now,
+    statusOp: 'aberta'
+  }));
+  state.demandas = novos.concat(state.demandas);
+  state.ultimaLeva = novos;
+  await persistDemandas();
+  state.staging = [];
+  renderAll();
+  toast(`${novos.length} demanda(s) consolidada(s).`);
+}
+
+// ---------------------------------------------------------------------
+// HISTÓRICO
+// ---------------------------------------------------------------------
+let histSort = {field:'data', dir:'desc'};
+let histPage = 1;
+const HIST_PAGE_SIZE = 50;
+
+function getHistFiltered(){
+  const busca = document.getElementById('hBusca').value.trim().toLowerCase();
+  const area = document.getElementById('hArea').value;
+  const status = document.getElementById('hStatus').value;
+  const situacao = document.getElementById('hSituacao').value;
+  const de = document.getElementById('hDe').value;
+  const ate = document.getElementById('hAte').value;
+  return state.demandas.filter(d=>{
+    if(busca){
+      const hay = [d.cliente,d.defeito,d.acao,d.detalhamento,d.tecnico].join(' ').toLowerCase();
+      if(!hay.includes(busca)) return false;
+    }
+    if(area && d.area!==area) return false;
+    if(status && d.status!==status) return false;
+    if(situacao && d.statusOp!==situacao) return false;
+    if(de && d.data && d.data<de) return false;
+    if(ate && d.data && d.data>ate) return false;
+    return true;
+  });
+}
+
+function sortRows(rows){
+  const {field,dir} = histSort;
+  const mult = dir==='asc'?1:-1;
+  return rows.slice().sort((a,b)=>{
+    const va=(a[field]||''), vb=(b[field]||'');
+    if(va<vb) return -1*mult;
+    if(va>vb) return 1*mult;
+    return 0;
+  });
+}
+
+function renderHistorico(){
+  let rows = sortRows(getHistFiltered());
+  const totalPages = Math.max(1, Math.ceil(rows.length / HIST_PAGE_SIZE));
+  histPage = Math.min(histPage, totalPages);
+  const pageRows = rows.slice((histPage-1)*HIST_PAGE_SIZE, histPage*HIST_PAGE_SIZE);
+
+  const tbody = document.getElementById('histBody');
+  tbody.innerHTML = '';
+  pageRows.forEach(d=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = renderHistRowView(d);
+    tbody.appendChild(tr);
+    wireHistRow(tr, d);
+  });
+
+  const pag = document.getElementById('histPagination');
+  pag.innerHTML = '';
+  if(totalPages>1){
+    const mkBtn=(label,page,active)=>{
+      const b=document.createElement('button');
+      b.textContent=label; if(active) b.classList.add('active');
+      b.addEventListener('click',()=>{histPage=page; renderHistorico();});
+      return b;
+    };
+    pag.appendChild(mkBtn('‹', Math.max(1,histPage-1), false));
+    for(let p=1;p<=totalPages;p++) pag.appendChild(mkBtn(String(p), p, p===histPage));
+    pag.appendChild(mkBtn('›', Math.min(totalPages,histPage+1), false));
+  }
+  document.querySelectorAll('#tab-historico th.sortable').forEach(th=>{
+    th.textContent = th.textContent.replace(/ [▲▼]$/,'');
+    if(th.dataset.sort === histSort.field) th.textContent += histSort.dir==='asc' ? ' ▲' : ' ▼';
+  });
+}
+
+function renderHistRowView(d){
+  return `
+    <td>${d.data||'<span class="muted">—</span>'}</td>
+    <td>${escHtml(d.cliente)}</td>
+    <td>${escHtml(d.tecnico||'')}</td>
+    <td><span class="badge area-${d.area}">${d.area}</span></td>
+    <td>${escHtml(d.defeito||'')}</td>
+    <td>${escHtml(d.acao||'')}</td>
+    <td>${escHtml(d.detalhamento||'')}</td>
+    <td>${statusBadge(d.status)}</td>
+    <td><span class="pill ${d.statusOp}" data-act="toggle-op">${d.statusOp==='aberta'?'Aberta':'Resolvida'}</span></td>
+    <td class="no-print"><button class="icon-btn" data-act="edit">✎</button></td>
+  `;
+}
+
+function renderHistRowEdit(d){
+  return `
+    <td><input type="date" data-f="data" value="${d.data||''}" style="min-width:130px;"></td>
+    <td><input data-f="cliente" value="${escAttr(d.cliente)}" style="min-width:180px;"></td>
+    <td><input data-f="tecnico" value="${escAttr(d.tecnico||'')}" style="min-width:100px;"></td>
+    <td><select data-f="area">${['NORTE','SUL','OESTE','OUTRO'].map(a=>`<option ${a===d.area?'selected':''}>${a}</option>`).join('')}</select></td>
+    <td><input data-f="defeito" value="${escAttr(d.defeito||'')}" style="min-width:140px;"></td>
+    <td><input data-f="acao" value="${escAttr(d.acao||'')}" style="min-width:140px;"></td>
+    <td><input data-f="detalhamento" value="${escAttr(d.detalhamento||'')}" style="min-width:140px;"></td>
+    <td>${statusBadge(d.status)}</td>
+    <td><span class="pill ${d.statusOp}">${d.statusOp}</span></td>
+    <td class="no-print" style="white-space:nowrap;">
+      <button class="icon-btn" data-act="save">✔</button>
+      <button class="icon-btn" data-act="cancel">✕</button>
+    </td>
+  `;
+}
+
+function wireHistRow(tr, d){
+  tr.querySelector('[data-act="toggle-op"]').addEventListener('click', async ()=>{
+    d.statusOp = d.statusOp==='aberta' ? 'resolvida' : 'aberta';
+    await persistDemandas();
+    renderHistorico(); renderResumo();
+  });
+  const editBtn = tr.querySelector('[data-act="edit"]');
+  if(editBtn){
+    editBtn.addEventListener('click', ()=>{
+      tr.innerHTML = renderHistRowEdit(d);
+      tr.querySelector('[data-act="save"]').addEventListener('click', async ()=>{
+        tr.querySelectorAll('[data-f]').forEach(inp=>{ d[inp.dataset.f] = inp.value; });
+        const corr = correlate(d.cliente);
+        d.status = corr.status; d.score = corr.score; d.match = corr.match;
+        await persistDemandas();
+        renderHistorico(); renderResumo();
+      });
+      tr.querySelector('[data-act="cancel"]').addEventListener('click', ()=>renderHistorico());
+    });
+  }
+}
+
+['hBusca','hArea','hStatus','hSituacao','hDe','hAte'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', ()=>{ histPage=1; renderHistorico(); });
+});
+document.querySelectorAll('#tab-historico th.sortable').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const f = th.dataset.sort;
+    if(histSort.field===f) histSort.dir = histSort.dir==='asc'?'desc':'asc';
+    else histSort = {field:f, dir:'asc'};
+    renderHistorico();
+  });
+});
+
+document.getElementById('btnExportCsv').addEventListener('click', ()=>{
+  const rows = sortRows(getHistFiltered());
+  const header = ['Data','Cliente','Técnico','Área','Defeito','Ação','Detalhamento','Status Correlação','Situação'];
+  const csvRows = [header.join(';')].concat(rows.map(d=>[d.data,d.cliente,d.tecnico,d.area,d.defeito,d.acao,d.detalhamento,d.status,d.statusOp].map(csvEsc).join(';')));
+  downloadFile('historico_demandas.csv', csvRows.join('\n'), 'text/csv;charset=utf-8');
+});
+function csvEsc(v){ v=String(v??''); return /[;"\n]/.test(v) ? '"'+v.replace(/"/g,'""')+'"' : v; }
+function downloadFile(name, content, mime){
+  const blob = new Blob([content], {type:mime});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download=name; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ---------------------------------------------------------------------
+// CORRELAÇÕES
+// ---------------------------------------------------------------------
+let corSort = {field:'cliente', dir:'asc'};
+
+document.getElementById('btnSaveCorrelacao').addEventListener('click', async ()=>{
+  const cliente = document.getElementById('cCliente').value.trim();
+  const area = document.getElementById('cArea').value;
+  if(!cliente){ toast('Informe o cliente.'); return; }
+  state.overrides[C.normalize(cliente)] = {label:cliente, area};
+  await persistOverrides();
+  document.getElementById('cCliente').value='';
+  renderCorrelacoes(); renderResumo();
+  toast('Correlação salva.');
+});
+
+function getAllCorrelacoes(){
+  const base = state.clientes.map(c=>({cliente:c.cliente, codigo:c.codigo||'', area:c.area, origem:'base', key:C.normalize(c.cliente)}));
+  const overrides = Object.entries(state.overrides).map(([k,o])=>({cliente:o.label, codigo:'', area:o.area, origem:'override', key:k}));
+  return base.concat(overrides);
+}
+
+function renderCorrelacoes(){
+  const busca = document.getElementById('corBusca').value.trim().toLowerCase();
+  const areaF = document.getElementById('corArea').value;
+  const origemF = document.getElementById('corOrigem').value;
+  let rows = getAllCorrelacoes().filter(r=>{
+    if(busca && !(r.cliente.toLowerCase().includes(busca) || r.codigo.toLowerCase().includes(busca))) return false;
+    if(areaF && r.area!==areaF) return false;
+    if(origemF && r.origem!==origemF) return false;
+    return true;
+  });
+  const {field,dir} = corSort; const mult = dir==='asc'?1:-1;
+  rows.sort((a,b)=>{ const va=a[field]||'', vb=b[field]||''; return va<vb?-1*mult:va>vb?1*mult:0; });
+
+  const tbody = document.getElementById('corBody');
+  tbody.innerHTML = '';
+  rows.forEach(r=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${escHtml(r.cliente)}</td>
+      <td>${escHtml(r.codigo)}</td>
+      <td><span class="badge area-${r.area}">${r.area}</span></td>
+      <td>${C.areaToTecnico(r.area)||''}</td>
+      <td>${r.origem==='base'?'Base (Excel)':'Manual'}</td>
+      <td class="no-print">${r.origem==='override'?'<button class="icon-btn" data-act="del">🗑</button>':''}</td>
+    `;
+    if(r.origem==='override'){
+      tr.querySelector('[data-act="del"]').addEventListener('click', async ()=>{
+        delete state.overrides[r.key];
+        await persistOverrides();
+        renderCorrelacoes(); renderResumo();
+      });
+    }
+    tbody.appendChild(tr);
+  });
+}
+
+document.querySelectorAll('#tab-correlacoes th.sortable').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const f = th.dataset.csort;
+    if(corSort.field===f) corSort.dir = corSort.dir==='asc'?'desc':'asc';
+    else corSort = {field:f, dir:'asc'};
+    renderCorrelacoes();
+  });
+});
+['corBusca','corArea','corOrigem'].forEach(id=>document.getElementById(id).addEventListener('input', renderCorrelacoes));
+
+// ---------------------------------------------------------------------
+// RESUMO
+// ---------------------------------------------------------------------
+function renderResumo(){
+  const total = state.demandas.length;
+  const abertas = state.demandas.filter(d=>d.statusOp==='aberta').length;
+  const semCorr = state.demandas.filter(d=>d.status==='sem-correlacao').length;
+  const clientesMapeados = new Set(state.demandas.filter(d=>d.area && d.area!=='OUTRO').map(d=>C.normalize(d.cliente))).size;
+
+  document.getElementById('kpis').innerHTML = [
+    ['Total no histórico', total],
+    ['Demandas abertas', abertas],
+    ['Sem correlação', semCorr],
+    ['Clientes mapeados', clientesMapeados]
+  ].map(([lbl,num])=>`<div class="kpi"><div class="num">${num}</div><div class="lbl">${lbl}</div></div>`).join('');
+
+  const areas = ['NORTE','SUL','OESTE'];
+  const tecnicos = {NORTE:'Bruno',SUL:'Rubening',OESTE:'Iltearle'};
+  document.getElementById('areaCards').innerHTML = areas.map(a=>{
+    const regs = state.demandas.filter(d=>d.area===a);
+    const abertasA = regs.filter(d=>d.statusOp==='aberta').length;
+    const semCorrA = regs.filter(d=>d.status==='sem-correlacao').length;
+    const ultima = state.ultimaLeva.filter(d=>d.area===a).length;
+    return `<div class="area-card ${a}">
+      <b>${a} — ${tecnicos[a]}</b>
+      <div class="muted" style="margin-top:6px;">Total histórico: ${regs.length} · Abertas: ${abertasA} · Última leva: ${ultima} · Sem correlação: ${semCorrA}</div>
+    </div>`;
+  }).join('');
+
+  renderPendencias();
+
+  const ultima = state.ultimaLeva;
+  const el = document.getElementById('ultimaLeva');
+  if(!ultima.length){ el.innerHTML = '<p class="muted">Nenhuma consolidação nesta sessão ainda.</p>'; }
+  else{
+    el.innerHTML = areas.map(a=>{
+      const regs = ultima.filter(d=>d.area===a);
+      if(!regs.length) return '';
+      return `<h4 style="margin:14px 0 6px;">${a} — ${tecnicos[a]} (${regs.length})</h4>` +
+        '<ul style="margin:0; padding-left:18px; font-size:12.5px;">' +
+        regs.map(d=>`<li>${escHtml(d.cliente)} — ${escHtml(d.defeito||'')}${d.data?` (${d.data})`:''}</li>`).join('') +
+        '</ul>';
+    }).join('') || '<p class="muted">Sem itens mapeados nas 3 áreas na última leva.</p>';
+  }
+  document.getElementById('resumoPrintDate').textContent = 'Gerado em ' + new Date().toLocaleString('pt-BR');
+}
+
+function renderPendencias(){
+  const map = new Map();
+  state.demandas.filter(d=>d.status==='sem-correlacao').forEach(d=>{
+    const k = C.normalize(d.cliente);
+    if(!map.has(k)) map.set(k, {cliente:d.cliente, count:0});
+    map.get(k).count++;
+  });
+  const list = Array.from(map.values()).sort((a,b)=>b.count-a.count);
+  const el = document.getElementById('pendenciasList');
+  if(!list.length){ el.innerHTML = '<p class="muted">Nenhuma pendência de correlação. 🎉</p>'; return; }
+  el.innerHTML = `<p class="muted">${list.length} cliente(s) distinto(s) sem correlação (${list.reduce((s,x)=>s+x.count,0)} registro(s)).</p>` +
+    '<ul style="padding-left:18px; font-size:12.5px;">' +
+    list.slice(0,20).map(x=>`<li>${escHtml(x.cliente)} <span class="muted">(${x.count}×)</span></li>`).join('') +
+    (list.length>20 ? `<li class="muted">... e mais ${list.length-20}</li>` : '') +
+    '</ul>';
+}
+
+document.getElementById('btnWizard').addEventListener('click', openWizard);
+document.getElementById('btnPrint').addEventListener('click', ()=>window.print());
+
+function openWizard(){
+  const map = new Map();
+  state.demandas.filter(d=>d.status==='sem-correlacao').forEach(d=>{
+    const k = C.normalize(d.cliente);
+    if(!map.has(k)) map.set(k, d.cliente);
+  });
+  const pendentes = Array.from(map.entries());
+  if(!pendentes.length){ toast('Nenhuma pendência.'); return; }
+  let idx = 0;
+  showWizardStep();
+
+  function showWizardStep(){
+    if(idx>=pendentes.length){ closeModal(); renderAll(); toast('Pendências resolvidas.'); return; }
+    const [key, cliente] = pendentes[idx];
+    const candidatos = C.topCandidates(cliente, state.clientes, state.overrides, 3);
+    const body = document.createElement('div');
+    body.innerHTML = `
+      <h3>Resolver pendência (${idx+1}/${pendentes.length})</h3>
+      <p><b>${escHtml(cliente)}</b></p>
+      <label>Candidatos mais parecidos:</label>
+      <div id="wizCands" style="display:flex; flex-direction:column; gap:6px; margin-bottom:12px;"></div>
+      <div class="row">
+        <div class="col"><label>Ou fixar área manualmente</label>
+          <select id="wizArea"><option value="">— selecionar —</option><option value="NORTE">NORTE — Bruno</option><option value="SUL">SUL — Rubening</option><option value="OESTE">OESTE — Iltearle</option></select>
+        </div>
+      </div>
+      <div class="row" style="margin-top:14px; justify-content:space-between;">
+        <button class="btn secondary" id="wizSkip">Pular</button>
+        <div>
+          <button class="btn secondary" id="wizCancel">Fechar assistente</button>
+          <button class="btn" id="wizApply">Aplicar</button>
+        </div>
+      </div>
+    `;
+    const candsEl = body.querySelector('#wizCands');
+    candidatos.forEach(c=>{
+      const b = document.createElement('button');
+      b.className='btn secondary small';
+      b.style.textAlign='left';
+      b.textContent = `${c.label} — ${c.area||'?'} (${(c.score*100).toFixed(0)}%)`;
+      b.addEventListener('click', ()=>{ body.querySelector('#wizArea').value = c.area || ''; applyPick(c.label); });
+      candsEl.appendChild(b);
+    });
+    body.querySelector('#wizSkip').addEventListener('click', ()=>{ idx++; showWizardStep(); });
+    body.querySelector('#wizCancel').addEventListener('click', ()=>{ closeModal(); renderAll(); });
+    body.querySelector('#wizApply').addEventListener('click', ()=>{
+      const area = body.querySelector('#wizArea').value;
+      if(!area){ toast('Selecione uma área.'); return; }
+      applyPick(cliente, area);
+    });
+    function applyPick(label, area){
+      const finalArea = area || (candidatos[0] && candidatos[0].area) || body.querySelector('#wizArea').value;
+      if(!finalArea){ toast('Selecione uma área.'); return; }
+      state.overrides[key] = {label: cliente, area: finalArea};
+      persistOverrides();
+      state.demandas.forEach(d=>{
+        if(C.normalize(d.cliente)===key){
+          const corr = correlate(d.cliente);
+          d.status = corr.status; d.score = corr.score; d.match = corr.match; d.area = corr.area || d.area;
+          d.tecnico = corr.tecnico || d.tecnico; d.executante = d.tecnico;
+        }
+      });
+      persistDemandas();
+      idx++;
+      showWizardStep();
+    }
+    openModal(body);
+  }
+}
+
+// ---------------------------------------------------------------------
+// Modais genéricos
+// ---------------------------------------------------------------------
+function openModal(bodyEl){
+  closeModal();
+  const backdrop = document.createElement('div');
+  backdrop.className='modal-backdrop'; backdrop.id='activeModal';
+  const modal = document.createElement('div'); modal.className='modal';
+  modal.appendChild(bodyEl);
+  backdrop.appendChild(modal);
+  backdrop.addEventListener('mousedown', e=>{ if(e.target===backdrop) closeModal(); });
+  document.getElementById('modalRoot').appendChild(backdrop);
+}
+function closeModal(){
+  const m = document.getElementById('activeModal');
+  if(m) m.remove();
+}
+function showConfirmModal(message, onConfirm){
+  const body = document.createElement('div');
+  body.innerHTML = `<h3>Confirmar</h3><p>${escHtml(message)}</p>
+    <div class="row" style="justify-content:flex-end; margin-top:16px;">
+      <button class="btn secondary" id="cfCancel">Cancelar</button>
+      <button class="btn" id="cfOk">Confirmar</button>
+    </div>`;
+  body.querySelector('#cfCancel').addEventListener('click', closeModal);
+  body.querySelector('#cfOk').addEventListener('click', ()=>{ closeModal(); onConfirm(); });
+  openModal(body);
+}
+
+// ---------------------------------------------------------------------
+// DADOS — chave de API, import/export, reset
+// ---------------------------------------------------------------------
+function openApiKeyModal(){ document.querySelectorAll('button[data-tab="dados"]')[0].click(); }
+document.getElementById('btnApiKey').addEventListener('click', openApiKeyModal);
+
+document.getElementById('btnSaveApiKey').addEventListener('click', async ()=>{
+  const v = document.getElementById('apiKeyInput').value.trim();
+  if(!v) return;
+  state.apiKey = v;
+  await storageAdapter.set(KEY_APIKEY, v);
+  document.getElementById('apiKeyInput').value='';
+  document.getElementById('btnApiKey').style.display='inline-block';
+  toast('Chave salva neste navegador.');
+});
+document.getElementById('btnClearApiKey').addEventListener('click', async ()=>{
+  state.apiKey='';
+  await storageAdapter.set(KEY_APIKEY, '');
+  toast('Chave removida.');
+});
+
+document.getElementById('btnImportClientes').addEventListener('click', async ()=>{
+  try{
+    const arr = JSON.parse(document.getElementById('importClientes').value);
+    if(!Array.isArray(arr)) throw new Error('esperado um array');
+    state.clientes = arr;
+    await persistClientes();
+    document.getElementById('importClientes').value='';
+    renderAll();
+    toast(`${arr.length} clientes importados.`);
+  }catch(e){ toast('JSON inválido: ' + e.message); }
+});
+document.getElementById('btnImportDemandas').addEventListener('click', async ()=>{
+  try{
+    const arr = JSON.parse(document.getElementById('importDemandas').value);
+    if(!Array.isArray(arr)) throw new Error('esperado um array');
+    const now = new Date().toISOString();
+    const novos = arr.map(r=>({
+      id: uid(),
+      cliente: r.cliente||'',
+      executante: r.executante||'',
+      tecnico: r.executante||'',
+      area: r.area || C.execToArea(r.executante||''),
+      data: r.data||'',
+      defeito: r.defeito||'',
+      acao: r.acao||'',
+      detalhamento: r.detalhamento||'',
+      origem: 'seed',
+      status: 'historico',
+      score: null,
+      match: null,
+      criadoEm: now,
+      statusOp: 'resolvida'
+    }));
+    state.demandas = state.demandas.concat(novos);
+    await persistDemandas();
+    document.getElementById('importDemandas').value='';
+    renderAll();
+    toast(`${novos.length} registros de histórico importados.`);
+  }catch(e){ toast('JSON inválido: ' + e.message); }
+});
+
+document.getElementById('btnResetAll').addEventListener('click', ()=>{
+  showConfirmModal('Isso apaga TODAS as demandas, correlações manuais e a chave de API salvas neste dispositivo/navegador. Continuar?', async ()=>{
+    state.demandas = []; state.overrides = {}; state.apiKey=''; state.ultimaLeva=[];
+    await persistDemandas(); await persistOverrides(); await storageAdapter.set(KEY_APIKEY,'');
+    renderAll();
+    toast('Dados locais apagados.');
+  });
+});
+
+// ---------------------------------------------------------------------
+// Utilitários
+// ---------------------------------------------------------------------
+function escHtml(s){ return String(s??'').replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function escAttr(s){ return escHtml(s).replace(/"/g,'&quot;'); }
+
+init();
+})();
+</script>
+</body>
+</html>
