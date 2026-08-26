@@ -17,11 +17,31 @@ sempre que qualquer um desses três arquivos mudar.
 """
 import re
 import json
+import base64
 
 HTML_PATH = "sistema_demandas_medicao.html"
 CORE_PATH = "core.js"
 CLIENTES_PATH = "data/seed-clientes.json"
 DEMANDAS_PATH = "data/seed-demandas.json"
+VENDOR_DIR = "vendor"
+
+# Bibliotecas de terceiros do extrator automático de PDF/imagem (ver
+# vendor/README.md). "text" = inlineadas como <script> executado direto
+# (definem window.pdfjsLib / self.Tesseract). "b64" = embutidas como
+# <script type="application/octet-stream" id="..."> com o conteúdo em
+# base64 (texto de worker/glue que não deve rodar no documento principal,
+# ou binário puro), decodificado em runtime pelo próprio app.
+VENDOR_TEXT_ASSETS = {
+    "pdf.min.js": "pdfjsLibSrc",
+    "tesseract.min.js": "tesseractLibSrc",
+}
+VENDOR_B64_ASSETS = {
+    "pdf.worker.min.js": "pdfWorkerSrcB64",
+    "tesseract.worker.min.js": "tesseractWorkerSrcB64",
+    "tesseract-core-lstm.js": "tesseractCoreJsB64",
+    "tesseract-core-lstm.wasm": "tesseractCoreWasmB64",
+    "por.traineddata.gz": "porTraineddataB64",
+}
 
 
 def replace_or_insert(html, pattern, new_block, insert_before_marker):
@@ -104,6 +124,26 @@ def main():
         html = html.replace(old_load_json, new_load_json)
     elif "idMap = {" not in html:
         raise SystemExit("loadJson() não encontrado no formato esperado — ajuste o script de build.")
+
+    # 4) Bibliotecas do extrator de PDF/imagem — embutidas via vendor/*.
+    for filename, script_id in VENDOR_TEXT_ASSETS.items():
+        with open(f"{VENDOR_DIR}/{filename}", encoding="utf-8") as f:
+            src = f.read()
+        block = f'<script id="{script_id}">\n{src}\n</script>'
+        html = replace_or_insert(
+            html, rf'<script id="{script_id}">.*?</script>', block, app_marker
+        )
+    for filename, script_id in VENDOR_B64_ASSETS.items():
+        with open(f"{VENDOR_DIR}/{filename}", "rb") as f:
+            raw = f.read()
+        b64 = base64.b64encode(raw).decode("ascii")
+        block = f'<script type="application/octet-stream" id="{script_id}">{b64}</script>'
+        html = replace_or_insert(
+            html,
+            rf'<script type="application/octet-stream" id="{script_id}">.*?</script>',
+            block,
+            app_marker,
+        )
 
     with open(HTML_PATH, "w", encoding="utf-8") as f:
         f.write(html)

@@ -20,20 +20,25 @@ core.js                          # lógica de negócio pura — fonte de verdade
 data/seed-clientes.json          # base de clientes REAL (258 registros) — fonte de verdade, embutida no build
 data/seed-demandas.json          # histórico REAL (428 registros) — fonte de verdade, embutida no build
 scripts/convert_xlsx_to_seed.py  # gera os dois JSONs acima a partir das planilhas .xlsx originais
-scripts/build_standalone.py      # embute core.js + os dois JSONs dentro de sistema_demandas_medicao.html
+scripts/build_standalone.py      # embute core.js + os dois JSONs + vendor/* dentro de sistema_demandas_medicao.html
+vendor/                          # pdf.js + Tesseract.js (extrator de PDF/imagem) — ver vendor/README.md
 test/fixture-imagem-teste.json   # transcrição fiel da imagem padrão de teste (tabela em formato matriz)
 test/run-tests.js                # testes automatizados (node test/run-tests.js)
 ```
 
 `sistema_demandas_medicao.html` é o artefato final — **um único arquivo**,
-sem `<script src>` externo, sem `fetch()` de arquivo local: `core.js` e os
-dois JSONs de seed estão embutidos dentro dele (em `<script id="coreJsInline">`
-e `<script type="application/json" id="seedClientesData"/"seedDemandasData">`).
-Isso é o que permite abri-lo direto com duplo-clique (`file://`), sem
-precisar de servidor. Depois de editar `core.js`, `data/seed-clientes.json`
-ou `data/seed-demandas.json`, rode `python3 scripts/build_standalone.py`
-para propagar a mudança ao HTML final (idempotente — pode rodar quantas
-vezes for preciso).
+sem `<script src>` externo, sem `fetch()` de arquivo local: `core.js`, os
+dois JSONs de seed e as bibliotecas do extrator de PDF/imagem (`vendor/`)
+estão todos embutidos dentro dele (em `<script id="coreJsInline">`,
+`<script type="application/json" id="seedClientesData"/"seedDemandasData">`
+e os `<script id="pdfjsLibSrc">`/`<script type="application/octet-stream"
+id="...B64">` descritos em `vendor/README.md`). Isso é o que permite abri-lo
+direto com duplo-clique (`file://`), sem precisar de servidor — e o arquivo
+final fica com ~8 MB por causa disso (a maior parte é o núcleo do OCR em
+WebAssembly e o modelo de português). Depois de editar `core.js`,
+`data/seed-clientes.json`, `data/seed-demandas.json` ou qualquer arquivo em
+`vendor/`, rode `python3 scripts/build_standalone.py` para propagar a
+mudança ao HTML final (idempotente — pode rodar quantas vezes for preciso).
 
 ## Dados reais embutidos
 
@@ -88,6 +93,43 @@ O sistema reconhece dois formatos de tabela pelo cabeçalho (primeira linha):
   de teste): colunas Estação, Data, DEMANDA MEDIÇÃO, TELEMETRIA,
   ENERGIA (220V), INFRA PENDENTE, DADOS DO CVAZ, PULSO, Comentários, com
   células marcadas "X".
+
+## Extração automática de PDF ou foto/print (OCR) — offline, sem IA
+
+Além de colar/anexar `.csv`/`.tsv`, a aba **Nova Demanda** tem um segundo
+card ("Extrair automaticamente de PDF ou foto/print") que lê o arquivo
+original direto:
+
+- **PDF** — usa [pdf.js](https://github.com/mozilla/pdf.js) para ler o texto
+  real do documento (funciona bem com relatórios exportados/impressos do
+  Excel, que têm camada de texto de verdade, não uma imagem escaneada).
+- **Foto/print (JPEG/PNG)** — usa [Tesseract.js](https://github.com/naptha/tesseract.js)
+  (motor Tesseract OCR compilado para WebAssembly) com o modelo de português
+  para reconhecer o texto na imagem.
+
+Em ambos os casos, o texto de cada célula é reconstruído a partir da posição
+(x, y) de cada palavra — `core.js`, função `reconstructTableText`: agrupa
+palavras na mesma linha por proximidade vertical, usa a primeira linha como
+cabeçalho para definir as colunas (agrupando palavras próximas
+horizontalmente, já que uma célula de cabeçalho pode ter mais de uma palavra,
+como "DADOS DO CVAZ") e encaixa o restante das linhas nessas colunas — o
+resultado é um texto TSV, exatamente como se você tivesse colado a tabela do
+Excel, que cai na mesma caixa de texto para revisão antes de importar.
+
+**Tudo roda no navegador, nada é enviado para fora do computador do
+usuário** — diferente da tentativa anterior de leitura por IA (ver seção
+acima), que dependia de uma chamada de rede e por isso não funcionava. As
+bibliotecas (pdf.js, Tesseract.js, o núcleo do Tesseract em WebAssembly e o
+modelo de português) estão embutidas no próprio HTML (`vendor/`, ver
+`vendor/README.md` para versões/licenças e um patch aplicado a um bug do
+tesseract.js 5.1.1) — inclusive funciona como Artifact no Claude.ai, sem
+nenhuma requisição de rede em tempo de execução. Para tabelas com bordas
+(como o formato matriz/checklist), o modo de segmentação de página do
+Tesseract é forçado para "texto esparso" (PSM 11), porque o modo automático
+padrão tende a enxergar só a primeira linha da imagem como texto quando há
+bordas de célula. Fotos de baixa qualidade, tabelas muito inclinadas ou muito
+grandes tendem a sair com mais erros de reconhecimento — sempre revise o
+texto reconstruído antes de clicar em "Importar texto colado".
 
 ### Decisão de design: extração determinística, sem IA
 
@@ -144,8 +186,10 @@ um palpite, exatamente o comportamento descrito na seção 8 da especificação.
 
 ## Uso no dia a dia
 
-1. **Nova Demanda** → cole a tabela semanal copiada do Excel (ou anexe um
-   `.csv`/`.tsv`). As linhas importadas caem numa tabela de **conferência**
+1. **Nova Demanda** → cole a tabela semanal copiada do Excel, anexe um
+   `.csv`/`.tsv`, ou anexe direto o PDF/foto do relatório para extração
+   automática (offline, sem IA). As linhas importadas caem numa tabela de
+   **conferência**
    100% editável — cliente, técnico, área (select), data, defeito, ação,
    detalhamento — com selos de alerta para data inválida, confiança baixa
    (inconsistência entre colunas marcadas e o comentário), e status de
@@ -218,20 +262,36 @@ contrário — mesma interface assíncrona, mesmas chaves
 node test/run-tests.js
 ```
 
-23 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
+27 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
 determinística de defeito/ação/data/comentário + sinalização de confiança
 baixa), o algoritmo de correlação contra a **base de clientes real** de 258
 registros (match direto, lacuna já resolvida, lacuna genuína ainda em
 aberto, override manual, derivação de área a partir do executante em
 registros de histórico), a contagem de registros do seed real (419 + 9 = 428),
-e o parser de tabela colada/`.csv` (`parsePastedTable`): reconhecimento dos
+o parser de tabela colada/`.csv` (`parsePastedTable`): reconhecimento dos
 dois formatos pelo cabeçalho, conversão de data BR→ISO, flags de coluna
-marcada, sinalização de confiança baixa e descarte de linhas em branco.
+marcada, sinalização de confiança baixa e descarte de linhas em branco; e a
+reconstrução de tabela a partir de coordenadas (`reconstructTableText`, usada
+pelo extrator de PDF/imagem): agrupamento de palavras em linhas e em células
+de cabeçalho com mais de uma palavra, e alimentação direta do resultado no
+`parsePastedTable`.
+
+Esses testes cobrem a lógica pura (`core.js`) e rodam em Node, sem browser —
+não validam pdf.js/Tesseract.js em si (que só existem no navegador). Essa
+parte foi validada manualmente nesta sessão com Playwright + Chromium contra
+um PDF e uma foto sintéticos, confirmando a extração ponta a ponta; não há
+um teste automatizado de navegador no repositório para isso ainda.
 
 ## Limitações conhecidas / próximos passos
 
 - Sem autenticação multiusuário — dados são por navegador/dispositivo.
 - Sem alerta de prazo para demandas "abertas" há muito tempo.
+- OCR de imagem só tem o modelo de **português** embutido (não inglês) — nomes
+  de cliente/comentário em outro idioma podem sair com mais erros.
+- A reconstrução de tabela por coordenadas assume uma tabela "reta" (linhas e
+  colunas alinhadas); fotos muito inclinadas, tortas ou com iluminação
+  irregular tendem a confundir tanto o agrupamento de linhas quanto o de
+  colunas — revise sempre o texto antes de importar.
 - Auditoria pendente de outros nomes históricos que não têm correspondência
   clara na base de clientes (ex.: registros administrativos como
   `PREDITIVAS`, `CALIBRAÇÃO`) — o sistema já os sinaliza corretamente como

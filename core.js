@@ -307,6 +307,88 @@
     return { formato, linhas };
   }
 
+  // ---------------------------------------------------------------------
+  // Reconstrução de tabela a partir de itens posicionados (x, y) — usada
+  // pelo extrator de PDF (pdf.js, coordenadas do texto real) e pelo OCR de
+  // imagem (Tesseract, coordenadas de cada palavra reconhecida). Agrupa
+  // itens em linhas por proximidade vertical, usa a primeira linha como
+  // cabeçalho para definir as colunas (por posição horizontal) e encaixa
+  // o resto das linhas nessas colunas, produzindo texto TSV consumível
+  // por parsePastedTable — exatamente como colar do Excel.
+  // ---------------------------------------------------------------------
+
+  // OCR de tabela costuma ler as bordas verticais das células como um
+  // caractere de texto isolado ("|" e variantes) — nunca é conteúdo real,
+  // e se não for descartado antes do agrupamento por proximidade ele "cola"
+  // duas colunas vizinhas em uma só (o traço fica perto demais de ambas).
+  const BORDER_NOISE = /^[|¦‖]$/;
+
+  function reconstructTableText(items) {
+    const pts = (items || [])
+      .filter((it) => it && it.text && String(it.text).trim() !== '')
+      .filter((it) => !BORDER_NOISE.test(String(it.text).trim()));
+    if (!pts.length) return '';
+
+    const sorted = pts.slice().sort((a, b) => a.y - b.y || a.x - b.x);
+    const heights = sorted.map((p) => p.height || 12).filter((h) => h > 0).sort((a, b) => a - b);
+    const medH = heights.length ? heights[Math.floor(heights.length / 2)] : 12;
+    const lineGap = Math.max(medH * 0.6, 4);
+
+    const lines = [];
+    let current = null;
+    sorted.forEach((p) => {
+      if (!current || Math.abs(p.y - current.y) > lineGap) {
+        current = { y: p.y, n: 0, items: [] };
+        lines.push(current);
+      }
+      current.items.push(p);
+      current.n += 1;
+      current.y = current.y + (p.y - current.y) / current.n;
+    });
+    lines.forEach((l) => l.items.sort((a, b) => a.x - b.x));
+
+    // Cabeçalhos costumam ter células com mais de uma palavra (ex.: "DADOS
+    // DO CVAZ", "ENERGIA (220V)") — cada palavra chega como um item
+    // separado (principalmente vindo de OCR), então agrupa palavras
+    // próximas horizontalmente numa mesma célula de cabeçalho antes de
+    // definir as colunas; um espaçamento bem maior que o normal entre
+    // palavras é o que separa uma célula da outra.
+    const gapThreshold = Math.max(medH * 1.5, 10);
+    const header = [];
+    lines[0].items.forEach((it) => {
+      const right = it.x + (it.width || 0);
+      const last = header[header.length - 1];
+      if (last && it.x - last.right <= gapThreshold) {
+        last.text = `${last.text} ${it.text}`;
+        last.right = Math.max(last.right, right);
+      } else {
+        header.push({ x: it.x, right, text: it.text });
+      }
+    });
+
+    const bounds = header.map((h, i) => {
+      const nextX = i < header.length - 1 ? header[i + 1].x : Infinity;
+      return (h.right + nextX) / 2;
+    });
+    const colOf = (x) => {
+      for (let i = 0; i < bounds.length; i++) {
+        if (x < bounds[i]) return i;
+      }
+      return header.length - 1;
+    };
+
+    return lines
+      .map((line) => {
+        const cols = new Array(header.length).fill('');
+        line.items.forEach((it) => {
+          const idx = colOf(it.x);
+          cols[idx] = cols[idx] ? `${cols[idx]} ${it.text}` : it.text;
+        });
+        return cols.join('\t');
+      })
+      .join('\n');
+  }
+
   return {
     normalize,
     areaToTecnico,
@@ -322,5 +404,6 @@
     brDateToIso,
     isValidIsoDate,
     parsePastedTable,
+    reconstructTableText,
   };
 });

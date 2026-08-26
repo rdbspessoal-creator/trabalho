@@ -233,5 +233,75 @@ test('texto vazio retorna zero linhas sem lançar erro', () => {
   assert.strictEqual(r.linhas.length, 0);
 });
 
+console.log('\nReconstrução de tabela a partir de coordenadas (x, y) — extrator de PDF/imagem\n');
+
+test('reconstructTableText: monta header + 1 linha de dados a partir de itens posicionados (simula pdf.js)', () => {
+  // Simula o texto de um PDF com 4 colunas: CLIENTE, DATA, DEFEITO, AÇÃO
+  const items = [
+    { text: 'CLIENTE', x: 10, y: 10, height: 10 },
+    { text: 'DATA', x: 150, y: 10, height: 10 },
+    { text: 'DEFEITO', x: 220, y: 10, height: 10 },
+    { text: 'AÇÃO', x: 320, y: 10, height: 10 },
+
+    { text: 'ERPM', x: 10, y: 30, height: 10 },
+    { text: '-', x: 45, y: 30, height: 10 },
+    { text: 'GERDAU', x: 55, y: 30, height: 10 },
+    { text: '11/08/2026', x: 150, y: 30, height: 10 },
+    { text: 'MODEM', x: 220, y: 30, height: 10 },
+    { text: 'DESCONECTADO', x: 255, y: 30, height: 10 },
+    { text: 'COLETAR', x: 320, y: 30, height: 10 },
+    { text: 'MEDIÇÃO', x: 365, y: 30, height: 10 },
+  ];
+  const text = Core.reconstructTableText(items);
+  const rows = text.split('\n');
+  assert.strictEqual(rows.length, 2, 'deve produzir cabeçalho + 1 linha de dados');
+  assert.strictEqual(rows[0], 'CLIENTE\tDATA\tDEFEITO\tAÇÃO');
+  assert.strictEqual(rows[1], 'ERPM - GERDAU\t11/08/2026\tMODEM DESCONECTADO\tCOLETAR MEDIÇÃO');
+
+  // e o resultado alimenta parsePastedTable normalmente, como texto colado
+  const parsed = Core.parsePastedTable(text);
+  assert.strictEqual(parsed.formato, 'A');
+  assert.strictEqual(parsed.linhas.length, 1);
+  assert.strictEqual(parsed.linhas[0].cliente, 'ERPM - GERDAU');
+  assert.strictEqual(parsed.linhas[0].data, '2026-08-11');
+});
+
+test('reconstructTableText: itens sem texto (espaço em branco) são ignorados', () => {
+  const items = [
+    { text: 'CLIENTE', x: 10, y: 10, height: 10 },
+    { text: '  ', x: 150, y: 10, height: 10 },
+    { text: 'GERDAU', x: 10, y: 30, height: 10 },
+  ];
+  const text = Core.reconstructTableText(items);
+  assert.strictEqual(text, 'CLIENTE\nGERDAU');
+});
+
+test('reconstructTableText: agrupa palavras próximas do cabeçalho na mesma coluna (ex.: "DADOS DO CVAZ")', () => {
+  // Simula palavras vindas do OCR (uma por item), cabeçalho com células de 1, 2 e 3 palavras
+  const items = [
+    { text: 'ESTAÇÃO', x: 10, y: 10, width: 60, height: 14 },
+    { text: 'DATA', x: 100, y: 10, width: 35, height: 14 },
+    { text: 'DADOS', x: 170, y: 10, width: 45, height: 14 },
+    { text: 'DO', x: 220, y: 10, width: 20, height: 14 },
+    { text: 'CVAZ', x: 245, y: 10, width: 35, height: 14 },
+    { text: 'COMENTÁRIOS', x: 330, y: 10, width: 80, height: 14 },
+
+    { text: 'GERDAU', x: 10, y: 34, width: 55, height: 14 },
+    { text: '03/08/2026', x: 100, y: 34, width: 70, height: 14 },
+    { text: 'X', x: 185, y: 34, width: 8, height: 14 },
+    { text: 'Sem', x: 330, y: 34, width: 25, height: 14 },
+    { text: 'dados', x: 358, y: 34, width: 35, height: 14 },
+  ];
+  const text = Core.reconstructTableText(items);
+  const rows = text.split('\n');
+  assert.strictEqual(rows[0], 'ESTAÇÃO\tDATA\tDADOS DO CVAZ\tCOMENTÁRIOS');
+  assert.strictEqual(rows[1], 'GERDAU\t03/08/2026\tX\tSem dados');
+});
+
+test('reconstructTableText: lista vazia retorna string vazia sem lançar erro', () => {
+  assert.strictEqual(Core.reconstructTableText([]), '');
+  assert.strictEqual(Core.reconstructTableText(null), '');
+});
+
 console.log(`\n${passed} passaram, ${failed} falharam.`);
 process.exit(failed ? 1 : 0);
