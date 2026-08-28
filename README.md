@@ -99,7 +99,25 @@ horizontalmente, já que uma célula de cabeçalho pode ter mais de uma palavra,
 como "DADOS DO CVAZ") e encaixa o restante das linhas nessas colunas — o
 resultado é interpretado como a tabela matriz/checklist (`parsePastedTable`)
 e cada linha cai direto na **conferência**, já com defeito/ação preenchidos,
-pronta para revisão antes de consolidar.
+pronta para revisão antes de consolidar. Trata ainda três problemas comuns em
+fotos reais de tabela, sem depender de nenhum modelo externo:
+
+- **Cabeçalho quebrado em 2+ linhas visuais** (célula com o texto em duas
+  linhas, ex.: "DEMANDA" / "MEDIÇÃO") — cada sublinha chegaria do OCR como se
+  fosse uma linha da tabela à parte; as linhas iniciais que ainda "parecem"
+  fragmento de cabeçalho são unidas antes de definir as colunas (uma linha
+  com uma data já reconhecida é tratada como início dos dados, não de
+  cabeçalho, para não confundir com comentários que também citam palavras do
+  cabeçalho, como "Sem **dados** desde...").
+- **Ruído de borda/artefato** — um fragmento minúsculo mal lido bem entre
+  duas colunas de cabeçalho de verdade (altura muito menor que o resto do
+  texto do cabeçalho) é descartado antes de definir onde uma coluna termina
+  e a outra começa.
+- **Rótulo de cabeçalho centralizado longe de onde o dado começa** — comum na
+  última coluna (texto livre, tipo "Comentários"): o rótulo do cabeçalho fica
+  centralizado bem à direita da coluna, enquanto o comentário de cada linha é
+  alinhado à esquerda e começa bem antes disso; sem tratar esse caso, o
+  início do comentário vazava para a coluna anterior.
 
 > Uma versão anterior deste sistema também aceitava colar a tabela do Excel
 > como texto e/ou anexar PDF. A pedido do usuário, esse fluxo foi simplificado
@@ -259,18 +277,21 @@ contrário — mesma interface assíncrona, mesmas chaves
 node test/run-tests.js
 ```
 
-30 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
+32 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
 determinística de defeito/ação/data/comentário + sinalização de confiança
 baixa), o algoritmo de correlação contra a **base de clientes real** de 258
 registros (match direto, lacuna já resolvida, lacuna genuína ainda em
 aberto, override manual, derivação de área a partir do executante em
 registros de histórico), a contagem de registros do seed real (419 + 9 = 428),
 o parser de tabela colada/`.csv` (`parsePastedTable`, ainda usado
-internamente para interpretar o texto que a foto vira), a reconstrução de
-tabela a partir de coordenadas (`reconstructTableText`, usada pelo OCR de
-foto): agrupamento de palavras em linhas e em células de cabeçalho com mais
-de uma palavra; e a sugestão de preenchimento (`topFieldValues`): ordenação
-por frequência, limite de itens, entradas vazias/nulas.
+internamente para interpretar o texto que a foto vira), a sugestão de
+preenchimento (`topFieldValues`): ordenação por frequência, limite de itens,
+entradas vazias/nulas; e a reconstrução de tabela a partir de coordenadas
+(`reconstructTableText`, usada pelo OCR de foto): agrupamento de palavras em
+linhas e em células de cabeçalho com mais de uma palavra, cabeçalho quebrado
+em 2+ linhas visuais (reproduzindo o bug relatado numa foto real, onde a
+tabela inteira falhava ao ser reconhecida) e comentário de texto livre que
+não deve vazar para a coluna anterior.
 
 Esses testes cobrem a lógica pura (`core.js`) e rodam em Node, sem browser —
 não validam o Tesseract.js em si (que só existe no navegador). Essa parte,

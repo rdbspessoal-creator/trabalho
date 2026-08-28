@@ -238,10 +238,10 @@ console.log('\nReconstrução de tabela a partir de coordenadas (x, y) — extra
 test('reconstructTableText: monta header + 1 linha de dados a partir de itens posicionados (simula pdf.js)', () => {
   // Simula o texto de um PDF com 4 colunas: CLIENTE, DATA, DEFEITO, AÇÃO
   const items = [
-    { text: 'CLIENTE', x: 10, y: 10, height: 10 },
-    { text: 'DATA', x: 150, y: 10, height: 10 },
-    { text: 'DEFEITO', x: 220, y: 10, height: 10 },
-    { text: 'AÇÃO', x: 320, y: 10, height: 10 },
+    { text: 'CLIENTE', x: 10, y: 10, width: 50, height: 10 },
+    { text: 'DATA', x: 150, y: 10, width: 30, height: 10 },
+    { text: 'DEFEITO', x: 220, y: 10, width: 50, height: 10 },
+    { text: 'AÇÃO', x: 320, y: 10, width: 35, height: 10 },
 
     { text: 'ERPM', x: 10, y: 30, height: 10 },
     { text: '-', x: 45, y: 30, height: 10 },
@@ -330,6 +330,73 @@ test('topFieldValues: respeita o limite', () => {
 test('topFieldValues: lista vazia/nula não lança erro', () => {
   assert.deepStrictEqual(Core.topFieldValues([], 'defeito'), []);
   assert.deepStrictEqual(Core.topFieldValues(null, 'defeito'), []);
+});
+
+console.log('\nreconstructTableText: cabeçalho quebrado em 2 linhas visuais (foto real)\n');
+
+test('reconstructTableText: junta sublinhas de cabeçalho ("DEMANDA"/"MEDIÇÃO" etc.) numa linha só e não confunde com dado', () => {
+  // Coordenadas aproximadas de uma foto real onde o cabeçalho quebra em 2
+  // linhas dentro da célula (ex.: "DEMANDA" numa linha, "MEDIÇÃO" embaixo) —
+  // o OCR devolve cada sublinha como um cluster de y diferente.
+  const items = [
+    // sublinha 1 do cabeçalho (topo das células)
+    { text: 'DEMANDA', x: 602, y: 8, height: 10 },
+    { text: 'ENERGIA', x: 817, y: 11, height: 10 },
+    { text: 'INFRA', x: 924, y: 5, height: 10 },
+    { text: 'DADOS', x: 1009, y: 8, height: 10 },
+    { text: 'DO', x: 1067, y: 5, height: 10 },
+    // sublinha 2 do cabeçalho (Estação/Data ficam numa linha só, mais baixa)
+    { text: 'Estação', x: 20, y: 20, height: 14 },
+    { text: 'DATA', x: 524, y: 20, height: 10 },
+    { text: 'TELEMETRIA', x: 699, y: 20, height: 10 },
+    { text: 'PULSO', x: 1111, y: 20, height: 10 },
+    { text: 'COMENTÁRIOS', x: 1232, y: 17, height: 13 },
+    // sublinha 3 do cabeçalho (fim das células quebradas)
+    { text: 'MEDIÇÃO', x: 605, y: 25, height: 16 },
+    { text: '(220V)', x: 828, y: 27, height: 10 },
+    { text: 'PENDENTE', x: 906, y: 28, height: 20 },
+    // primeira linha de DADO — tem data, não deve virar cabeçalho
+    { text: 'ERPM', x: 12, y: 60, height: 10 },
+    { text: '-', x: 59, y: 63, height: 2 },
+    { text: 'GERDAU', x: 68, y: 60, height: 10 },
+    { text: '03/08/2026', x: 506, y: 60, height: 11 },
+    { text: 'x', x: 635, y: 60, height: 10 },
+    { text: 'x', x: 699, y: 60, height: 10 },
+    { text: 'Sem', x: 1184, y: 60, height: 10 },
+    { text: 'dados', x: 1218, y: 60, height: 11 },
+    { text: 'desde', x: 1263, y: 60, height: 11 },
+    { text: '30/6', x: 1308, y: 60, height: 11 },
+  ];
+  const text = Core.reconstructTableText(items);
+  const rows = text.split('\n');
+  assert.strictEqual(rows.length, 2, 'deve virar cabeçalho (1 linha) + 1 linha de dado — não 4 linhas soltas');
+  const parsed = Core.parsePastedTable(text);
+  assert.strictEqual(parsed.formato, 'B', 'deve reconhecer o formato matriz mesmo com o cabeçalho fragmentado');
+  assert.strictEqual(parsed.linhas.length, 1);
+  assert.strictEqual(parsed.linhas[0].estacao, 'ERPM - GERDAU');
+  assert.strictEqual(parsed.linhas[0].telemetria, true);
+  assert.strictEqual(parsed.linhas[0].comentarios, 'Sem dados desde 30/6');
+});
+
+test('reconstructTableText: comentário à esquerda não vaza para a coluna PULSO quando o rótulo "COMENTÁRIOS" fica centralizado bem à direita', () => {
+  // Cabeçalho real: "PULSO" (rótulo estreito) e "COMENTÁRIOS" (rótulo mais
+  // largo, centralizado dentro de uma coluna de texto livre bem mais larga
+  // que o próprio rótulo) — o comentário da linha de dado começa bem à
+  // esquerda de onde o rótulo do cabeçalho está, e não pode cair na coluna
+  // anterior (PULSO) por causa disso.
+  const items = [
+    {text: 'PULSO', x: 1111, y: 20, width: 51, height: 10},
+    {text: 'COMENTÁRIOS', x: 1232, y: 17, width: 112, height: 13},
+
+    {text: 'GERDAU', x: 12, y: 60, width: 60, height: 10},
+    {text: '03/08/2026', x: 500, y: 60, width: 74, height: 10},
+    {text: 'Sem', x: 1184, y: 60, width: 29, height: 10},
+    {text: 'dados', x: 1218, y: 60, width: 40, height: 11},
+  ];
+  const text = Core.reconstructTableText(items);
+  const rows = text.split('\n');
+  const dataCols = rows[1].split('\t');
+  assert.strictEqual(dataCols[dataCols.length - 1], 'Sem dados', 'comentário inteiro deve cair na última coluna, não dividido com a de PULSO');
 });
 
 console.log(`\n${passed} passaram, ${failed} falharam.`);
