@@ -1317,8 +1317,8 @@ function renderStaging(){
         </select>
       </div>
       <div class="field"><label>Data</label><span style="display:flex; align-items:center; gap:6px;"><input type="date" value="${item.data}" data-f="data" style="flex:1;">${dataAlert}</span></div>
-      <div class="field"><label>Defeito</label><select data-f="defeito">${defeitoSelectHtml(item.defeito)}</select></div>
-      <div class="field"><label>Ação</label><input value="${escAttr(item.acao)}" data-f="acao"></div>
+      <div class="field wide"><label>Defeito</label><select data-f="defeito">${defeitoSelectHtml(item.defeito)}</select></div>
+      <div class="field wide"><label>Ação</label><input value="${escAttr(item.acao)}" data-f="acao"></div>
       <div class="field wide"><label>Detalhamento</label><input value="${escAttr(item.detalhamento)}" data-f="detalhamento"></div>
       <div class="status-row">
         <span class="match-info">${statusBadge(item.status)}${confAlert}${item.match?` <span class="muted">match: ${escHtml(item.match)} (${(item.score*100).toFixed(0)}%)</span>`:''}</span>
