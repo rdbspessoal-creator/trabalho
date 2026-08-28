@@ -276,9 +276,11 @@ depois do filtro.
    sistema checa duplicidade (mesmo cliente normalizado + mesma data já no
    histórico) e pede confirmação.
 3. **Histórico** — busca, filtros (área / status de correlação / situação
-   aberta-resolvida / período), gráficos de tendências e maiores ocorrências,
-   ordenação por coluna, paginação real (50 por página), edição inline,
-   toggle Aberta/Resolvida, exportação CSV.
+   aberta-resolvida / período), **um filtro por coluna direto no cabeçalho
+   da tabela** (Data, Cliente, Técnico, Área, Defeito, Ação, Detalhamento,
+   Correlação, Situação — combina com os filtros acima), gráficos de
+   tendências e maiores ocorrências, ordenação por coluna, paginação real
+   (50 por página), edição inline, toggle Aberta/Resolvida, exportação CSV.
 4. **Correlações** — cadastro manual Cliente → Área **ou** vínculo direto a
    um cliente já cadastrado quando o mesmo ponto de consumo aparece com
    nomes diferentes nas demandas (ver abaixo), tabela com busca/filtro/

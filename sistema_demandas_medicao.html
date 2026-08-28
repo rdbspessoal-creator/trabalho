@@ -285,14 +285,34 @@
     <div class="card">
       <div style="overflow-x:auto;">
         <table>
-          <thead><tr>
-            <th class="sortable" data-sort="data">Data</th>
-            <th class="sortable" data-sort="cliente">Cliente</th>
-            <th>Técnico</th>
-            <th class="sortable" data-sort="area">Área</th>
-            <th>Defeito</th><th>Ação</th><th>Detalhamento</th>
-            <th>Correlação</th><th>Situação</th><th class="no-print"></th>
-          </tr></thead>
+          <thead>
+            <tr>
+              <th class="sortable" data-sort="data">Data</th>
+              <th class="sortable" data-sort="cliente">Cliente</th>
+              <th>Técnico</th>
+              <th class="sortable" data-sort="area">Área</th>
+              <th>Defeito</th><th>Ação</th><th>Detalhamento</th>
+              <th>Correlação</th><th>Situação</th><th class="no-print"></th>
+            </tr>
+            <tr class="filter-row no-print">
+              <th><input data-hcolfilter="data" placeholder="AAAA-MM..."></th>
+              <th><input data-hcolfilter="cliente" placeholder="filtrar..."></th>
+              <th><input data-hcolfilter="tecnico" placeholder="filtrar..."></th>
+              <th>
+                <select data-hcolfilter="area"><option value="">Todas</option><option>NORTE</option><option>SUL</option><option>OESTE</option><option>OUTRO</option></select>
+              </th>
+              <th><input data-hcolfilter="defeito" placeholder="filtrar..."></th>
+              <th><input data-hcolfilter="acao" placeholder="filtrar..."></th>
+              <th><input data-hcolfilter="detalhamento" placeholder="filtrar..."></th>
+              <th>
+                <select data-hcolfilter="status"><option value="">Todas</option><option value="historico">Histórico</option><option value="ok">Ok</option><option value="sugerido">Sugerido</option><option value="sem-correlacao">Sem correlação</option></select>
+              </th>
+              <th>
+                <select data-hcolfilter="statusOp"><option value="">Todas</option><option value="aberta">Aberta</option><option value="resolvida">Resolvida</option></select>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody id="histBody"></tbody>
         </table>
       </div>
@@ -1426,6 +1446,7 @@ async function doConsolidar(){
 let histSort = {field:'data', dir:'desc'};
 let histPage = 1;
 const HIST_PAGE_SIZE = 50;
+const histColFilters = {};
 
 function getHistFiltered(){
   const busca = document.getElementById('hBusca').value.trim().toLowerCase();
@@ -1444,7 +1465,11 @@ function getHistFiltered(){
     if(situacao && d.statusOp!==situacao) return false;
     if(de && d.data && d.data<de) return false;
     if(ate && d.data && d.data>ate) return false;
-    return true;
+    return Object.keys(histColFilters).every(f=>{
+      const v = (histColFilters[f]||'').trim().toLowerCase();
+      if(!v) return true;
+      return String(d[f]||'').toLowerCase().includes(v);
+    });
   });
 }
 
@@ -1610,6 +1635,13 @@ function wireHistRow(tr, d){
 
 ['hBusca','hArea','hStatus','hSituacao','hDe','hAte'].forEach(id=>{
   document.getElementById(id).addEventListener('input', ()=>{ histPage=1; renderHistorico(); });
+});
+document.querySelectorAll('#tab-historico [data-hcolfilter]').forEach(input=>{
+  input.addEventListener('input', ()=>{
+    histColFilters[input.dataset.hcolfilter] = input.value;
+    histPage = 1;
+    renderHistorico();
+  });
 });
 document.querySelectorAll('#tab-historico th.sortable').forEach(th=>{
   th.addEventListener('click', ()=>{
