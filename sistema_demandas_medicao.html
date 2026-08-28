@@ -124,8 +124,26 @@
   .pagination button.active{background:#1f6feb; border-color:#1f6feb;}
   .muted{color:var(--muted); font-size:12px;}
   .hint{font-size:11.5px; color:var(--muted); margin-top:6px; line-height:1.5;}
-  .staging-table select, .staging-table input{padding:5px 7px; font-size:12px;}
-  .staging-table select[data-f="area"], select[data-f="area"]{min-width:112px; font-weight:700;}
+  select[data-f="area"]{min-width:0; font-weight:700;}
+
+  /* Conferência (staging) — cards em grid responsivo, sem rolagem horizontal */
+  .staging-cards{display:flex; flex-direction:column; gap:10px;}
+  .staging-card{
+    background:var(--panel2); border:1px solid var(--border); border-radius:8px; padding:12px;
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px 12px;
+  }
+  .staging-card .field{display:flex; flex-direction:column; gap:4px; min-width:0;}
+  .staging-card .field.wide{grid-column:1 / -1;}
+  .staging-card .field label{
+    font-size:9.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px;
+  }
+  .staging-card .field input, .staging-card .field select{padding:6px 8px; font-size:12.5px;}
+  .staging-card .status-row{
+    grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:8px; border-top:1px solid var(--border); padding-top:10px; margin-top:2px;
+  }
+  .staging-card .status-row .match-info{font-size:11.5px;}
+  .staging-card .status-row .actions{display:flex; gap:6px;}
   code{background:var(--panel2); padding:1px 5px; border-radius:4px; font-family:var(--mono);}
   a.link{color:#58a6ff; cursor:pointer;}
   @media print{
@@ -207,15 +225,7 @@
 
     <div class="card">
       <h2>Conferência (staging) <span class="muted" id="stagingCount"></span></h2>
-      <div style="overflow-x:auto;">
-        <table class="staging-table">
-          <thead><tr>
-            <th>Cliente</th><th>Executante/Técnico</th><th>Área</th><th>Data</th>
-            <th>Defeito</th><th>Ação</th><th>Detalhamento</th><th>Status</th><th class="no-print"></th>
-          </tr></thead>
-          <tbody id="stagingBody"></tbody>
-        </table>
-      </div>
+      <div class="staging-cards" id="stagingBody"></div>
       <div class="row no-print" style="margin-top:14px; justify-content:space-between;">
         <span class="muted" id="stagingHint"></span>
         <div>
@@ -1291,31 +1301,34 @@ function statusBadge(status){
 }
 
 function renderStaging(){
-  const tbody = document.getElementById('stagingBody');
-  tbody.innerHTML = '';
+  const container = document.getElementById('stagingBody');
+  container.innerHTML = '';
   state.staging.forEach(item=>{
-    const tr = document.createElement('tr');
+    const card = document.createElement('div');
+    card.className = 'staging-card';
     const dataAlert = !C.isValidIsoDate(item.data) ? '<span class="alert-dot" title="Data ausente ou inválida">⚠</span>' : '';
     const confAlert = item.confianca === 'baixa' ? '<span class="alert-dot" title="Confiança baixa na leitura desta linha">⚠IA</span>' : '';
-    tr.innerHTML = `
-      <td><input value="${escAttr(item.cliente)}" data-f="cliente" style="min-width:200px;"></td>
-      <td><input value="${escAttr(item.tecnico)}" data-f="tecnico" style="min-width:110px;"></td>
-      <td>
+    card.innerHTML = `
+      <div class="field wide"><label>Cliente</label><input value="${escAttr(item.cliente)}" data-f="cliente"></div>
+      <div class="field"><label>Executante/Técnico</label><input value="${escAttr(item.tecnico)}" data-f="tecnico"></div>
+      <div class="field"><label>Área</label>
         <select data-f="area" style="color:${AREA_COLOR[item.area]||'inherit'};">
           ${['NORTE','SUL','OESTE','OUTRO'].map(a=>`<option value="${a}" ${item.area===a?'selected':''}>${a}</option>`).join('')}
         </select>
-      </td>
-      <td><input type="date" value="${item.data}" data-f="data" style="min-width:130px;">${dataAlert}</td>
-      <td><select data-f="defeito" style="min-width:210px;">${defeitoSelectHtml(item.defeito)}</select></td>
-      <td><input value="${escAttr(item.acao)}" data-f="acao" style="min-width:160px;"></td>
-      <td><input value="${escAttr(item.detalhamento)}" data-f="detalhamento" style="min-width:160px;"></td>
-      <td>${statusBadge(item.status)}${confAlert}${item.match?`<div class="muted" style="margin-top:2px;">match: ${escHtml(item.match)} (${(item.score*100).toFixed(0)}%)</div>`:''}</td>
-      <td class="no-print" style="white-space:nowrap;">
-        <button class="icon-btn" data-act="save-corr" title="Salvar correlação">💾</button>
-        <button class="icon-btn" data-act="remove" title="Remover">✕</button>
-      </td>
+      </div>
+      <div class="field"><label>Data</label><span style="display:flex; align-items:center; gap:6px;"><input type="date" value="${item.data}" data-f="data" style="flex:1;">${dataAlert}</span></div>
+      <div class="field"><label>Defeito</label><select data-f="defeito">${defeitoSelectHtml(item.defeito)}</select></div>
+      <div class="field"><label>Ação</label><input value="${escAttr(item.acao)}" data-f="acao"></div>
+      <div class="field wide"><label>Detalhamento</label><input value="${escAttr(item.detalhamento)}" data-f="detalhamento"></div>
+      <div class="status-row">
+        <span class="match-info">${statusBadge(item.status)}${confAlert}${item.match?` <span class="muted">match: ${escHtml(item.match)} (${(item.score*100).toFixed(0)}%)</span>`:''}</span>
+        <span class="actions no-print">
+          <button class="icon-btn" data-act="save-corr" title="Salvar correlação">💾</button>
+          <button class="icon-btn" data-act="remove" title="Remover">✕</button>
+        </span>
+      </div>
     `;
-    tr.querySelectorAll('[data-f]').forEach(input=>{
+    card.querySelectorAll('[data-f]').forEach(input=>{
       input.addEventListener('change', ()=>{
         const f = input.dataset.f;
         item[f] = input.value;
@@ -1328,11 +1341,11 @@ function renderStaging(){
         if(f==='area') renderStaging();
       });
     });
-    tr.querySelector('[data-act="remove"]').addEventListener('click', ()=>{
+    card.querySelector('[data-act="remove"]').addEventListener('click', ()=>{
       state.staging = state.staging.filter(x=>x.id!==item.id);
       renderStaging();
     });
-    tr.querySelector('[data-act="save-corr"]').addEventListener('click', ()=>{
+    card.querySelector('[data-act="save-corr"]').addEventListener('click', ()=>{
       if(!item.cliente || item.area==='OUTRO'){ toast('Defina cliente e área antes de salvar a correlação.'); return; }
       state.overrides[C.normalize(item.cliente)] = {label:item.cliente, area:item.area};
       persistOverrides();
@@ -1341,7 +1354,7 @@ function renderStaging(){
       renderStaging(); renderCorrelacoes();
       toast('Correlação salva: ' + item.cliente + ' → ' + item.area);
     });
-    tbody.appendChild(tr);
+    container.appendChild(card);
   });
   document.getElementById('stagingCount').textContent = state.staging.length ? `(${state.staging.length} linha(s))` : '';
   document.getElementById('stagingHint').textContent = state.staging.length
@@ -2003,10 +2016,28 @@ document.getElementById('btnResetAll').addEventListener('click', ()=>{
   });
 });
 
+// Recalcula status/score/match de correlação (correlateClient) para cada
+// demanda do histórico e cada linha ainda em conferência, usando a base de
+// clientes/correlações mais recente — sem alterar a área já definida em
+// cada registro (a área continua sendo ajustada manualmente ou pelos
+// fluxos que já fazem isso, como salvar uma correlação a partir da linha).
+function revalidateCorrelations(){
+  state.demandas.forEach(d=>{
+    const corr = correlate(d.cliente);
+    d.status = corr.status; d.score = corr.score; d.match = corr.match;
+  });
+  state.staging.forEach(item=>{
+    const corr = correlate(item.cliente);
+    item.status = corr.status; item.score = corr.score; item.match = corr.match;
+  });
+}
+
 document.getElementById('btnRefresh').addEventListener('click', async ()=>{
   await reloadFromStorage();
+  revalidateCorrelations();
+  await persistDemandas();
   renderAll();
-  toast('Tela atualizada com os dados salvos.');
+  toast('Tela atualizada — status de correlação revalidado.');
 });
 
 // Limpa a foto importada (prévia) e a conferência, deixando "Nova Demanda"

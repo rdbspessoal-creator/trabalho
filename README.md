@@ -256,16 +256,17 @@ depois do filtro.
 ## Uso no dia a dia
 
 1. **Nova Demanda** → anexe a foto JPEG do relatório semanal. As linhas
-   extraídas caem numa tabela de **conferência** 100% editável — cliente,
-   técnico, área (select colorido por área — Norte azul, Sul verde, Oeste
-   roxo, Outro cinza — para bater o olho rápido), data (sugere a data de hoje
-   quando não reconhecida), defeito (select com a lista fechada de opções),
-   ação (texto livre), detalhamento — com selos de alerta para data
-   inválida, confiança baixa (inconsistência entre colunas marcadas e o
-   comentário), e status de correlação (✔ ok / ~ sugerido / ⚠ sem
-   correlação). Dá para corrigir qualquer campo, salvar uma correlação a
-   partir da própria linha (💾), remover linhas (✕), ou lançar uma demanda
-   manualmente.
+   extraídas caem numa **conferência** de cards 100% editáveis (um card por
+   linha, em grid responsivo — nunca precisa de rolagem horizontal, os
+   campos se reorganizam conforme a largura da tela) — cliente, técnico,
+   área (select colorido por área — Norte azul, Sul verde, Oeste roxo, Outro
+   cinza — para bater o olho rápido), data (sugere a data de hoje quando não
+   reconhecida), defeito (select com a lista fechada de opções), ação (texto
+   livre), detalhamento — com selos de alerta para data inválida, confiança
+   baixa (inconsistência entre colunas marcadas e o comentário), e status de
+   correlação (✔ ok / ~ sugerido / ⚠ sem correlação). Dá para corrigir
+   qualquer campo, salvar uma correlação a partir da própria linha (💾),
+   remover linhas (✕), ou lançar uma demanda manualmente.
 2. **Consolidar demandas** grava tudo em `state.demandas` — antes disso, o
    sistema checa duplicidade (mesmo cliente normalizado + mesma data já no
    histórico) e pede confirmação.
@@ -315,11 +316,18 @@ contrário — mesma interface assíncrona, mesmas chaves
 `seed-carregado-v1`).
 
 O botão **🔄 Atualizar**, no cabeçalho, recarrega demandas, correlações e a
-base de clientes do armazenamento persistido e redesenha a tela inteira —
-útil se os dados foram alterados em outra aba/janela do navegador com o
-mesmo armazenamento, sem precisar dar F5 na página. Ele **não** reimporta a
-base embutida (`data/seed-*.json`) — a flag `seed-carregado-v1` continua
-controlando isso, então clicar em Atualizar nunca duplica o histórico.
+base de clientes do armazenamento persistido e **revalida o status de
+correlação** (`correlateClient`) de toda demanda no histórico e toda linha
+ainda em conferência — útil depois de cadastrar/editar uma correlação na
+aba Correlações, para que registros antigos com status desatualizado (ex.:
+"~ sugerido" ou "⚠ sem correlação") passem a refletir a correlação nova sem
+precisar editar linha por linha. Também serve para sincronizar com dados
+alterados em outra aba/janela do navegador com o mesmo armazenamento, sem
+precisar dar F5 na página. A revalidação atualiza status/score/match, não a
+área de cada registro (a área continua sendo ajustada manualmente ou pelos
+fluxos que já fazem isso). O botão **não** reimporta a base embutida
+(`data/seed-*.json`) — a flag `seed-carregado-v1` continua controlando
+isso, então clicar em Atualizar nunca duplica o histórico.
 
 O botão **🧹 Limpar Importação**, ao lado, limpa a foto importada (prévia) e
 a tabela de **conferência** da aba Nova Demanda, deixando o sistema pronto
