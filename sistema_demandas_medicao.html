@@ -295,6 +295,18 @@
         </div>
         <div style="align-self:flex-end;"><button class="btn" id="btnSaveCorrelacao">Salvar</button></div>
       </div>
+      <div class="row" style="margin-top:10px;">
+        <div class="col">
+          <label>Ou vincular ao mesmo ponto de consumo de um cliente já cadastrado (opcional)</label>
+          <input id="cVincularCliente" list="baseClientesList" placeholder="Ex.: ERPM.00892 - ERPM COCA COLA SUAPE — busque por nome ou código">
+        </div>
+      </div>
+      <div class="hint" id="cVincularHint">
+        Use isto quando o mesmo ponto de medição aparece nas demandas com nomes diferentes (ex.: "NORSA
+        REFRIGERANTES" e "ERPM.00892 - ERPM COCA COLA SUAPE" são o mesmo cliente) — escolher aqui preenche a Área
+        automaticamente com a do cliente vinculado e guarda essa ligação para consulta.
+      </div>
+      <datalist id="baseClientesList"></datalist>
     </div>
     <div class="card">
       <div class="row no-print" style="margin-bottom:10px;">
@@ -1034,6 +1046,7 @@ async function init(){
 
 function renderAll(){
   renderSuggestionLists();
+  renderBaseClientesList();
   renderStaging();
   renderHistorico();
   renderCorrelacoes();
@@ -1609,20 +1622,45 @@ async function downloadFile(name, content, mime){
 // ---------------------------------------------------------------------
 let corSort = {field:'cliente', dir:'asc'};
 
+function renderBaseClientesList(){
+  document.getElementById('baseClientesList').innerHTML = state.clientes
+    .map(c=>`<option value="${escAttr(c.cliente)}">`).join('');
+}
+
+function findBaseClienteByLabel(label){
+  return state.clientes.find(c=>c.cliente===label) || null;
+}
+
+document.getElementById('cVincularCliente').addEventListener('input', (e)=>{
+  const match = findBaseClienteByLabel(e.target.value.trim());
+  if(match){
+    document.getElementById('cArea').value = match.area;
+    document.getElementById('cVincularHint').textContent =
+      `Vinculado a ${match.cliente} (${match.area} — ${C.areaToTecnico(match.area)}). A área acima foi ajustada para bater com esse cliente.`;
+  }else{
+    document.getElementById('cVincularHint').textContent =
+      'Use isto quando o mesmo ponto de medição aparece nas demandas com nomes diferentes (ex.: "NORSA REFRIGERANTES" e "ERPM.00892 - ERPM COCA COLA SUAPE" são o mesmo cliente) — escolher aqui preenche a Área automaticamente com a do cliente vinculado e guarda essa ligação para consulta.';
+  }
+});
+
 document.getElementById('btnSaveCorrelacao').addEventListener('click', async ()=>{
   const cliente = document.getElementById('cCliente').value.trim();
   const area = document.getElementById('cArea').value;
+  const vinculoRaw = document.getElementById('cVincularCliente').value.trim();
+  const vinculo = vinculoRaw ? findBaseClienteByLabel(vinculoRaw) : null;
   if(!cliente){ toast('Informe o cliente.'); return; }
-  state.overrides[C.normalize(cliente)] = {label:cliente, area};
+  if(vinculoRaw && !vinculo){ toast('O cliente vinculado não foi encontrado na base — escolha um item da lista de sugestões.'); return; }
+  state.overrides[C.normalize(cliente)] = {label:cliente, area, aliasOf: vinculo ? vinculo.cliente : undefined};
   await persistOverrides();
   document.getElementById('cCliente').value='';
+  document.getElementById('cVincularCliente').value='';
   renderCorrelacoes(); renderResumo();
-  toast('Correlação salva.');
+  toast(vinculo ? `Correlação salva — vinculada ao mesmo ponto de consumo de "${vinculo.cliente}".` : 'Correlação salva.');
 });
 
 function getAllCorrelacoes(){
   const base = state.clientes.map(c=>({cliente:c.cliente, codigo:c.codigo||'', area:c.area, origem:'base', key:C.normalize(c.cliente)}));
-  const overrides = Object.entries(state.overrides).map(([k,o])=>({cliente:o.label, codigo:'', area:o.area, origem:'override', key:k}));
+  const overrides = Object.entries(state.overrides).map(([k,o])=>({cliente:o.label, codigo:'', area:o.area, origem:'override', key:k, aliasOf:o.aliasOf}));
   return base.concat(overrides);
 }
 
@@ -1648,7 +1686,7 @@ function renderCorrelacoes(){
       <td>${escHtml(r.codigo)}</td>
       <td><span class="badge area-${r.area}">${r.area}</span></td>
       <td>${C.areaToTecnico(r.area)||''}</td>
-      <td>${r.origem==='base'?'Base (Excel)':'Manual'}</td>
+      <td>${r.origem==='base'?'Base (Excel)':'Manual'}${r.aliasOf?`<div class="muted" style="margin-top:2px;">mesmo ponto que: ${escHtml(r.aliasOf)}</div>`:''}</td>
       <td class="no-print">${r.origem==='override'?'<button class="icon-btn" data-act="del">🗑</button>':''}</td>
     `;
     if(r.origem==='override'){

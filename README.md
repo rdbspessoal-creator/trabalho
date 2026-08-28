@@ -220,6 +220,27 @@ São componentes simples em HTML/CSS (sem biblioteca de gráficos externa,
 mesma filosofia "tudo embutido, sem dependência de rede" do resto do
 sistema), com tooltip ao passar o mouse sobre cada barra.
 
+## Correlações — vincular ao mesmo ponto de consumo de um cliente existente
+
+Às vezes o mesmo ponto de medição aparece nas demandas com nomes diferentes
+(ex.: "NORSA REFRIGERANTES" e "ERPM.00892 - ERPM COCA COLA SUAPE" são o mesmo
+cliente). Além do cadastro manual Cliente → Área, a aba **Correlações** tem
+um segundo campo — "Ou vincular ao mesmo ponto de consumo de um cliente já
+cadastrado" — com busca (`<datalist>`) sobre os clientes da base real. Ao
+escolher um cliente existente:
+
+- a **Área** é preenchida automaticamente com a do cliente vinculado (a
+  correlação criada usa essa mesma área/técnico, então demandas futuras com
+  o nome novo caem no técnico certo);
+- a ligação fica registrada (`aliasOf`, dentro do próprio registro de
+  correlação manual) e aparece na tabela abaixo, na coluna Origem, como
+  "Manual — mesmo ponto que: ‹cliente vinculado›", para consulta futura.
+
+Isso não altera o algoritmo de correlação (`correlateClient`) em si — o novo
+nome vira uma correlação manual comum, com a área do cliente vinculado; o
+`aliasOf` é só metadado para rastreabilidade, exibido na tabela de
+correlações.
+
 ## Resumo — pendências abertas com filtro e ordenação por coluna
 
 A aba **Resumo** tem uma tabela dedicada a demandas com situação **Aberta**
@@ -252,7 +273,9 @@ depois do filtro.
    aberta-resolvida / período), gráficos de tendências e maiores ocorrências,
    ordenação por coluna, paginação real (50 por página), edição inline,
    toggle Aberta/Resolvida, exportação CSV.
-4. **Correlações** — cadastro manual Cliente → Área, tabela com busca/filtro/
+4. **Correlações** — cadastro manual Cliente → Área **ou** vínculo direto a
+   um cliente já cadastrado quando o mesmo ponto de consumo aparece com
+   nomes diferentes nas demandas (ver abaixo), tabela com busca/filtro/
    ordenação, remoção de correlações manuais.
 5. **Resumo** — KPIs, quadro por área/técnico, tabela de **pendências
    abertas** com filtro/ordenação por coluna, lista de pendências de
