@@ -126,20 +126,24 @@
   .hint{font-size:11.5px; color:var(--muted); margin-top:6px; line-height:1.5;}
   select[data-f="area"]{min-width:0; font-weight:700;}
 
-  /* Conferência (staging) — cards em grid responsivo, sem rolagem horizontal */
+  /* Conferência (staging) — cards flexíveis, sem rolagem horizontal.
+     Técnico/Área/Data ficam compactos (flex:1) e Defeito/Ação, na mesma
+     linha, crescem bem mais (flex:2.2) para aproveitar o espaço sobrando —
+     só quebram linha se a tela for estreita demais para caber todos. */
   .staging-cards{display:flex; flex-direction:column; gap:10px;}
   .staging-card{
     background:var(--panel2); border:1px solid var(--border); border-radius:8px; padding:12px;
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px 12px;
+    display:flex; flex-wrap:wrap; gap:10px 12px;
   }
-  .staging-card .field{display:flex; flex-direction:column; gap:4px; min-width:0;}
-  .staging-card .field.wide{grid-column:1 / -1;}
+  .staging-card .field{display:flex; flex-direction:column; gap:4px; min-width:0; flex:1 1 130px;}
+  .staging-card .field.wide{flex-basis:100%;}
+  .staging-card .field.grow{flex:2.2 1 220px;}
   .staging-card .field label{
     font-size:9.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px;
   }
-  .staging-card .field input, .staging-card .field select{padding:6px 8px; font-size:12.5px;}
+  .staging-card .field input, .staging-card .field select{padding:6px 8px; font-size:12.5px; width:100%;}
   .staging-card .status-row{
-    grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between;
+    flex-basis:100%; display:flex; align-items:center; justify-content:space-between;
     flex-wrap:wrap; gap:8px; border-top:1px solid var(--border); padding-top:10px; margin-top:2px;
   }
   .staging-card .status-row .match-info{font-size:11.5px;}
@@ -1317,8 +1321,8 @@ function renderStaging(){
         </select>
       </div>
       <div class="field"><label>Data</label><span style="display:flex; align-items:center; gap:6px;"><input type="date" value="${item.data}" data-f="data" style="flex:1;">${dataAlert}</span></div>
-      <div class="field wide"><label>Defeito</label><select data-f="defeito">${defeitoSelectHtml(item.defeito)}</select></div>
-      <div class="field wide"><label>Ação</label><input value="${escAttr(item.acao)}" data-f="acao"></div>
+      <div class="field grow"><label>Defeito</label><select data-f="defeito">${defeitoSelectHtml(item.defeito)}</select></div>
+      <div class="field grow"><label>Ação</label><input value="${escAttr(item.acao)}" data-f="acao"></div>
       <div class="field wide"><label>Detalhamento</label><input value="${escAttr(item.detalhamento)}" data-f="detalhamento"></div>
       <div class="status-row">
         <span class="match-info">${statusBadge(item.status)}${confAlert}${item.match?` <span class="muted">match: ${escHtml(item.match)} (${(item.score*100).toFixed(0)}%)</span>`:''}</span>
