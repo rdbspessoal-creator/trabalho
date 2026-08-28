@@ -180,6 +180,12 @@
       <div id="extractStatus" class="hint"></div>
     </div>
 
+    <div class="card no-print" id="importedPhotoCard" style="display:none;">
+      <h2>Foto importada</h2>
+      <p class="muted" id="importedPhotoName" style="margin:0 0 10px;"></p>
+      <img id="importedPhotoPreview" alt="Foto importada" style="max-width:100%; border-radius:8px; border:1px solid var(--border); display:block;">
+    </div>
+
     <div class="card no-print">
       <h2>Lançamento manual</h2>
       <div class="row">
@@ -1173,6 +1179,15 @@ async function extractImageText(file){
   return C.reconstructTableText(parseTsvWords(data.tsv));
 }
 
+let _importedPhotoUrl = null;
+function showImportedPhotoPreview(file){
+  if(_importedPhotoUrl) URL.revokeObjectURL(_importedPhotoUrl);
+  _importedPhotoUrl = URL.createObjectURL(file);
+  document.getElementById('importedPhotoPreview').src = _importedPhotoUrl;
+  document.getElementById('importedPhotoName').textContent = file.name;
+  document.getElementById('importedPhotoCard').style.display = '';
+}
+
 async function handleExtractFile(file){
   if(!file) return;
   const statusEl = document.getElementById('extractStatus');
@@ -1180,6 +1195,7 @@ async function handleExtractFile(file){
     statusEl.textContent = `"${file.name}" não é uma foto JPEG — escolha um arquivo .jpg/.jpeg.`;
     return;
   }
+  showImportedPhotoPreview(file);
   try{
     statusEl.textContent = `Reconhecendo texto em "${file.name}" (OCR)... isso pode levar alguns segundos.`;
     const text = await extractImageText(file);

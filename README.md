@@ -125,7 +125,10 @@ fotos reais de tabela, sem depender de nenhum modelo externo:
 
 Fotos de baixa qualidade, tabelas muito inclinadas/tortas ou com iluminação
 irregular tendem a sair com mais erros de reconhecimento — nesse caso,
-prefira o lançamento manual.
+prefira o lançamento manual. Logo abaixo do card de importação, um segundo
+card mostra a **foto que foi importada** (nome do arquivo + prévia da
+imagem), para comparar lado a lado com o que caiu na conferência e conferir
+se o OCR leu tudo certo.
 
 ### Preenchimento automático de Defeito a partir das colunas marcadas
 
