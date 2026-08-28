@@ -321,6 +321,13 @@ mesmo armazenamento, sem precisar dar F5 na página. Ele **não** reimporta a
 base embutida (`data/seed-*.json`) — a flag `seed-carregado-v1` continua
 controlando isso, então clicar em Atualizar nunca duplica o histórico.
 
+O botão **🧹 Limpar Importação**, ao lado, limpa a foto importada (prévia) e
+a tabela de **conferência** da aba Nova Demanda, deixando o sistema pronto
+para importar uma foto nova — não mexe no histórico já consolidado. Se
+houver linhas na conferência ainda não consolidadas, pede confirmação antes
+de limpar (evita perder um lançamento por engano); se não houver nada para
+limpar, limpa direto e avisa.
+
 ## Testes
 
 ```bash

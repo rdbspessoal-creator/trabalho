@@ -146,6 +146,7 @@
   <div style="display:flex; align-items:center; gap:10px;">
     <span class="storage-badge" id="storageBadge">carregando…</span>
     <button class="btn secondary small no-print" id="btnRefresh" title="Recarrega a tela com os dados salvos (correlações, histórico, clientes) sem reimportar a base embutida">🔄 Atualizar</button>
+    <button class="btn secondary small no-print" id="btnLimparImportacao" title="Limpa a foto importada e a conferência, deixando o sistema pronto para uma nova importação">🧹 Limpar Importação</button>
   </div>
 </header>
 
@@ -2006,6 +2007,28 @@ document.getElementById('btnRefresh').addEventListener('click', async ()=>{
   await reloadFromStorage();
   renderAll();
   toast('Tela atualizada com os dados salvos.');
+});
+
+// Limpa a foto importada (prévia) e a conferência, deixando "Nova Demanda"
+// pronta para uma nova importação — não mexe no histórico já consolidado.
+function limparImportacao(){
+  if(_importedPhotoUrl){ URL.revokeObjectURL(_importedPhotoUrl); _importedPhotoUrl = null; }
+  document.getElementById('importedPhotoPreview').src = '';
+  document.getElementById('importedPhotoName').textContent = '';
+  document.getElementById('importedPhotoCard').style.display = 'none';
+  document.getElementById('extractStatus').textContent = '';
+  document.getElementById('extractFileInput').value = '';
+  state.staging = [];
+  renderStaging();
+}
+
+document.getElementById('btnLimparImportacao').addEventListener('click', ()=>{
+  const temFoto = document.getElementById('importedPhotoCard').style.display !== 'none';
+  if(!state.staging.length && !temFoto){ limparImportacao(); toast('Já não havia nada para limpar — pronto para uma nova importação.'); return; }
+  showConfirmModal(
+    `${state.staging.length} linha(s) na conferência ainda não foram consolidadas. Limpar mesmo assim?`,
+    () => { limparImportacao(); toast('Importação limpa — pronto para uma nova foto.'); }
+  );
 });
 
 // ---------------------------------------------------------------------
