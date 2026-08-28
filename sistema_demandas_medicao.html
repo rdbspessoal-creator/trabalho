@@ -145,6 +145,7 @@
   </h1>
   <div style="display:flex; align-items:center; gap:10px;">
     <span class="storage-badge" id="storageBadge">carregando…</span>
+    <button class="btn secondary small no-print" id="btnRefresh" title="Recarrega a tela com os dados salvos (correlações, histórico, clientes) sem reimportar a base embutida">🔄 Atualizar</button>
   </div>
 </header>
 
@@ -1017,7 +1018,10 @@ function seedRecordToDemanda(r, now){
   };
 }
 
-async function init(){
+// Recarrega demandas/correlações/clientes do armazenamento persistido para
+// dentro de `state` — sem tocar no seed embutido (usado tanto na
+// inicialização quanto no botão "Atualizar" do cabeçalho).
+async function reloadFromStorage(){
   state.demandas = await storageAdapter.get(KEY_DEMANDAS, []);
   state.overrides = await storageAdapter.get(KEY_OVERRIDES, {});
   let clientes = await storageAdapter.get(KEY_CLIENTES, null);
@@ -1028,6 +1032,10 @@ async function init(){
   } else {
     state.clientes = clientes;
   }
+}
+
+async function init(){
+  await reloadFromStorage();
 
   const seedLoaded = await storageAdapter.get(KEY_SEED_LOADED, false);
   if(!seedLoaded){
@@ -1992,6 +2000,12 @@ document.getElementById('btnResetAll').addEventListener('click', ()=>{
     await init();
     toast('Dados locais apagados; histórico original recarregado.');
   });
+});
+
+document.getElementById('btnRefresh').addEventListener('click', async ()=>{
+  await reloadFromStorage();
+  renderAll();
+  toast('Tela atualizada com os dados salvos.');
 });
 
 // ---------------------------------------------------------------------

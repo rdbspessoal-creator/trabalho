@@ -314,6 +314,13 @@ contrário — mesma interface assíncrona, mesmas chaves
 (`demandas-registros-v1`, `correlacoes-overrides-v1`, `clientes-base-v1`,
 `seed-carregado-v1`).
 
+O botão **🔄 Atualizar**, no cabeçalho, recarrega demandas, correlações e a
+base de clientes do armazenamento persistido e redesenha a tela inteira —
+útil se os dados foram alterados em outra aba/janela do navegador com o
+mesmo armazenamento, sem precisar dar F5 na página. Ele **não** reimporta a
+base embutida (`data/seed-*.json`) — a flag `seed-carregado-v1` continua
+controlando isso, então clicar em Atualizar nunca duplica o histórico.
+
 ## Testes
 
 ```bash
