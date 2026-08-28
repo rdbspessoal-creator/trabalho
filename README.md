@@ -170,11 +170,11 @@ carrega esses prefixos e isso melhora o score de correlação. Se a data não
 for reconhecida/for inválida, o sistema sugere **a data de hoje** (dia da
 importação) em vez de deixar em branco — revise antes de consolidar.
 
-O campo **Ação**, tanto no lançamento manual quanto na edição de linhas,
-mantém o autocomplete (`<datalist>`) com os valores já usados no histórico,
-do mais frequente para o menos (`core.js`, função `topFieldValues`, até 40
-sugestões). A lista é recalculada sempre que o histórico muda (nova
-consolidação ou edição).
+O campo **Ação**, ao contrário do Defeito, é **texto livre** — sem lista
+fechada e sem autocomplete — tanto no lançamento manual quanto na
+conferência e na edição de linhas do Histórico. Continua vindo pré-
+preenchido pela soma das ações de cada coluna marcada (`matrixToAcao`), mas
+pode ser reescrito com qualquer texto.
 
 ### Validação contra a imagem fornecida (com a base de clientes real)
 
@@ -239,7 +239,7 @@ depois do filtro.
    técnico, área (select colorido por área — Norte azul, Sul verde, Oeste
    roxo, Outro cinza — para bater o olho rápido), data (sugere a data de hoje
    quando não reconhecida), defeito (select com a lista fechada de opções),
-   ação (com autocomplete), detalhamento — com selos de alerta para data
+   ação (texto livre), detalhamento — com selos de alerta para data
    inválida, confiança baixa (inconsistência entre colunas marcadas e o
    comentário), e status de correlação (✔ ok / ~ sugerido / ⚠ sem
    correlação). Dá para corrigir qualquer campo, salvar uma correlação a

@@ -195,14 +195,13 @@
       </div>
       <div class="row" style="margin-top:8px;">
         <div class="col"><label>Defeito</label><select id="mDefeito"></select></div>
-        <div class="col"><label>Ação</label><input id="mAcao" list="acaoOptions" placeholder="Comece a digitar para ver sugestões do histórico"></div>
+        <div class="col"><label>Ação</label><input id="mAcao" placeholder="Texto livre"></div>
       </div>
       <div class="row" style="margin-top:8px;">
         <div class="col"><label>Detalhamento</label><textarea id="mDetalhamento"></textarea></div>
       </div>
       <div style="margin-top:10px;"><button class="btn" id="btnAddManual">Adicionar à conferência</button></div>
     </div>
-    <datalist id="acaoOptions"></datalist>
 
     <div class="card">
       <h2>Conferência (staging) <span class="muted" id="stagingCount"></span></h2>
@@ -1043,13 +1042,10 @@ function renderAll(){
     `${state.demandas.length} registros de demanda · ${state.clientes.length} clientes na base · ${Object.keys(state.overrides).length} correlações manuais.`;
 }
 
-// Sugestão (autocomplete) de Ação no lançamento manual e nas linhas
-// editáveis (conferência/histórico) — valores mais usados no histórico
-// primeiro (core.js, topFieldValues). Defeito não usa mais autocomplete:
-// é uma lista fechada (C.DEFEITO_OPTIONS, select) — ver defeitoSelectHtml.
+// Popula o select de Defeito (lista fechada, C.DEFEITO_OPTIONS) no
+// lançamento manual — ver defeitoSelectHtml. Ação é texto livre (sem
+// autocomplete), para não ser confundida com um campo de opção fixa.
 function renderSuggestionLists(){
-  const acaoOpts = C.topFieldValues(state.demandas, 'acao', 40);
-  document.getElementById('acaoOptions').innerHTML = acaoOpts.map(o=>`<option value="${escAttr(o.value)}">`).join('');
   document.getElementById('mDefeito').innerHTML = '<option value="">Selecione um defeito…</option>' + defeitoSelectHtml('');
 }
 
@@ -1289,7 +1285,7 @@ function renderStaging(){
       </td>
       <td><input type="date" value="${item.data}" data-f="data" style="min-width:130px;">${dataAlert}</td>
       <td><select data-f="defeito" style="min-width:210px;">${defeitoSelectHtml(item.defeito)}</select></td>
-      <td><input value="${escAttr(item.acao)}" data-f="acao" list="acaoOptions" style="min-width:160px;"></td>
+      <td><input value="${escAttr(item.acao)}" data-f="acao" style="min-width:160px;"></td>
       <td><input value="${escAttr(item.detalhamento)}" data-f="detalhamento" style="min-width:160px;"></td>
       <td>${statusBadge(item.status)}${confAlert}${item.match?`<div class="muted" style="margin-top:2px;">match: ${escHtml(item.match)} (${(item.score*100).toFixed(0)}%)</div>`:''}</td>
       <td class="no-print" style="white-space:nowrap;">
@@ -1533,7 +1529,7 @@ function renderHistRowEdit(d){
     <td><input data-f="tecnico" value="${escAttr(d.tecnico||'')}" style="min-width:100px;"></td>
     <td><select data-f="area" style="color:${AREA_COLOR[d.area]||'inherit'};">${['NORTE','SUL','OESTE','OUTRO'].map(a=>`<option ${a===d.area?'selected':''}>${a}</option>`).join('')}</select></td>
     <td><select data-f="defeito" style="min-width:210px;">${defeitoSelectHtml(d.defeito||'')}</select></td>
-    <td><input data-f="acao" value="${escAttr(d.acao||'')}" list="acaoOptions" style="min-width:140px;"></td>
+    <td><input data-f="acao" value="${escAttr(d.acao||'')}" style="min-width:140px;"></td>
     <td><input data-f="detalhamento" value="${escAttr(d.detalhamento||'')}" style="min-width:140px;"></td>
     <td>${statusBadge(d.status)}</td>
     <td><span class="pill ${d.statusOp}">${d.statusOp}</span></td>
