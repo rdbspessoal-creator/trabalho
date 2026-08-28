@@ -1,20 +1,22 @@
 # Bibliotecas de terceiros embutidas
 
-Usadas pelo extrator automático de PDF/imagem (aba **Nova Demanda**), embutidas
-no HTML final por `scripts/build_standalone.py`. Nenhuma delas é carregada de
-CDN em tempo de execução — todas rodam 100% a partir do que está aqui.
+Usadas pelo extrator automático de foto (aba **Nova Demanda** → OCR de JPEG),
+embutidas no HTML final por `scripts/build_standalone.py`. Nenhuma delas é
+carregada de CDN em tempo de execução — todas rodam 100% a partir do que está
+aqui (era assim também quando o extrator lia PDF, mas o suporte a PDF foi
+removido a pedido do usuário em favor de um fluxo único, mais simples, baseado
+só em foto JPEG — daí não haver mais `pdf.js` nesta pasta).
 
 | Arquivo | Projeto | Versão | Licença |
 |---|---|---|---|
-| `pdf.min.js`, `pdf.worker.min.js` | [pdf.js](https://github.com/mozilla/pdf.js) (Mozilla) | 3.11.174 | Apache-2.0 |
 | `tesseract.min.js`, `tesseract.worker.min.js` | [Tesseract.js](https://github.com/naptha/tesseract.js) | 5.1.1 | Apache-2.0 |
 | `tesseract-core-lstm.js`, `tesseract-core-lstm.wasm` | [tesseract.js-core](https://github.com/naptha/tesseract.js-core) (motor Tesseract OCR compilado para WebAssembly, só o modelo LSTM) | bundled com tesseract.js@5.1.1 | Apache-2.0 |
 | `por.traineddata.gz` | [tessdata (naptha)](https://github.com/naptha/tessdata), pacote npm `@tesseract.js-data/por`, variante `4.0.0_best_int` | 1.0.0 | MIT |
 
 Para atualizar: reinstale as versões desejadas via npm num diretório temporário
-(`npm install pdfjs-dist@X tesseract.js@Y @tesseract.js-data/por@Z`) e copie os
-arquivos correspondentes de `node_modules/.../build|dist` para cá — depois
-rode `python3 scripts/build_standalone.py`.
+(`npm install tesseract.js@Y @tesseract.js-data/por@Z`) e copie os arquivos
+correspondentes de `node_modules/.../dist` (e `node_modules/tesseract.js-core`
+para o núcleo WASM) para cá — depois rode `python3 scripts/build_standalone.py`.
 
 ## Patch aplicado em `tesseract.worker.min.js`
 

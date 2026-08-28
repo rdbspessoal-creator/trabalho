@@ -389,6 +389,24 @@
       .join('\n');
   }
 
+  // ---------------------------------------------------------------------
+  // Sugestão de preenchimento (autocomplete) para Defeito/Ação — valores
+  // distintos já usados no histórico, do mais frequente para o menos.
+  // ---------------------------------------------------------------------
+
+  function topFieldValues(records, field, limit) {
+    const counts = new Map();
+    (records || []).forEach((r) => {
+      const v = ((r && r[field]) || '').toString().trim();
+      if (!v) return;
+      counts.set(v, (counts.get(v) || 0) + 1);
+    });
+    return Array.from(counts.entries())
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, limit || counts.size)
+      .map(([value, count]) => ({ value, count }));
+  }
+
   return {
     normalize,
     areaToTecnico,
@@ -405,5 +423,6 @@
     isValidIsoDate,
     parsePastedTable,
     reconstructTableText,
+    topFieldValues,
   };
 });

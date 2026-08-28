@@ -25,18 +25,16 @@ CLIENTES_PATH = "data/seed-clientes.json"
 DEMANDAS_PATH = "data/seed-demandas.json"
 VENDOR_DIR = "vendor"
 
-# Bibliotecas de terceiros do extrator automático de PDF/imagem (ver
+# Bibliotecas de terceiros do extrator automático de foto/print via OCR (ver
 # vendor/README.md). "text" = inlineadas como <script> executado direto
-# (definem window.pdfjsLib / self.Tesseract). "b64" = embutidas como
+# (define self.Tesseract). "b64" = embutidas como
 # <script type="application/octet-stream" id="..."> com o conteúdo em
 # base64 (texto de worker/glue que não deve rodar no documento principal,
 # ou binário puro), decodificado em runtime pelo próprio app.
 VENDOR_TEXT_ASSETS = {
-    "pdf.min.js": "pdfjsLibSrc",
     "tesseract.min.js": "tesseractLibSrc",
 }
 VENDOR_B64_ASSETS = {
-    "pdf.worker.min.js": "pdfWorkerSrcB64",
     "tesseract.worker.min.js": "tesseractWorkerSrcB64",
     "tesseract-core-lstm.js": "tesseractCoreJsB64",
     "tesseract-core-lstm.wasm": "tesseractCoreWasmB64",

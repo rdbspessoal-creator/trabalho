@@ -303,5 +303,34 @@ test('reconstructTableText: lista vazia retorna string vazia sem lançar erro', 
   assert.strictEqual(Core.reconstructTableText(null), '');
 });
 
+console.log('\nSugestão de preenchimento (autocomplete) — topFieldValues\n');
+
+test('topFieldValues: ordena por frequência (mais comum primeiro) e ignora vazios', () => {
+  const records = [
+    { defeito: 'FALHA NO CVAZ' },
+    { defeito: 'FALHA NO CVAZ' },
+    { defeito: 'MODEM DESCONECTADO' },
+    { defeito: '' },
+    { defeito: '   ' },
+    { defeito: 'FALHA NO CVAZ' },
+  ];
+  const top = Core.topFieldValues(records, 'defeito');
+  assert.strictEqual(top.length, 2);
+  assert.strictEqual(top[0].value, 'FALHA NO CVAZ');
+  assert.strictEqual(top[0].count, 3);
+  assert.strictEqual(top[1].value, 'MODEM DESCONECTADO');
+});
+
+test('topFieldValues: respeita o limite', () => {
+  const records = [{ acao: 'A' }, { acao: 'B' }, { acao: 'C' }];
+  const top = Core.topFieldValues(records, 'acao', 2);
+  assert.strictEqual(top.length, 2);
+});
+
+test('topFieldValues: lista vazia/nula não lança erro', () => {
+  assert.deepStrictEqual(Core.topFieldValues([], 'defeito'), []);
+  assert.deepStrictEqual(Core.topFieldValues(null, 'defeito'), []);
+});
+
 console.log(`\n${passed} passaram, ${failed} falharam.`);
 process.exit(failed ? 1 : 0);
