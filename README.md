@@ -265,7 +265,12 @@ depois do filtro.
    livre), detalhamento — com selos de alerta para data inválida, confiança
    baixa (inconsistência entre colunas marcadas e o comentário), e status de
    correlação (✔ ok / ~ sugerido / ⚠ sem correlação). Dá para corrigir
-   qualquer campo, salvar uma correlação a partir da própria linha (💾),
+   qualquer campo, salvar uma correlação rápida a partir da própria linha
+   (💾 — cliente + área, sem vínculo a cliente existente), editar a
+   correlação (✎ — abre a aba Correlações com o formulário já preenchido
+   para esse cliente, inclusive a área/vínculo já existentes se houver;
+   salvar por lá tem exatamente os mesmos efeitos de uma edição feita
+   direto na aba Correlações, porque é o mesmo formulário e o mesmo botão),
    remover linhas (✕), ou lançar uma demanda manualmente.
 2. **Consolidar demandas** grava tudo em `state.demandas` — antes disso, o
    sistema checa duplicidade (mesmo cliente normalizado + mesma data já no

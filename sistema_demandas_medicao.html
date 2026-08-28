@@ -1099,13 +1099,16 @@ function todayIso(){
 // ---------------------------------------------------------------------
 // Tabs
 // ---------------------------------------------------------------------
+function goToTab(name){
+  document.querySelectorAll('#tabNav button').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
 document.getElementById('tabNav').addEventListener('click', (e)=>{
   const btn = e.target.closest('button[data-tab]');
   if(!btn) return;
-  document.querySelectorAll('#tabNav button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  goToTab(btn.dataset.tab);
 });
 
 // ---------------------------------------------------------------------
@@ -1328,6 +1331,7 @@ function renderStaging(){
         <span class="match-info">${statusBadge(item.status)}${confAlert}${item.match?` <span class="muted">match: ${escHtml(item.match)} (${(item.score*100).toFixed(0)}%)</span>`:''}</span>
         <span class="actions no-print">
           <button class="icon-btn" data-act="save-corr" title="Salvar correlação">💾</button>
+          <button class="icon-btn" data-act="edit-corr" title="Editar correlação na aba Correlações">✎</button>
           <button class="icon-btn" data-act="remove" title="Remover">✕</button>
         </span>
       </div>
@@ -1348,6 +1352,9 @@ function renderStaging(){
     card.querySelector('[data-act="remove"]').addEventListener('click', ()=>{
       state.staging = state.staging.filter(x=>x.id!==item.id);
       renderStaging();
+    });
+    card.querySelector('[data-act="edit-corr"]').addEventListener('click', ()=>{
+      openCorrelacaoEditor(item.cliente, item.area, item.match);
     });
     card.querySelector('[data-act="save-corr"]').addEventListener('click', ()=>{
       if(!item.cliente || item.area==='OUTRO'){ toast('Defina cliente e área antes de salvar a correlação.'); return; }
@@ -1655,6 +1662,24 @@ function renderBaseClientesList(){
 
 function findBaseClienteByLabel(label){
   return state.clientes.find(c=>c.cliente===label) || null;
+}
+
+// Abre a aba Correlações com o formulário "Cadastrar / atualizar
+// correlação" pré-preenchido para o cliente informado — usado pelo botão
+// ✎ Editar correlação da conferência, para editar/criar a correlação
+// exatamente pelo mesmo formulário e o mesmo botão Salvar da aba
+// Correlações (garante os mesmos efeitos de uma edição feita por lá).
+function openCorrelacaoEditor(cliente, fallbackArea, fallbackMatch){
+  const existente = state.overrides[C.normalize(cliente)];
+  goToTab('correlacoes');
+  document.getElementById('cCliente').value = cliente;
+  document.getElementById('cArea').value = (existente && existente.area) || fallbackArea || 'NORTE';
+  const vinculo = (existente && existente.aliasOf) || (fallbackMatch && findBaseClienteByLabel(fallbackMatch) ? fallbackMatch : '');
+  document.getElementById('cVincularCliente').value = vinculo || '';
+  document.getElementById('cVincularCliente').dispatchEvent(new Event('input'));
+  document.getElementById('cCliente').scrollIntoView({behavior:'smooth', block:'center'});
+  document.getElementById('cCliente').focus();
+  toast(existente ? 'Editando a correlação existente — ajuste e clique em Salvar.' : 'Preencha/ajuste e clique em Salvar para criar a correlação.');
 }
 
 document.getElementById('cVincularCliente').addEventListener('input', (e)=>{
