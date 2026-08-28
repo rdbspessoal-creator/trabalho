@@ -127,37 +127,51 @@ Fotos de baixa qualidade, tabelas muito inclinadas/tortas ou com iluminação
 irregular tendem a sair com mais erros de reconhecimento — nesse caso,
 prefira o lançamento manual.
 
-### Preenchimento automático de Defeito/Ação a partir das colunas marcadas
+### Preenchimento automático de Defeito a partir das colunas marcadas
 
-`core.js`, funções `matrixToDefeito` / `matrixToAcao` — puras, testáveis, sem
-depender de nenhum modelo de IA: a leitura de imagem só precisa identificar
-**quais colunas estão marcadas** em cada linha (algo que o OCR faz de forma
-confiável); o texto final de `defeito`/`acao` é montado deterministicamente:
+`core.js`, função `matrixToDefeito` — pura, testável, sem depender de nenhum
+modelo de IA: a leitura de imagem só precisa identificar **quais colunas
+estão marcadas** em cada linha (algo que o OCR faz de forma confiável); o
+campo **Defeito** é uma lista fechada de opções (`C.DEFEITO_OPTIONS`, um
+`<select>` no lançamento manual, na conferência e na edição do Histórico):
 
-| Coluna marcada          | Entra em "defeito"            | Entra em "ação" (soma a "COLETAR MEDIÇÃO") |
-|--------------------------|--------------------------------|----------------------------------------------|
-| TELEMETRIA / INFRA PENDENTE | INFRA DE TELEMETRIA PENDENTE | RESTABELECER TELEMETRIA |
-| ENERGIA (220V)           | FALTA DE ALIMENTAÇÃO EXT.      | RESTABELECER ALIMENTAÇÃO 220V |
-| DADOS DO CVAZ             | FALHA NO CVAZ                  | VERIFICAR COMUNICAÇÃO DO CVAZ |
-| PULSO                     | FALHA NO PULSO                 | VERIFICAR PULSO |
+- `COMISSIONAMENTO DA TELEMETRIA`
+- `FALHA NO CVAZ`
+- `FALTA DE ALIMENTAÇÃO EXT.`
+- `FALHA NO PULSO`
+- `INFRA DE TELEMETRIA PENDENTE`
+- `MODEM DESCONECTADO`
+- `N/A`
+- `OUTROS`
+
+Quando mais de uma coluna vem marcada na mesma linha, só uma vira o defeito —
+pela ordem de prioridade abaixo (a primeira que estiver marcada vence):
+
+| Prioridade | Coluna marcada | Defeito selecionado |
+|---|---|---|
+| 1 (mais alta) | INFRA PENDENTE | INFRA DE TELEMETRIA PENDENTE |
+| 2 | PULSO | FALHA NO PULSO |
+| 3 | ENERGIA (220V) | FALTA DE ALIMENTAÇÃO EXT. |
+| 4 | DADOS DO CVAZ | FALHA NO CVAZ |
+| 5 (mais baixa) | TELEMETRIA | MODEM DESCONECTADO |
 
 `DEMANDA MEDIÇÃO` é ignorada (é só o flag estrutural do lote). Se nenhuma
-coluna de defeito estiver marcada, `defeito` vira `"N/A"`. O texto da coluna
-"Comentários" vira `detalhamento`, e o nome da estação/cliente **nunca é
-alterado** pelo pipeline — mantém-se exatamente como veio da imagem
+coluna estiver marcada, o defeito vira `N/A`. O campo **Ação**, por outro
+lado, continua somando a ação de cada coluna marcada (`matrixToAcao`, ex.:
+"COLETAR MEDIÇÃO + RESTABELECER TELEMETRIA + VERIFICAR COMUNICAÇÃO DO CVAZ")
+— só o Defeito é restrito a um valor único da lista fechada. O texto da
+coluna "Comentários" vira `detalhamento`, e o nome da estação/cliente **nunca
+é alterado** pelo pipeline — mantém-se exatamente como veio da imagem
 (inclusive prefixos como `"ERPM -"`), porque a base de clientes também
-carrega esses prefixos e isso melhora o score de correlação.
+carrega esses prefixos e isso melhora o score de correlação. Se a data não
+for reconhecida/for inválida, o sistema sugere **a data de hoje** (dia da
+importação) em vez de deixar em branco — revise antes de consolidar.
 
-### Sugestão de preenchimento (autocomplete) para Defeito e Ação
-
-Os campos **Defeito** e **Ação** — no lançamento manual, na conferência e na
-edição de linhas do Histórico — têm autocomplete (`<datalist>`) com os
-valores já usados no histórico, do mais frequente para o menos
-(`core.js`, função `topFieldValues`, até 40 sugestões por campo). Serve tanto
-para digitar mais rápido no lançamento manual quanto para corrigir/padronizar
-o que o OCR extraiu da foto antes de consolidar — por exemplo, uniformizar
-"FALHA NO CVAZ" em vez de variações de grafia. A lista é recalculada sempre
-que o histórico muda (nova consolidação ou edição).
+O campo **Ação**, tanto no lançamento manual quanto na edição de linhas,
+mantém o autocomplete (`<datalist>`) com os valores já usados no histórico,
+do mais frequente para o menos (`core.js`, função `topFieldValues`, até 40
+sugestões). A lista é recalculada sempre que o histórico muda (nova
+consolidação ou edição).
 
 ### Validação contra a imagem fornecida (com a base de clientes real)
 
@@ -219,12 +233,15 @@ depois do filtro.
 
 1. **Nova Demanda** → anexe a foto JPEG do relatório semanal. As linhas
    extraídas caem numa tabela de **conferência** 100% editável — cliente,
-   técnico, área (select), data, defeito, ação, detalhamento (com
-   autocomplete nos dois últimos) — com selos de alerta para data inválida,
-   confiança baixa (inconsistência entre colunas marcadas e o comentário), e
-   status de correlação (✔ ok / ~ sugerido / ⚠ sem correlação). Dá para
-   corrigir qualquer campo, salvar uma correlação a partir da própria linha
-   (💾), remover linhas (✕), ou lançar uma demanda manualmente.
+   técnico, área (select colorido por área — Norte azul, Sul verde, Oeste
+   roxo, Outro cinza — para bater o olho rápido), data (sugere a data de hoje
+   quando não reconhecida), defeito (select com a lista fechada de opções),
+   ação (com autocomplete), detalhamento — com selos de alerta para data
+   inválida, confiança baixa (inconsistência entre colunas marcadas e o
+   comentário), e status de correlação (✔ ok / ~ sugerido / ⚠ sem
+   correlação). Dá para corrigir qualquer campo, salvar uma correlação a
+   partir da própria linha (💾), remover linhas (✕), ou lançar uma demanda
+   manualmente.
 2. **Consolidar demandas** grava tudo em `state.demandas` — antes disso, o
    sistema checa duplicidade (mesmo cliente normalizado + mesma data já no
    histórico) e pede confirmação.
@@ -277,9 +294,13 @@ contrário — mesma interface assíncrona, mesmas chaves
 node test/run-tests.js
 ```
 
-32 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
+34 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
 determinística de defeito/ação/data/comentário + sinalização de confiança
-baixa), o algoritmo de correlação contra a **base de clientes real** de 258
+baixa, incluindo a prioridade de seleção do defeito quando várias colunas
+estão marcadas — `INFRA PENDENTE > PULSO > ENERGIA > CVAZ > TELEMETRIA` — e a
+garantia de que `matrixToDefeito` só devolve valores da lista fechada
+`DEFEITO_OPTIONS`), o algoritmo de correlação contra a **base de clientes
+real** de 258
 registros (match direto, lacuna já resolvida, lacuna genuína ainda em
 aberto, override manual, derivação de área a partir do executante em
 registros de histórico), a contagem de registros do seed real (419 + 9 = 428),

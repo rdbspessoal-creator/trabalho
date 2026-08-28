@@ -131,30 +131,33 @@
   // Regras da seção 6.1 das especificações.
   // ---------------------------------------------------------------------
 
-  const DEFEITO_TEXT = {
-    telemetria: 'INFRA DE TELEMETRIA PENDENTE',
-    infraPendente: 'INFRA DE TELEMETRIA PENDENTE',
-    energia: 'FALTA DE ALIMENTAÇÃO EXT.',
-    cvaz: 'FALHA NO CVAZ',
-    pulso: 'FALHA NO PULSO',
-  };
+  // Lista fechada de defeitos — a UI usa exatamente estas opções (select),
+  // e matrixToDefeito só pode devolver um destes valores.
+  const DEFEITO_OPTIONS = [
+    'COMISSIONAMENTO DA TELEMETRIA',
+    'FALHA NO CVAZ',
+    'FALTA DE ALIMENTAÇÃO EXT.',
+    'FALHA NO PULSO',
+    'INFRA DE TELEMETRIA PENDENTE',
+    'MODEM DESCONECTADO',
+    'N/A',
+    'OUTROS',
+  ];
+
+  // Quando mais de uma coluna vem marcada na mesma linha, só uma vira o
+  // defeito — nesta ordem de prioridade (a mais prioritária primeiro).
+  const DEFEITO_PRIORITY = [
+    { flag: 'infraPendente', defeito: 'INFRA DE TELEMETRIA PENDENTE' },
+    { flag: 'pulso', defeito: 'FALHA NO PULSO' },
+    { flag: 'energia', defeito: 'FALTA DE ALIMENTAÇÃO EXT.' },
+    { flag: 'cvaz', defeito: 'FALHA NO CVAZ' },
+    { flag: 'telemetria', defeito: 'MODEM DESCONECTADO' },
+  ];
 
   function matrixToDefeito(flags) {
     flags = flags || {};
-    const parts = [];
-    const seen = new Set();
-    const push = (t) => {
-      if (!seen.has(t)) {
-        seen.add(t);
-        parts.push(t);
-      }
-    };
-    if (flags.telemetria) push(DEFEITO_TEXT.telemetria);
-    if (flags.infraPendente) push(DEFEITO_TEXT.infraPendente);
-    if (flags.energia) push(DEFEITO_TEXT.energia);
-    if (flags.cvaz) push(DEFEITO_TEXT.cvaz);
-    if (flags.pulso) push(DEFEITO_TEXT.pulso);
-    return parts.length ? parts.join(' | ') : 'N/A';
+    const hit = DEFEITO_PRIORITY.find((p) => flags[p.flag]);
+    return hit ? hit.defeito : 'N/A';
   }
 
   function matrixToAcao(flags) {
@@ -463,6 +466,7 @@
     scoreMatch,
     correlateClient,
     topCandidates,
+    DEFEITO_OPTIONS,
     matrixToDefeito,
     matrixToAcao,
     matrixRowToDemanda,

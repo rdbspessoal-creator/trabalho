@@ -34,27 +34,24 @@ console.log('Fixture: tabela em formato matriz (imagem padrão de teste)\n');
 const rows = fixture.linhas;
 assert.strictEqual(rows.length, 8, 'fixture deve ter 8 linhas (transcrição da imagem)');
 
-test('linha 1 (CERÂMICA MARI 2): defeito/ação/data/comentário extraídos fielmente', () => {
+test('linha 1 (CERÂMICA MARI 2): telemetria+cvaz -> defeito é só o de maior prioridade (CVAZ)', () => {
   const d = Core.matrixRowToDemanda(rows[0]);
   assert.strictEqual(d.cliente, 'ERPM - CERÂMICA MARI 2 (MORAES ARTEFATOS CERÂMICOS 2)');
   assert.strictEqual(Core.brDateToIso(rows[0].data), '2026-08-03');
-  assert.strictEqual(d.defeito, 'INFRA DE TELEMETRIA PENDENTE | FALHA NO CVAZ');
+  assert.strictEqual(d.defeito, 'FALHA NO CVAZ');
   assert.strictEqual(d.acao, 'COLETAR MEDIÇÃO + RESTABELECER TELEMETRIA + VERIFICAR COMUNICAÇÃO DO CVAZ');
   assert.strictEqual(d.detalhamento, 'Sem dados desde 13/7');
 });
 
 test('linha 2 (VOLTA AO MUNDO): mesmo padrão telemetria+cvaz', () => {
   const d = Core.matrixRowToDemanda(rows[1]);
-  assert.strictEqual(d.defeito, 'INFRA DE TELEMETRIA PENDENTE | FALHA NO CVAZ');
+  assert.strictEqual(d.defeito, 'FALHA NO CVAZ');
   assert.strictEqual(d.acao, 'COLETAR MEDIÇÃO + RESTABELECER TELEMETRIA + VERIFICAR COMUNICAÇÃO DO CVAZ');
 });
 
-test('linha 3 (GERDAU): telemetria + energia + cvaz -> defeito e ação somados corretamente', () => {
+test('linha 3 (GERDAU): telemetria + energia + cvaz -> defeito é o de maior prioridade (ENERGIA), ação soma tudo', () => {
   const d = Core.matrixRowToDemanda(rows[2]);
-  assert.strictEqual(
-    d.defeito,
-    'INFRA DE TELEMETRIA PENDENTE | FALTA DE ALIMENTAÇÃO EXT. | FALHA NO CVAZ'
-  );
+  assert.strictEqual(d.defeito, 'FALTA DE ALIMENTAÇÃO EXT.');
   assert.strictEqual(
     d.acao,
     'COLETAR MEDIÇÃO + RESTABELECER ALIMENTAÇÃO 220V + RESTABELECER TELEMETRIA + VERIFICAR COMUNICAÇÃO DO CVAZ'
@@ -73,9 +70,9 @@ test('linha 7 (PRINCESA ISABEL): só energia marcada -> defeito e ação mínimo
   assert.strictEqual(d.acao, 'COLETAR MEDIÇÃO + RESTABELECER ALIMENTAÇÃO 220V');
 });
 
-test('linha 8 (SHOPPING RECIFE): energia + cvaz somados, telemetria ausente', () => {
+test('linha 8 (SHOPPING RECIFE): energia + cvaz -> defeito é o de maior prioridade (ENERGIA), ação soma as duas', () => {
   const d = Core.matrixRowToDemanda(rows[7]);
-  assert.strictEqual(d.defeito, 'FALTA DE ALIMENTAÇÃO EXT. | FALHA NO CVAZ');
+  assert.strictEqual(d.defeito, 'FALTA DE ALIMENTAÇÃO EXT.');
   assert.strictEqual(d.acao, 'COLETAR MEDIÇÃO + RESTABELECER ALIMENTAÇÃO 220V + VERIFICAR COMUNICAÇÃO DO CVAZ');
 });
 
@@ -84,6 +81,21 @@ test('nenhuma linha usa "DEMANDA MEDIÇÃO" como coluna de defeito (é só flag 
     const d = Core.matrixToDefeito(r);
     assert.ok(!d.includes('DEMANDA'), `defeito não deveria mencionar DEMANDA MEDIÇÃO: "${d}"`);
   });
+});
+
+test('matrixToDefeito: sempre devolve um valor da lista fechada DEFEITO_OPTIONS', () => {
+  rows.forEach((r) => {
+    assert.ok(Core.DEFEITO_OPTIONS.includes(Core.matrixToDefeito(r)), `"${Core.matrixToDefeito(r)}" não está em DEFEITO_OPTIONS`);
+  });
+  assert.strictEqual(Core.matrixToDefeito({}), 'N/A');
+});
+
+test('matrixToDefeito: prioridade INFRA PENDENTE > PULSO > ENERGIA > CVAZ > TELEMETRIA', () => {
+  assert.strictEqual(Core.matrixToDefeito({infraPendente: true, pulso: true, energia: true, cvaz: true, telemetria: true}), 'INFRA DE TELEMETRIA PENDENTE');
+  assert.strictEqual(Core.matrixToDefeito({pulso: true, energia: true, cvaz: true, telemetria: true}), 'FALHA NO PULSO');
+  assert.strictEqual(Core.matrixToDefeito({energia: true, cvaz: true, telemetria: true}), 'FALTA DE ALIMENTAÇÃO EXT.');
+  assert.strictEqual(Core.matrixToDefeito({cvaz: true, telemetria: true}), 'FALHA NO CVAZ');
+  assert.strictEqual(Core.matrixToDefeito({telemetria: true}), 'MODEM DESCONECTADO');
 });
 
 test('todas as 8 linhas produzem data ISO válida 2026-08-03', () => {
@@ -205,7 +217,7 @@ test('formato B: cabeçalho matriz/checklist é reconhecido, "X" vira flag e dat
   assert.strictEqual(linha.infraPendente, false);
   assert.strictEqual(linha.pulso, false);
   const d = Core.matrixRowToDemanda(linha);
-  assert.strictEqual(d.defeito, 'INFRA DE TELEMETRIA PENDENTE | FALTA DE ALIMENTAÇÃO EXT. | FALHA NO CVAZ');
+  assert.strictEqual(d.defeito, 'FALTA DE ALIMENTAÇÃO EXT.');
 });
 
 test('formato B: linha sem colunas de defeito marcadas mas comentário cita "220 V" sinaliza confiança baixa', () => {

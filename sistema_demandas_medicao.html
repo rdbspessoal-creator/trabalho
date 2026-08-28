@@ -125,6 +125,7 @@
   .muted{color:var(--muted); font-size:12px;}
   .hint{font-size:11.5px; color:var(--muted); margin-top:6px; line-height:1.5;}
   .staging-table select, .staging-table input{padding:5px 7px; font-size:12px;}
+  .staging-table select[data-f="area"], select[data-f="area"]{min-width:112px; font-weight:700;}
   code{background:var(--panel2); padding:1px 5px; border-radius:4px; font-family:var(--mono);}
   a.link{color:#58a6ff; cursor:pointer;}
   @media print{
@@ -187,7 +188,7 @@
         <div class="col" style="max-width:160px;"><label>Data</label><input id="mData" type="date"></div>
       </div>
       <div class="row" style="margin-top:8px;">
-        <div class="col"><label>Defeito</label><input id="mDefeito" list="defeitoOptions" placeholder="Comece a digitar para ver sugestões do histórico"></div>
+        <div class="col"><label>Defeito</label><select id="mDefeito"></select></div>
         <div class="col"><label>Ação</label><input id="mAcao" list="acaoOptions" placeholder="Comece a digitar para ver sugestões do histórico"></div>
       </div>
       <div class="row" style="margin-top:8px;">
@@ -195,7 +196,6 @@
       </div>
       <div style="margin-top:10px;"><button class="btn" id="btnAddManual">Adicionar à conferência</button></div>
     </div>
-    <datalist id="defeitoOptions"></datalist>
     <datalist id="acaoOptions"></datalist>
 
     <div class="card">
@@ -540,30 +540,33 @@
   // Regras da seção 6.1 das especificações.
   // ---------------------------------------------------------------------
 
-  const DEFEITO_TEXT = {
-    telemetria: 'INFRA DE TELEMETRIA PENDENTE',
-    infraPendente: 'INFRA DE TELEMETRIA PENDENTE',
-    energia: 'FALTA DE ALIMENTAÇÃO EXT.',
-    cvaz: 'FALHA NO CVAZ',
-    pulso: 'FALHA NO PULSO',
-  };
+  // Lista fechada de defeitos — a UI usa exatamente estas opções (select),
+  // e matrixToDefeito só pode devolver um destes valores.
+  const DEFEITO_OPTIONS = [
+    'COMISSIONAMENTO DA TELEMETRIA',
+    'FALHA NO CVAZ',
+    'FALTA DE ALIMENTAÇÃO EXT.',
+    'FALHA NO PULSO',
+    'INFRA DE TELEMETRIA PENDENTE',
+    'MODEM DESCONECTADO',
+    'N/A',
+    'OUTROS',
+  ];
+
+  // Quando mais de uma coluna vem marcada na mesma linha, só uma vira o
+  // defeito — nesta ordem de prioridade (a mais prioritária primeiro).
+  const DEFEITO_PRIORITY = [
+    { flag: 'infraPendente', defeito: 'INFRA DE TELEMETRIA PENDENTE' },
+    { flag: 'pulso', defeito: 'FALHA NO PULSO' },
+    { flag: 'energia', defeito: 'FALTA DE ALIMENTAÇÃO EXT.' },
+    { flag: 'cvaz', defeito: 'FALHA NO CVAZ' },
+    { flag: 'telemetria', defeito: 'MODEM DESCONECTADO' },
+  ];
 
   function matrixToDefeito(flags) {
     flags = flags || {};
-    const parts = [];
-    const seen = new Set();
-    const push = (t) => {
-      if (!seen.has(t)) {
-        seen.add(t);
-        parts.push(t);
-      }
-    };
-    if (flags.telemetria) push(DEFEITO_TEXT.telemetria);
-    if (flags.infraPendente) push(DEFEITO_TEXT.infraPendente);
-    if (flags.energia) push(DEFEITO_TEXT.energia);
-    if (flags.cvaz) push(DEFEITO_TEXT.cvaz);
-    if (flags.pulso) push(DEFEITO_TEXT.pulso);
-    return parts.length ? parts.join(' | ') : 'N/A';
+    const hit = DEFEITO_PRIORITY.find((p) => flags[p.flag]);
+    return hit ? hit.defeito : 'N/A';
   }
 
   function matrixToAcao(flags) {
@@ -872,6 +875,7 @@
     scoreMatch,
     correlateClient,
     topCandidates,
+    DEFEITO_OPTIONS,
     matrixToDefeito,
     matrixToAcao,
     matrixRowToDemanda,
@@ -1033,14 +1037,25 @@ function renderAll(){
     `${state.demandas.length} registros de demanda · ${state.clientes.length} clientes na base · ${Object.keys(state.overrides).length} correlações manuais.`;
 }
 
-// Sugestões (autocomplete) de Defeito/Ação nos campos de lançamento manual e
-// nas linhas editáveis (conferência/histórico) — valores mais usados no
-// histórico primeiro (core.js, topFieldValues).
+// Sugestão (autocomplete) de Ação no lançamento manual e nas linhas
+// editáveis (conferência/histórico) — valores mais usados no histórico
+// primeiro (core.js, topFieldValues). Defeito não usa mais autocomplete:
+// é uma lista fechada (C.DEFEITO_OPTIONS, select) — ver defeitoSelectHtml.
 function renderSuggestionLists(){
-  const defOpts = C.topFieldValues(state.demandas, 'defeito', 40);
   const acaoOpts = C.topFieldValues(state.demandas, 'acao', 40);
-  document.getElementById('defeitoOptions').innerHTML = defOpts.map(o=>`<option value="${escAttr(o.value)}">`).join('');
   document.getElementById('acaoOptions').innerHTML = acaoOpts.map(o=>`<option value="${escAttr(o.value)}">`).join('');
+  document.getElementById('mDefeito').innerHTML = '<option value="">Selecione um defeito…</option>' + defeitoSelectHtml('');
+}
+
+function defeitoSelectHtml(value){
+  const opts = C.DEFEITO_OPTIONS.slice();
+  if(value && !opts.includes(value)) opts.unshift(value);
+  return opts.map(o=>`<option value="${escAttr(o)}" ${o===value?'selected':''}>${escHtml(o)}</option>`).join('');
+}
+
+function todayIso(){
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
 // ---------------------------------------------------------------------
@@ -1201,7 +1216,7 @@ function addToStaging(rec, origem){
     executante: rec.executante || (corr.tecnico||''),
     tecnico: rec.executante || (corr.tecnico||''),
     area: corr.area || 'OUTRO',
-    data: rec.data || '',
+    data: C.isValidIsoDate(rec.data) ? rec.data : todayIso(),
     defeito: rec.defeito || '',
     acao: rec.acao || '',
     detalhamento: rec.detalhamento || '',
@@ -1252,12 +1267,12 @@ function renderStaging(){
       <td><input value="${escAttr(item.cliente)}" data-f="cliente" style="min-width:200px;"></td>
       <td><input value="${escAttr(item.tecnico)}" data-f="tecnico" style="min-width:110px;"></td>
       <td>
-        <select data-f="area">
+        <select data-f="area" style="color:${AREA_COLOR[item.area]||'inherit'};">
           ${['NORTE','SUL','OESTE','OUTRO'].map(a=>`<option value="${a}" ${item.area===a?'selected':''}>${a}</option>`).join('')}
         </select>
       </td>
       <td><input type="date" value="${item.data}" data-f="data" style="min-width:130px;">${dataAlert}</td>
-      <td><input value="${escAttr(item.defeito)}" data-f="defeito" list="defeitoOptions" style="min-width:160px;"></td>
+      <td><select data-f="defeito" style="min-width:210px;">${defeitoSelectHtml(item.defeito)}</select></td>
       <td><input value="${escAttr(item.acao)}" data-f="acao" list="acaoOptions" style="min-width:160px;"></td>
       <td><input value="${escAttr(item.detalhamento)}" data-f="detalhamento" style="min-width:160px;"></td>
       <td>${statusBadge(item.status)}${confAlert}${item.match?`<div class="muted" style="margin-top:2px;">match: ${escHtml(item.match)} (${(item.score*100).toFixed(0)}%)</div>`:''}</td>
@@ -1276,6 +1291,7 @@ function renderStaging(){
           if(corr.area) item.area = corr.area;
           renderStaging();
         }
+        if(f==='area') renderStaging();
       });
     });
     tr.querySelector('[data-act="remove"]').addEventListener('click', ()=>{
@@ -1499,8 +1515,8 @@ function renderHistRowEdit(d){
     <td><input type="date" data-f="data" value="${d.data||''}" style="min-width:130px;"></td>
     <td><input data-f="cliente" value="${escAttr(d.cliente)}" style="min-width:180px;"></td>
     <td><input data-f="tecnico" value="${escAttr(d.tecnico||'')}" style="min-width:100px;"></td>
-    <td><select data-f="area">${['NORTE','SUL','OESTE','OUTRO'].map(a=>`<option ${a===d.area?'selected':''}>${a}</option>`).join('')}</select></td>
-    <td><input data-f="defeito" value="${escAttr(d.defeito||'')}" list="defeitoOptions" style="min-width:140px;"></td>
+    <td><select data-f="area" style="color:${AREA_COLOR[d.area]||'inherit'};">${['NORTE','SUL','OESTE','OUTRO'].map(a=>`<option ${a===d.area?'selected':''}>${a}</option>`).join('')}</select></td>
+    <td><select data-f="defeito" style="min-width:210px;">${defeitoSelectHtml(d.defeito||'')}</select></td>
     <td><input data-f="acao" value="${escAttr(d.acao||'')}" list="acaoOptions" style="min-width:140px;"></td>
     <td><input data-f="detalhamento" value="${escAttr(d.detalhamento||'')}" style="min-width:140px;"></td>
     <td>${statusBadge(d.status)}</td>
