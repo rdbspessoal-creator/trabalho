@@ -62,15 +62,16 @@
   .dropzone.drag{border-color:#3b82f6; background:#132033; color:var(--text);}
 
   /* Gráficos (Histórico — tendências e maiores ocorrências) */
-  .charts-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;}
+  .charts-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:16px;}
   .chart-card h3{margin:0 0 12px; font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; font-weight:600;}
+  .chart-card-wide{overflow-x:auto;}
   .hbar-row{display:grid; grid-template-columns:120px 1fr 34px; align-items:center; gap:8px; margin-bottom:7px; font-size:12px;}
   .hbar-label{color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   .hbar-track{background:var(--panel2); border-radius:5px; height:10px; overflow:hidden;}
   .hbar-fill{height:100%; border-radius:5px; min-width:3px;}
   .hbar-value{text-align:right; color:var(--muted); font-variant-numeric:tabular-nums;}
-  .vbars{display:flex; align-items:flex-end; gap:6px; height:120px; padding-top:6px;}
-  .vbar{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:4px;}
+  .vbars{display:flex; align-items:flex-end; gap:6px; height:120px; padding-top:6px; min-width:min-content;}
+  .vbar{flex:1 0 34px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:4px;}
   .vbar-fill{width:100%; max-width:26px; border-radius:3px 3px 0 0; background:var(--norte); min-height:2px;}
   .vbar-value{font-size:10.5px; color:var(--muted); font-variant-numeric:tabular-nums;}
   .vbar-label{font-size:10px; color:var(--muted); text-align:center; white-space:nowrap;}
@@ -273,13 +274,13 @@
           <div id="chartClientes"></div>
         </div>
         <div class="chart-card">
-          <h3>Demandas por mês</h3>
-          <div id="chartTendencia"></div>
-        </div>
-        <div class="chart-card">
           <h3>Por área</h3>
           <div id="chartArea"></div>
         </div>
+      </div>
+      <div class="chart-card chart-card-wide">
+        <h3>Demandas por mês <span class="muted" style="font-weight:400; text-transform:none; letter-spacing:normal;">(últimos 12 meses corridos, quando não há filtro de período)</span></h3>
+        <div id="chartTendencia"></div>
       </div>
     </div>
     <div class="card">
@@ -1616,12 +1617,35 @@ function renderHistoricoCharts(rows){
     const mes = d.data.slice(0,7); // AAAA-MM
     porMes.set(mes, (porMes.get(mes)||0)+1);
   });
-  const meses = Array.from(porMes.keys()).sort().slice(-12);
+
+  // Sem filtro de período: sempre os últimos 12 meses corridos até o mês
+  // mais recente com dado (preenchendo com zero os meses sem registro), em
+  // vez de só os meses que por acaso têm alguma demanda.
+  const semFiltroPeriodo = !document.getElementById('hDe').value && !document.getElementById('hAte').value;
+  let meses;
+  if(semFiltroPeriodo){
+    const mesesComDados = Array.from(porMes.keys()).sort();
+    const mesFinal = mesesComDados.length ? mesesComDados[mesesComDados.length-1] : todayIso().slice(0,7);
+    meses = ultimosNMeses(mesFinal, 12);
+  } else {
+    meses = Array.from(porMes.keys()).sort();
+  }
   const tendencia = meses.map(m=>{
     const [ano, mes] = m.split('-');
-    return {label: `${mes}/${ano.slice(2)}`, value: porMes.get(m)};
+    return {label: `${mes}/${ano.slice(2)}`, value: porMes.get(m) || 0};
   });
   renderVBarChart(document.getElementById('chartTendencia'), tendencia);
+}
+
+function ultimosNMeses(mesFinalIso, n){
+  let [ano, mes] = mesFinalIso.split('-').map(Number);
+  const out = [];
+  for(let i=0;i<n;i++){
+    out.unshift(`${ano}-${String(mes).padStart(2,'0')}`);
+    mes--;
+    if(mes===0){ mes=12; ano--; }
+  }
+  return out;
 }
 
 function renderHistRowView(d){

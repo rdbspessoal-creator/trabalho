@@ -208,13 +208,18 @@ A aba **Histórico** tem um painel de gráficos, logo acima da tabela, que
 reage aos mesmos filtros da busca (área, status de correlação, situação,
 período):
 
-- **Top defeitos** e **Top clientes/estações** — barras horizontais com as 8
+- **Top defeitos**, **Top clientes/estações** e **Por área** — três painéis
+  lado a lado (barras horizontais); os dois primeiros mostram as 8
   ocorrências mais frequentes no conjunto filtrado (`core.js`,
-  `topFieldValues`).
-- **Por área** — barras horizontais com a contagem em NORTE/SUL/OESTE/OUTRO,
+  `topFieldValues`), o terceiro a contagem em NORTE/SUL/OESTE/OUTRO,
   coloridas com a mesma cor de cada área usada no resto do sistema.
-- **Demandas por mês** — barras verticais com a contagem por mês (`AAAA-MM`
-  da data da demanda), últimos 12 meses com dado.
+- **Demandas por mês** — logo abaixo, ocupando a largura toda (evita
+  sobreposição com os painéis acima quando há muitos meses) — barras
+  verticais com a contagem por mês (`AAAA-MM` da data da demanda). Quando
+  não há filtro de período (campos "De"/"Até" vazios), mostra sempre os
+  **últimos 12 meses corridos** a partir do mês mais recente com dado,
+  incluindo com zero os meses sem nenhuma demanda; com filtro de período
+  ativo, mostra os meses que caem dentro do período filtrado.
 
 São componentes simples em HTML/CSS (sem biblioteca de gráficos externa,
 mesma filosofia "tudo embutido, sem dependência de rede" do resto do
