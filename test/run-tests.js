@@ -411,5 +411,17 @@ test('reconstructTableText: comentário à esquerda não vaza para a coluna PULS
   assert.strictEqual(dataCols[dataCols.length - 1], 'Sem dados', 'comentário inteiro deve cair na última coluna, não dividido com a de PULSO');
 });
 
+console.log('\nChave de duplicidade — demandaKey\n');
+
+test('demandaKey: mesma chave para o mesmo cliente (normalizado) e mesma data', () => {
+  assert.strictEqual(Core.demandaKey('ERPM - GERDAU', '2026-08-03'), Core.demandaKey('erpm - gerdau', '2026-08-03'));
+  assert.strictEqual(Core.demandaKey('ERPM  -  GERDAU', '2026-08-03'), Core.demandaKey('ERPM - GERDAU', '2026-08-03'));
+});
+
+test('demandaKey: chaves diferentes para cliente ou data diferentes', () => {
+  assert.notStrictEqual(Core.demandaKey('ERPM - GERDAU', '2026-08-03'), Core.demandaKey('ERPM - GERDAU', '2026-08-04'));
+  assert.notStrictEqual(Core.demandaKey('ERPM - GERDAU', '2026-08-03'), Core.demandaKey('ERPM - PERQUIMICA', '2026-08-03'));
+});
+
 console.log(`\n${passed} passaram, ${failed} falharam.`);
 process.exit(failed ? 1 : 0);

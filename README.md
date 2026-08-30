@@ -220,6 +220,10 @@ São componentes simples em HTML/CSS (sem biblioteca de gráficos externa,
 mesma filosofia "tudo embutido, sem dependência de rede" do resto do
 sistema), com tooltip ao passar o mouse sobre cada barra.
 
+Cada linha da tabela abaixo dos gráficos tem um botão **🗑 Remover**, ao
+lado do ✎ Editar — pede confirmação e, ao aceitar, apaga a demanda
+definitivamente do histórico.
+
 ## Correlações — vincular ao mesmo ponto de consumo de um cliente existente
 
 Às vezes o mesmo ponto de medição aparece nas demandas com nomes diferentes
@@ -251,7 +255,29 @@ Detalhamento) é clicável para ordenar (crescente/decrescente, com indicador
 ▲/▼) e tem um campo de filtro logo abaixo do título — texto livre para a
 maioria das colunas, seleção para Área. Os filtros combinam entre si (E
 lógico) e a contagem "(N de M aberta(s))" mostra quantas ficaram visíveis
-depois do filtro.
+depois do filtro. A última coluna traz um botão **🗑 Remover** por linha,
+com confirmação — mesma ação e mesmo efeito do Remover na aba Histórico.
+
+## Duplicidade — mesmo cliente + mesma data não vira dois registros
+
+O sistema não permite duas demandas do mesmo cliente (comparado de forma
+normalizada — maiúsculas/minúsculas e espaçamento não importam) na mesma
+data. A checagem (`core.js`, `demandaKey`) é aplicada em todos os pontos
+onde uma demanda pode ser criada ou editada:
+
+- **Lançamento manual** e **importação da foto JPEG** — uma linha cujo
+  cliente+data já existe no histórico consolidado, ou já está em outra
+  linha da própria conferência, é rejeitada na hora (toast explicando o
+  motivo) e não entra na conferência.
+- **Consolidar demandas** — antes de gravar, o sistema separa as linhas da
+  conferência em válidas e bloqueadas (mesma chave cliente+data de um
+  registro já existente, ou repetida dentro do próprio lote). As válidas são
+  consolidadas normalmente; as bloqueadas permanecem na conferência e um
+  aviso lista quais são, para o usuário ajustar cliente ou data antes de
+  tentar de novo. Não existe opção de "consolidar mesmo assim".
+- **Edição inline no Histórico** — salvar uma edição que resultaria em
+  cliente+data colidindo com outro registro já existente é bloqueado com um
+  toast, e a edição não é salva.
 
 ## Uso no dia a dia
 
@@ -271,26 +297,31 @@ depois do filtro.
    para esse cliente, inclusive a área/vínculo já existentes se houver;
    salvar por lá tem exatamente os mesmos efeitos de uma edição feita
    direto na aba Correlações, porque é o mesmo formulário e o mesmo botão),
-   remover linhas (✕), ou lançar uma demanda manualmente.
-2. **Consolidar demandas** grava tudo em `state.demandas` — antes disso, o
-   sistema checa duplicidade (mesmo cliente normalizado + mesma data já no
-   histórico) e pede confirmação.
+   remover linhas (✕), ou lançar uma demanda manualmente — cliente+data
+   duplicados (já no histórico ou já em outra linha da conferência) são
+   rejeitados na hora, com aviso.
+2. **Consolidar demandas** grava as linhas válidas em `state.demandas`; as
+   que colidem (mesmo cliente + mesma data já existente ou repetidas no
+   próprio lote) ficam bloqueadas, permanecem na conferência e são listadas
+   num aviso — não há opção de consolidar mesmo assim (ver "Duplicidade"
+   abaixo).
 3. **Histórico** — busca, filtros (área / status de correlação / situação
    aberta-resolvida / período), **um filtro por coluna direto no cabeçalho
    da tabela** (Data, Cliente, Técnico, Área, Defeito, Ação, Detalhamento,
    Correlação, Situação — combina com os filtros acima), gráficos de
    tendências e maiores ocorrências, ordenação por coluna, paginação real
-   (50 por página), edição inline, toggle Aberta/Resolvida, exportação CSV.
+   (50 por página), edição inline (bloqueada se colidir com outro registro),
+   toggle Aberta/Resolvida, remoção de demandas (🗑), exportação CSV.
 4. **Correlações** — cadastro manual Cliente → Área **ou** vínculo direto a
    um cliente já cadastrado quando o mesmo ponto de consumo aparece com
    nomes diferentes nas demandas (ver abaixo), tabela com busca/filtro/
    ordenação, remoção de correlações manuais.
 5. **Resumo** — KPIs, quadro por área/técnico, tabela de **pendências
-   abertas** com filtro/ordenação por coluna, lista de pendências de
-   correlação com assistente ("Resolver pendências") que sugere os 3
-   candidatos mais parecidos e aplica retroativamente a todos os registros
-   daquele cliente, última leva consolidada agrupada por técnico, impressão/
-   exportação.
+   abertas** com filtro/ordenação por coluna e remoção (🗑) por linha, lista
+   de pendências de correlação com assistente ("Resolver pendências") que
+   sugere os 3 candidatos mais parecidos e aplica retroativamente a todos os
+   registros daquele cliente, última leva consolidada agrupada por técnico,
+   impressão/exportação.
 6. **Dados** — importar uma atualização das planilhas (ver abaixo), apagar
    dados locais (restaura o histórico original embutido).
 
@@ -349,7 +380,7 @@ limpar, limpa direto e avisa.
 node test/run-tests.js
 ```
 
-34 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
+36 casos cobrindo: as 8 linhas da imagem padrão de teste (extração
 determinística de defeito/ação/data/comentário + sinalização de confiança
 baixa, incluindo a prioridade de seleção do defeito quando várias colunas
 estão marcadas — `INFRA PENDENTE > PULSO > ENERGIA > CVAZ > TELEMETRIA` — e a
@@ -367,7 +398,9 @@ entradas vazias/nulas; e a reconstrução de tabela a partir de coordenadas
 linhas e em células de cabeçalho com mais de uma palavra, cabeçalho quebrado
 em 2+ linhas visuais (reproduzindo o bug relatado numa foto real, onde a
 tabela inteira falhava ao ser reconhecida) e comentário de texto livre que
-não deve vazar para a coluna anterior.
+não deve vazar para a coluna anterior; e a chave de duplicidade
+(`demandaKey`): mesma chave para cliente normalizado + mesma data, chaves
+diferentes quando cliente ou data mudam.
 
 Esses testes cobrem a lógica pura (`core.js`) e rodam em Node, sem browser —
 não validam o Tesseract.js em si (que só existe no navegador). Essa parte,

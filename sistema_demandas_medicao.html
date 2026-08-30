@@ -392,6 +392,7 @@
               <th class="sortable" data-psort="defeito">Defeito</th>
               <th class="sortable" data-psort="acao">Ação</th>
               <th class="sortable" data-psort="detalhamento">Detalhamento</th>
+              <th class="no-print"></th>
             </tr>
             <tr class="filter-row no-print">
               <th><input data-pfilter="data" placeholder="AAAA-MM..."></th>
@@ -403,6 +404,7 @@
               <th><input data-pfilter="defeito" placeholder="filtrar..."></th>
               <th><input data-pfilter="acao" placeholder="filtrar..."></th>
               <th><input data-pfilter="detalhamento" placeholder="filtrar..."></th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="pendAbertasBody"></tbody>
@@ -919,6 +921,15 @@
       .map(([value, count]) => ({ value, count }));
   }
 
+  // ---------------------------------------------------------------------
+  // Chave de duplicidade: mesmo cliente (normalizado) + mesma data não
+  // pode virar dois registros de demanda distintos.
+  // ---------------------------------------------------------------------
+
+  function demandaKey(cliente, data) {
+    return `${normalize(cliente)}|${(data || '').trim()}`;
+  }
+
   return {
     normalize,
     areaToTecnico,
@@ -928,6 +939,7 @@
     scoreMatch,
     correlateClient,
     topCandidates,
+    demandaKey,
     DEFEITO_OPTIONS,
     matrixToDefeito,
     matrixToAcao,
@@ -1268,18 +1280,28 @@ async function handleExtractFile(file){
 
 function ingestParsedImage(parsed, filename){
   const linhas = parsed.linhas || [];
-  let added = 0;
+  let added = 0, duplicadas = 0;
   linhas.forEach(row=>{
     const d = C.matrixRowToDemanda(row);
     const rec = {cliente: d.cliente, executante: '', data: C.brDateToIso(row.data) || d.data, defeito: d.defeito, acao: d.acao, detalhamento: d.detalhamento, confianca: row.confianca || 'alta'};
     if(!rec.cliente) return;
-    addToStaging(rec, 'importado');
-    added++;
+    if(addToStaging(rec, 'importado')) added++; else duplicadas++;
   });
-  toast(`${added} linha(s) importada(s) de "${filename}" para a conferência.`);
+  toast(`${added} linha(s) importada(s) de "${filename}" para a conferência.${duplicadas ? ` ${duplicadas} ignorada(s) por já existir demanda com o mesmo cliente e a mesma data.` : ''}`);
+}
+
+// Mesmo cliente (normalizado) + mesma data não pode virar duas demandas —
+// nem no histórico já consolidado, nem duas vezes na própria conferência.
+function isDuplicateDemanda(cliente, data){
+  const key = C.demandaKey(cliente, data);
+  if(state.demandas.some(d=>C.demandaKey(d.cliente, d.data)===key)) return true;
+  if(state.staging.some(s=>C.demandaKey(s.cliente, s.data)===key)) return true;
+  return false;
 }
 
 function addToStaging(rec, origem){
+  const data = C.isValidIsoDate(rec.data) ? rec.data : todayIso();
+  if(isDuplicateDemanda(rec.cliente, data)) return false;
   const corr = correlate(rec.cliente);
   state.staging.push({
     id: uid(),
@@ -1287,7 +1309,7 @@ function addToStaging(rec, origem){
     executante: rec.executante || (corr.tecnico||''),
     tecnico: rec.executante || (corr.tecnico||''),
     area: corr.area || 'OUTRO',
-    data: C.isValidIsoDate(rec.data) ? rec.data : todayIso(),
+    data,
     defeito: rec.defeito || '',
     acao: rec.acao || '',
     detalhamento: rec.detalhamento || '',
@@ -1298,6 +1320,7 @@ function addToStaging(rec, origem){
     confianca: rec.confianca || 'alta'
   });
   renderStaging();
+  return true;
 }
 
 // ---------------------------------------------------------------------
@@ -1306,7 +1329,7 @@ function addToStaging(rec, origem){
 document.getElementById('btnAddManual').addEventListener('click', ()=>{
   const cliente = document.getElementById('mCliente').value.trim();
   if(!cliente){ toast('Informe o cliente.'); return; }
-  addToStaging({
+  const ok = addToStaging({
     cliente,
     executante: document.getElementById('mExecutante').value.trim(),
     data: document.getElementById('mData').value,
@@ -1315,6 +1338,10 @@ document.getElementById('btnAddManual').addEventListener('click', ()=>{
     detalhamento: document.getElementById('mDetalhamento').value.trim(),
     confianca: 'alta'
   }, 'manual');
+  if(!ok){
+    toast('Já existe uma demanda (no histórico ou na conferência) com esse cliente e essa data.');
+    return;
+  }
   ['mCliente','mExecutante','mData','mDefeito','mAcao','mDetalhamento'].forEach(id=>document.getElementById(id).value='');
 });
 
@@ -1401,21 +1428,36 @@ document.getElementById('btnClearStaging').addEventListener('click', ()=>{
 
 document.getElementById('btnConsolidar').addEventListener('click', async ()=>{
   if(!state.staging.length){ toast('Nada para consolidar.'); return; }
-  const existingKeys = new Set(state.demandas.map(d=>C.normalize(d.cliente)+'|'+d.data));
-  const dupes = state.staging.filter(s=>existingKeys.has(C.normalize(s.cliente)+'|'+s.data));
-  if(dupes.length){
-    showConfirmModal(
-      `${dupes.length} linha(s) parecem duplicadas (mesmo cliente + mesma data já existente no histórico). Consolidar mesmo assim?`,
-      ()=>doConsolidar()
+  // O sistema não permite dois registros do mesmo cliente na mesma data:
+  // linhas que colidem com o histórico já existente, ou entre si dentro do
+  // próprio lote, são bloqueadas e permanecem na conferência para ajuste.
+  const existingKeys = new Set(state.demandas.map(d=>C.demandaKey(d.cliente, d.data)));
+  const vistosNoLote = new Set();
+  const validos = [];
+  const bloqueados = [];
+  state.staging.forEach(s=>{
+    const key = C.demandaKey(s.cliente, s.data);
+    if(existingKeys.has(key) || vistosNoLote.has(key)){
+      bloqueados.push(s);
+    } else {
+      vistosNoLote.add(key);
+      validos.push(s);
+    }
+  });
+  if(bloqueados.length){
+    const lista = bloqueados.map(s=>`<li>${escHtml(s.cliente)} — ${s.data || '(sem data)'}</li>`).join('');
+    showAlertModal(
+      'Demandas duplicadas bloqueadas',
+      `<p>O sistema não permite dois registros do mesmo cliente na mesma data. ${bloqueados.length} linha(s) já existem no histórico ou estão repetidas nesta conferência e não foram consolidadas. Ajuste o cliente ou a data delas na conferência e tente novamente:</p><ul>${lista}</ul>`
     );
-  } else {
-    doConsolidar();
   }
+  if(!validos.length) return;
+  await doConsolidar(validos);
 });
 
-async function doConsolidar(){
+async function doConsolidar(validos){
   const now = new Date().toISOString();
-  const novos = state.staging.map(s=>({
+  const novos = validos.map(s=>({
     id: uid(),
     cliente: s.cliente,
     executante: s.tecnico,
@@ -1435,7 +1477,8 @@ async function doConsolidar(){
   state.demandas = novos.concat(state.demandas);
   state.ultimaLeva = novos;
   await persistDemandas();
-  state.staging = [];
+  const idsConsolidados = new Set(validos.map(s=>s.id));
+  state.staging = state.staging.filter(s=>!idsConsolidados.has(s.id));
   renderAll();
   toast(`${novos.length} demanda(s) consolidada(s).`);
 }
@@ -1589,7 +1632,10 @@ function renderHistRowView(d){
     <td>${escHtml(d.detalhamento||'')}</td>
     <td>${statusBadge(d.status)}</td>
     <td><span class="pill ${d.statusOp}" data-act="toggle-op">${d.statusOp==='aberta'?'Aberta':'Resolvida'}</span></td>
-    <td class="no-print"><button class="icon-btn" data-act="edit">✎</button></td>
+    <td class="no-print" style="white-space:nowrap;">
+      <button class="icon-btn" data-act="edit">✎</button>
+      <button class="icon-btn" data-act="remove" title="Remover">🗑</button>
+    </td>
   `;
 }
 
@@ -1617,11 +1663,21 @@ function wireHistRow(tr, d){
     await persistDemandas();
     renderHistorico(); renderResumo(); renderSuggestionLists();
   });
+  const removeBtn = tr.querySelector('[data-act="remove"]');
+  if(removeBtn) removeBtn.addEventListener('click', ()=>removerDemanda(d.id));
   const editBtn = tr.querySelector('[data-act="edit"]');
   if(editBtn){
     editBtn.addEventListener('click', ()=>{
       tr.innerHTML = renderHistRowEdit(d);
       tr.querySelector('[data-act="save"]').addEventListener('click', async ()=>{
+        const novoCliente = tr.querySelector('[data-f="cliente"]').value;
+        const novaData = tr.querySelector('[data-f="data"]').value;
+        const key = C.demandaKey(novoCliente, novaData);
+        const conflita = state.demandas.some(x=>x.id!==d.id && C.demandaKey(x.cliente, x.data)===key);
+        if(conflita){
+          toast('Já existe outra demanda com esse cliente e essa data — ajuste um dos dois antes de salvar.');
+          return;
+        }
         tr.querySelectorAll('[data-f]').forEach(inp=>{ d[inp.dataset.f] = inp.value; });
         const corr = correlate(d.cliente);
         d.status = corr.status; d.score = corr.score; d.match = corr.match;
@@ -1887,8 +1943,9 @@ function renderPendenciasAbertas(){
       <td>${escHtml(d.defeito||'')}</td>
       <td>${escHtml(d.acao||'')}</td>
       <td>${escHtml(d.detalhamento||'')}</td>
+      <td class="no-print"><button class="icon-btn" data-act="remove" data-id="${d.id}" title="Remover">🗑</button></td>
     </tr>
-  `).join('') || `<tr><td colspan="7" class="muted">Nenhuma pendência aberta com esse filtro.</td></tr>`;
+  `).join('') || `<tr><td colspan="8" class="muted">Nenhuma pendência aberta com esse filtro.</td></tr>`;
   document.getElementById('pendAbertasCount').textContent = `(${rows.length} de ${totalAbertas} aberta(s))`;
   document.querySelectorAll('#tab-resumo th.sortable').forEach(th=>{
     th.textContent = th.textContent.replace(/ [▲▼]$/,'');
@@ -1920,6 +1977,10 @@ document.querySelectorAll('#tab-resumo [data-pfilter]').forEach(input=>{
     pendAbertasFilters[input.dataset.pfilter] = input.value;
     renderPendenciasAbertas();
   });
+});
+document.getElementById('pendAbertasBody').addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-act="remove"]');
+  if(btn) removerDemanda(btn.dataset.id);
 });
 
 document.getElementById('btnWizard').addEventListener('click', openWizard);
@@ -2022,6 +2083,30 @@ function showConfirmModal(message, onConfirm){
   body.querySelector('#cfCancel').addEventListener('click', closeModal);
   body.querySelector('#cfOk').addEventListener('click', ()=>{ closeModal(); onConfirm(); });
   openModal(body);
+}
+
+// Modal só de aviso, sem ação a confirmar — usado para bloqueios (ex.:
+// duplicidade de cliente+data) onde não há "confirmar mesmo assim".
+function showAlertModal(title, bodyHtml){
+  const body = document.createElement('div');
+  body.innerHTML = `<h3>${escHtml(title)}</h3>${bodyHtml}
+    <div class="row" style="justify-content:flex-end; margin-top:16px;">
+      <button class="btn" id="alertOk">Entendi</button>
+    </div>`;
+  body.querySelector('#alertOk').addEventListener('click', closeModal);
+  openModal(body);
+}
+
+function removerDemanda(id){
+  showConfirmModal(
+    'Remover esta demanda do histórico? Esta ação não pode ser desfeita.',
+    async ()=>{
+      state.demandas = state.demandas.filter(d=>d.id!==id);
+      await persistDemandas();
+      renderAll();
+      toast('Demanda removida.');
+    }
+  );
 }
 
 // ---------------------------------------------------------------------

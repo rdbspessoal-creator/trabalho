@@ -457,6 +457,15 @@
       .map(([value, count]) => ({ value, count }));
   }
 
+  // ---------------------------------------------------------------------
+  // Chave de duplicidade: mesmo cliente (normalizado) + mesma data não
+  // pode virar dois registros de demanda distintos.
+  // ---------------------------------------------------------------------
+
+  function demandaKey(cliente, data) {
+    return `${normalize(cliente)}|${(data || '').trim()}`;
+  }
+
   return {
     normalize,
     areaToTecnico,
@@ -466,6 +475,7 @@
     scoreMatch,
     correlateClient,
     topCandidates,
+    demandaKey,
     DEFEITO_OPTIONS,
     matrixToDefeito,
     matrixToAcao,
