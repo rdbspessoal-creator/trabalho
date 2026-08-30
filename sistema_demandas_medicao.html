@@ -994,14 +994,15 @@ document.getElementById('storageBadge').textContent = hasNativeStorage
 // ---------------------------------------------------------------------
 // Estado
 // ---------------------------------------------------------------------
-const KEY_DEMANDAS='demandas-registros-v1', KEY_OVERRIDES='correlacoes-overrides-v1', KEY_CLIENTES='clientes-base-v1';
+const KEY_DEMANDAS='demandas-registros-v1', KEY_OVERRIDES='correlacoes-overrides-v1', KEY_CLIENTES='clientes-base-v1', KEY_IGNORADAS='pendencias-ignoradas-v1';
 
 let state = {
   demandas: [],
   overrides: {},
   clientes: [],
   staging: [],
-  ultimaLeva: []
+  ultimaLeva: [],
+  ignoradas: []
 };
 
 function uid(){ return 'd' + Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
@@ -1009,6 +1010,7 @@ function uid(){ return 'd' + Date.now().toString(36) + Math.random().toString(36
 async function persistDemandas(){ await storageAdapter.set(KEY_DEMANDAS, state.demandas); }
 async function persistOverrides(){ await storageAdapter.set(KEY_OVERRIDES, state.overrides); }
 async function persistClientes(){ await storageAdapter.set(KEY_CLIENTES, state.clientes); }
+async function persistIgnoradas(){ await storageAdapter.set(KEY_IGNORADAS, state.ignoradas); }
 
 function toast(msg){
   const el = document.createElement('div');
@@ -1071,6 +1073,7 @@ function seedRecordToDemanda(r, now){
 async function reloadFromStorage(){
   state.demandas = await storageAdapter.get(KEY_DEMANDAS, []);
   state.overrides = await storageAdapter.get(KEY_OVERRIDES, {});
+  state.ignoradas = await storageAdapter.get(KEY_IGNORADAS, []);
   let clientes = await storageAdapter.get(KEY_CLIENTES, null);
   if(!clientes || !clientes.length){
     clientes = await loadJson('data/seed-clientes.json') || [];
@@ -1901,6 +1904,7 @@ function renderPendencias(){
   const map = new Map();
   state.demandas.filter(d=>d.status==='sem-correlacao').forEach(d=>{
     const k = C.normalize(d.cliente);
+    if(state.ignoradas.includes(k)) return;
     if(!map.has(k)) map.set(k, {cliente:d.cliente, count:0});
     map.get(k).count++;
   });
@@ -1990,6 +1994,7 @@ function openWizard(){
   const map = new Map();
   state.demandas.filter(d=>d.status==='sem-correlacao').forEach(d=>{
     const k = C.normalize(d.cliente);
+    if(state.ignoradas.includes(k)) return;
     if(!map.has(k)) map.set(k, d.cliente);
   });
   const pendentes = Array.from(map.entries());
@@ -2013,7 +2018,10 @@ function openWizard(){
         </div>
       </div>
       <div class="row" style="margin-top:14px; justify-content:space-between;">
-        <button class="btn secondary" id="wizSkip">Pular</button>
+        <div>
+          <button class="btn secondary" id="wizSkip" title="Deixa de fora desta passada, mas volta a aparecer depois">Pular</button>
+          <button class="btn secondary" id="wizIgnore" title="Nunca mais mostrar esta pendência">Desconsiderar</button>
+        </div>
         <div>
           <button class="btn secondary" id="wizCancel">Fechar assistente</button>
           <button class="btn" id="wizApply">Aplicar</button>
@@ -2030,6 +2038,13 @@ function openWizard(){
       candsEl.appendChild(b);
     });
     body.querySelector('#wizSkip').addEventListener('click', ()=>{ idx++; showWizardStep(); });
+    body.querySelector('#wizIgnore').addEventListener('click', ()=>{
+      if(!state.ignoradas.includes(key)) state.ignoradas.push(key);
+      persistIgnoradas();
+      pendentes.splice(idx, 1);
+      renderPendencias();
+      showWizardStep();
+    });
     body.querySelector('#wizCancel').addEventListener('click', ()=>{ closeModal(); renderAll(); });
     body.querySelector('#wizApply').addEventListener('click', ()=>{
       const area = body.querySelector('#wizArea').value;

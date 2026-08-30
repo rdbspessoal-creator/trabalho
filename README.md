@@ -320,8 +320,11 @@ onde uma demanda pode ser criada ou editada:
    abertas** com filtro/ordenação por coluna e remoção (🗑) por linha, lista
    de pendências de correlação com assistente ("Resolver pendências") que
    sugere os 3 candidatos mais parecidos e aplica retroativamente a todos os
-   registros daquele cliente, última leva consolidada agrupada por técnico,
-   impressão/exportação.
+   registros daquele cliente — cada passo tem **Pular** (deixa de fora só
+   desta passada, volta a aparecer depois) e **Desconsiderar** (marca o
+   cliente como definitivamente ignorado; some da lista de pendências e do
+   assistente permanentemente, mesmo depois de recarregar a página) —,
+   última leva consolidada agrupada por técnico, impressão/exportação.
 6. **Dados** — importar uma atualização das planilhas (ver abaixo), apagar
    dados locais (restaura o histórico original embutido).
 
