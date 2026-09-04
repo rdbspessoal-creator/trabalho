@@ -129,6 +129,12 @@ section .lede{font-size:16px;}
   font-family:"IBM Plex Mono",monospace;font-size:11px;padding:3px 8px;border-radius:5px;
   background:var(--surface-sunken);border:1px solid var(--border);color:var(--ink-secondary);
 }
+.refmodes{margin:14px 0 0;display:flex;flex-direction:column;gap:12px;}
+.refmode{display:grid;grid-template-columns:190px 1fr;gap:14px;align-items:baseline;}
+@media (max-width:600px){.refmode{grid-template-columns:1fr;gap:6px;}}
+.refmode dt{margin:0;}
+.refmode dd{margin:0;font-size:13px;color:var(--ink-secondary);line-height:1.55;}
+.refmode dd strong{color:var(--ink);}
 
 /* KPIs */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
@@ -240,13 +246,25 @@ a{color:var(--accent-gn);}
         <div class="num">02</div>
         <div>
           <h3>Fixar a composição de referência das correntes</h3>
-          <p>O %CH₄ "puro" de cada corrente de origem pode vir de 4 fontes, selecionáveis na ferramenta — o que corresponde a testar diferentes níveis/momentos de injeção:</p>
-          <div class="chips">
-            <span class="chip">amostra composta — casada por data</span>
-            <span class="chip">amostra composta — média do período</span>
-            <span class="chip">cromatógrafo em linha</span>
-            <span class="chip">manual</span>
-          </div>
+          <p>O %CH₄ "puro" de cada corrente de origem (o que entra na fórmula do passo 03 como C1<sub>GN</sub> e C1<sub>Bio</sub>) pode vir de 4 fontes, selecionáveis na ferramenta — o que corresponde a testar diferentes níveis/momentos de injeção:</p>
+          <dl class="refmodes">
+            <div class="refmode">
+              <dt><span class="chip">amostra composta — casada por data</span></dt>
+              <dd>Usa a análise laboratorial da <strong>amostra composta</strong> (uma coleta acumulada ao longo de vários dias, enviada ao laboratório — mais precisa que a leitura diária do cromatógrafo em linha) referente à <strong>mesma data</strong> da coleta de campo sendo avaliada. É o modo padrão da ferramenta: cada ponto é comparado contra a composição real da origem no período em que foi amostrado.</dd>
+            </div>
+            <div class="refmode">
+              <dt><span class="chip">amostra composta — média do período</span></dt>
+              <dd>Usa a <strong>média das duas amostras compostas</strong> disponíveis (30/07 e 04/08), independente da data de cada coleta de campo. É o método que a planilha de engenharia original usava — útil para conferir a reprodutibilidade do cálculo, mas mistura duas composições de origem que na prática não coincidiram no tempo com cada coleta.</dd>
+            </div>
+            <div class="refmode">
+              <dt><span class="chip">cromatógrafo em linha</span></dt>
+              <dd>Usa a leitura <strong>diária</strong> do cromatógrafo instalado na própria estação de origem (CROM_422 / CROM_BIO), casada com a data da coleta. É a fonte com mais pontos no tempo — permite testar qualquer data do período, inclusive as usadas na análise de sensibilidade ao trânsito (passo 07).</dd>
+            </div>
+            <div class="refmode">
+              <dt><span class="chip">manual</span></dt>
+              <dd>O usuário digita diretamente o %CH₄ que quer atribuir a cada corrente — por exemplo, para simular um cenário hipotético de injeção (uma corrente de biometano mais pobre, um lote de gás natural fora do padrão) sem depender de nenhuma medição do período.</dd>
+            </div>
+          </dl>
         </div>
       </div>
 
