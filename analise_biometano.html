@@ -162,6 +162,24 @@ section.view.active{display:block;animation:fade .25s ease;}
 .chart-wrap{position:relative;height:280px;}
 .chart-wrap.tall{height:340px;}
 
+/* túnel de aderência */
+.tunnel-wrap{height:340px;overflow-y:auto;overflow-x:hidden;padding-right:6px;}
+.tunnel-list{display:flex;flex-direction:column;gap:20px;}
+.tunnel-row{display:flex;flex-direction:column;}
+.tunnel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.tunnel-name{font-size:12px;font-weight:600;color:var(--ink);}
+.tunnel-track{position:relative;height:8px;border-radius:4px;background:var(--surface-sunken);margin:16px 4px 0;}
+.tunnel-band{position:absolute;top:-4px;bottom:-4px;border-radius:6px;border:1.5px solid;}
+.tunnel-tick{position:absolute;top:-5px;width:2px;height:18px;background:var(--border-strong);transform:translateX(-1px);}
+.tunnel-marker{
+  position:absolute;top:-6px;width:14px;height:14px;border-radius:50%;
+  border:2.5px solid var(--surface-raised);box-shadow:0 0 0 1px var(--border-strong);
+  transform:translateX(-7px);
+}
+.tunnel-labels{display:flex;justify-content:space-between;align-items:baseline;margin-top:9px;font-size:10.5px;color:var(--ink-muted);gap:8px;}
+.tunnel-labels span{white-space:nowrap;}
+.tunnel-labels .result{font-weight:700;font-size:12px;}
+
 table{width:100%;border-collapse:collapse;font-size:12.5px;}
 .table-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface-raised);box-shadow:var(--shadow);}
 th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;}
@@ -213,6 +231,54 @@ input[type=number]{width:88px;}
 .tag.gn{background:var(--accent-gn-soft);color:var(--accent-gn);}
 .tag.bio{background:var(--accent-bio-soft);color:var(--accent-bio);}
 .rowbtn{border:0;background:transparent;color:var(--status-crit);cursor:pointer;font-size:14px;padding:0 4px;}
+
+/* resumo executivo */
+.re-eyebrow{
+  font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-gn);
+  margin:34px 0 12px;
+}
+.re-eyebrow:first-of-type{margin-top:0;}
+.re-lede{font-size:14.5px;color:var(--ink-secondary);max-width:74ch;}
+.re-sources{display:grid;grid-template-columns:repeat(3,1fr);padding:0;}
+@media (max-width:720px){.re-sources{grid-template-columns:1fr;}}
+.re-source{padding:16px 16px 15px;border-right:1px solid var(--border);}
+.re-source:last-child{border-right:none;}
+@media (max-width:720px){.re-source{border-right:none;border-bottom:1px solid var(--border);}.re-source:last-child{border-bottom:none;}}
+.re-tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;color:var(--accent-gn);display:block;margin-bottom:8px;}
+.re-fname{font-size:12.5px;font-weight:600;font-family:"IBM Plex Mono",monospace;word-break:break-word;color:var(--ink);}
+.re-desc{font-size:12px;color:var(--ink-muted);margin-top:6px;line-height:1.5;}
+
+.re-pipeline{padding:4px 20px;}
+.re-step{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--border);}
+.re-step:first-child{border-top:none;}
+.re-num{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--accent-gn);padding-top:2px;}
+.re-step h3{font-size:14px;font-weight:600;margin-bottom:6px;color:var(--ink);}
+.re-step p{font-size:13px;color:var(--ink-secondary);margin:0;}
+.re-formula{
+  display:inline-block;margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:12px;
+  background:var(--surface-sunken);border:1px solid var(--border);border-radius:6px;padding:7px 11px;color:var(--ink);
+}
+.re-refmodes{margin:12px 0 0;display:flex;flex-direction:column;gap:10px;}
+.re-refmode{display:grid;grid-template-columns:170px 1fr;gap:12px;align-items:baseline;}
+@media (max-width:640px){.re-refmode{grid-template-columns:1fr;gap:4px;}}
+.re-refmode dt{margin:0;}
+.re-refmode dd{margin:0;font-size:12px;color:var(--ink-secondary);line-height:1.5;}
+
+.re-rule-table{width:100%;border-collapse:collapse;font-size:13px;}
+.re-rule-table th{
+  text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-muted);
+  font-weight:600;padding:11px 15px;border-bottom:1px solid var(--border);background:var(--surface-sunken);white-space:nowrap;
+}
+.re-rule-table td{padding:12px 15px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--ink-secondary);text-align:left;white-space:normal;}
+.re-rule-table tr:last-child td{border-bottom:none;}
+.re-rule-table code{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink);}
+.re-footnote{font-size:12px;color:var(--ink-muted);margin-top:12px;}
+
+.re-recs{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:12px;}
+.re-recs li{display:grid;grid-template-columns:24px 1fr;gap:12px;font-size:13.5px;color:var(--ink-secondary);}
+.re-recs .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent-bio);font-weight:600;}
+.re-footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-size:11.5px;color:var(--ink-muted);}
+.kpi .value.crit{color:var(--status-crit);}
 </style>
 </head>
 <body>
@@ -231,6 +297,7 @@ input[type=number]{width:88px;}
       <button data-view="pontos">Pontos de amostragem</button>
       <button data-view="origem">Correntes de origem</button>
       <button data-view="transito">Sensibilidade &amp; trânsito</button>
+      <button data-view="resumo">Resumo executivo</button>
       <button data-view="dados">Dados brutos</button>
     </nav>
   </div>
@@ -253,9 +320,9 @@ input[type=number]{width:88px;}
       <div class="chart-wrap tall"><canvas id="chartScatter"></canvas></div>
     </div>
     <div class="card chart-card">
-      <h3>% Biometano por ponto — faixa de incerteza</h3>
-      <div class="desc">Estimativa pontual e envelope mín–máx (variação diária das correntes de origem no cromatógrafo em linha, ±2 dias da coleta).</div>
-      <div class="chart-wrap tall"><canvas id="chartRange"></canvas></div>
+      <h3>Túnel de aderência por ponto</h3>
+      <div class="desc">Cada túnel mostra os limites MÍN e MÁX do envelope de incerteza (variação diária das correntes de origem, ±2 dias da coleta) e marca onde caiu o resultado da amostra — dentro do túnel indica aderência, marcador na borda ou fora dele sinaliza o ponto para revisão.</div>
+      <div class="tunnel-wrap" id="tunnelList"></div>
     </div>
   </div>
 
@@ -362,6 +429,125 @@ input[type=number]{width:88px;}
     </div>
   </div>
   <div class="note" id="transitNote"></div>
+</section>
+
+<!-- ================= RESUMO EXECUTIVO ================= -->
+<section class="view" id="view-resumo">
+  <div class="section-head">
+    <h2>Resumo executivo</h2>
+    <p>Passo a passo racional da análise e leitura dos achados desta rodada de coletas — versão condensada para leitura corrida ou envio a quem não vai abrir a ferramenta interativa. <a href="resumo_executivo_biometano.html">Abrir como documento avulso →</a></p>
+  </div>
+
+  <div class="re-eyebrow">Objetivo</div>
+  <p class="re-lede">A distribuidora injeta biometano na mesma malha que recebe gás natural do city-gate (ETC 422). Um modelo de balanço de massa estima, para cada ponto da rede, qual fração da mistura é biometano — mas esse número só é útil se corresponder ao que a cromatografia de campo efetivamente mede. Esta ferramenta automatiza essa checagem: recebe as coletas de campo e a composição das duas correntes de origem, recalcula o modelo, e devolve uma leitura objetiva de <strong>aderência</strong> — onde o modelo bate com a realidade, onde diverge, e o quanto a variabilidade natural das correntes e o tempo de trânsito no duto explicam a diferença.</p>
+
+  <div class="re-eyebrow">Dados de entrada</div>
+  <div class="card re-sources">
+    <div class="re-source">
+      <span class="re-tag">Campo</span>
+      <div class="re-fname">Comparativo_coleta_x_simulação_Ago.2026</div>
+      <div class="re-desc">10 pontos de amostragem, 3 coletas por ponto (08h/14h/22h), %CH₄ medido em 30/07 e 04/08/2026.</div>
+    </div>
+    <div class="re-source">
+      <span class="re-tag">Origem — biometano</span>
+      <div class="re-fname">CROM_BIO.xls</div>
+      <div class="re-desc">Cromatógrafo em linha da ETC Jaboatão 2, leitura diária de %CH₄ e %N₂, 27/07 a 06/08/2026.</div>
+    </div>
+    <div class="re-source">
+      <span class="re-tag">Origem — gás natural</span>
+      <div class="re-fname">CROM_422.xls</div>
+      <div class="re-desc">Cromatógrafo em linha da ETC 422, composição molar completa diária, mesmo período.</div>
+    </div>
+  </div>
+
+  <div class="re-eyebrow">Passo a passo da análise</div>
+  <div class="card re-pipeline">
+    <div class="re-step">
+      <div class="re-num">01</div>
+      <div><h3>Consolidar C1 medido por ponto</h3>
+        <p>Para cada ponto e data, a ferramenta calcula a média das 3 coletas do dia (08h/14h/22h) e o coeficiente de variação entre elas — um CV alto avisa que a amostragem daquele dia foi instável antes mesmo de qualquer comparação com o modelo.</p></div>
+    </div>
+    <div class="re-step">
+      <div class="re-num">02</div>
+      <div><h3>Fixar a composição de referência das correntes</h3>
+        <p>O %CH₄ "puro" de cada corrente de origem pode vir de 4 fontes, selecionáveis na aba <strong>Pontos de amostragem</strong> — o que corresponde a testar diferentes níveis/momentos de injeção:</p>
+        <dl class="re-refmodes">
+          <div class="re-refmode"><dt><span class="chip">amostra composta — casada por data</span></dt>
+            <dd>Análise de laboratório da amostra composta referente à <strong>mesma data</strong> da coleta de campo. Modo padrão da ferramenta.</dd></div>
+          <div class="re-refmode"><dt><span class="chip">amostra composta — média do período</span></dt>
+            <dd>Média das duas amostras compostas disponíveis (30/07 e 04/08) — é o método que a planilha de engenharia original usava.</dd></div>
+          <div class="re-refmode"><dt><span class="chip">cromatógrafo em linha</span></dt>
+            <dd>Leitura diária do cromatógrafo instalado na própria estação de origem, casada com a data da coleta.</dd></div>
+          <div class="re-refmode"><dt><span class="chip">manual</span></dt>
+            <dd>Valor digitado pelo usuário, para simular um cenário hipotético de injeção.</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="re-step">
+      <div class="re-num">03</div>
+      <div><h3>Aplicar o modelo de balanço de massa</h3>
+        <p>Com duas correntes de origem e um ponto de mistura, a fração de biometano é isolada algebricamente a partir do %CH₄ medido — o mesmo raciocínio já usado na planilha de engenharia original, aqui automatizado e reprodutível para qualquer conjunto de coletas.</p>
+        <div class="re-formula">f_bio&nbsp; = &nbsp;(C1<sub>medido</sub> − C1<sub>GN</sub>) / (C1<sub>Bio</sub> − C1<sub>GN</sub>)</div></div>
+    </div>
+    <div class="re-step">
+      <div class="re-num">04</div>
+      <div><h3>Construir o envelope de incerteza</h3>
+        <p>As correntes de origem não são constantes — variam dia a dia. A ferramenta recalcula a fração de biometano nos 4 extremos possíveis (mín./máx. de cada corrente numa janela de ±2 dias da coleta) e usa isso como faixa de tolerância — é o túnel MÍN/MÁX exibido na aba <strong>Visão geral</strong>.</p></div>
+    </div>
+    <div class="re-step">
+      <div class="re-num">05</div>
+      <div><h3>Classificar a aderência de cada ponto</h3>
+        <p>Cada ponto recebe um veredito objetivo — <span class="pill good">aderente</span>, <span class="pill warn">atenção</span> ou <span class="pill crit">fora da faixa</span> — segundo a regra detalhada abaixo, recalculada automaticamente a cada edição de dados.</p></div>
+    </div>
+    <div class="re-step">
+      <div class="re-num">06</div>
+      <div><h3>Correlacionar medido × modelado</h3>
+        <p>Um gráfico de dispersão cruza o %CH₄ médio de cada ponto com a fração de biometano que o modelo atribui a ele, com ajuste linear e R² — a métrica-resumo de quão bem o modelo explica o que foi medido em campo.</p></div>
+    </div>
+    <div class="re-step">
+      <div class="re-num">07</div>
+      <div><h3>Testar o efeito do tempo de trânsito</h3>
+        <p>Gás amostrado num ponto pode ter deixado a origem horas ou dias antes. A ferramenta refaz o cálculo do passo 03 usando a composição da origem defasada em 0 a 3 dias, e mede o quanto essa defasagem move o resultado — aba <strong>Sensibilidade &amp; trânsito</strong>.</p></div>
+    </div>
+  </div>
+
+  <div class="re-eyebrow">Principais resultados desta rodada</div>
+  <div class="grid kpi-row" id="resumoKpis"></div>
+
+  <div class="re-eyebrow">Regra de aderência aplicada</div>
+  <p>A classificação é objetiva e roda automaticamente a cada recálculo — duas camadas, aplicadas nesta ordem:</p>
+  <div class="card" style="overflow-x:auto;">
+    <table class="re-rule-table">
+      <thead><tr><th>Status</th><th>Camada</th><th>Condição</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pill crit">fora da faixa</span></td>
+          <td>1 — física</td>
+          <td>O %CH₄ medido implica uma fração de biometano fora do envelope mín–máx (passo 04) — nem a pior nem a melhor hipótese de composição da origem, dentro da variação real observada, explica a coleta.</td>
+        </tr>
+        <tr>
+          <td><span class="pill warn">atenção</span></td>
+          <td>2 — qualidade do dado</td>
+          <td>Passou na camada física, mas o resultado teve de ser truncado em <code>0–100%</code> (biometano no limite de detecção) <strong>ou</strong> o CV entre as 3 coletas do dia é maior que 3%.</td>
+        </tr>
+        <tr>
+          <td><span class="pill good">aderente</span></td>
+          <td>—</td>
+          <td>Nenhuma das condições acima — o modelo e a coleta concordam dentro da variabilidade esperada da origem.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="re-footnote">O desvio contra a planilha de engenharia original (coluna "Ref. planilha") fica de fora dessa regra de propósito: reflete uma escolha de metodologia de referência diferente, não um erro do modelo — entra só como métrica de auditoria (MAE), não como critério de status.</p>
+
+  <div class="re-eyebrow">Leitura dos achados</div>
+  <div class="card prose" id="resumoReadout"></div>
+  <div class="note" id="resumoTransitNote" style="margin-top:12px;"></div>
+
+  <div class="re-eyebrow">Recomendações</div>
+  <ul class="re-recs" id="resumoRecs"></ul>
+
+  <div class="re-footer">Aderência Biometano × Simulação — Ago/2026 · dados e metodologia completos nas demais abas desta ferramenta</div>
 </section>
 
 <!-- ================= DADOS BRUTOS ================= -->
@@ -623,50 +809,37 @@ function renderScatter(){
   });
 }
 
-const errorBarPlugin = {
-  id:'errorBar',
-  afterDatasetsDraw(chart){
-    const rows = chart.config._errorRows;
-    if(!rows) return;
-    const {ctx:c, scales} = chart;
-    c.save();
-    c.strokeStyle = inkColor(); c.lineWidth = 1.4;
-    rows.forEach((r,i)=>{
-      if(r.env.min===null) return;
-      const y = chart.getDatasetMeta(0).data[i].y;
-      const x1 = scales.x.getPixelForValue(r.env.min*100);
-      const x2 = scales.x.getPixelForValue(r.env.max*100);
-      c.beginPath(); c.moveTo(x1,y); c.lineTo(x2,y); c.stroke();
-      [x1,x2].forEach(x=>{ c.beginPath(); c.moveTo(x,y-4); c.lineTo(x,y+4); c.stroke(); });
-    });
-    c.restore();
-  }
-};
-
-function renderRange(){
-  destroyChart('range');
-  const ctx = document.getElementById('chartRange');
+/* túnel de aderência: MÍN/MÁX do envelope + marcador do resultado, por ponto */
+function renderTunnels(){
+  const el = document.getElementById('tunnelList');
   const sorted = [...computed].sort((a,b)=>a.fbio-b.fbio);
-  const labels = sorted.map(c=>c.nome);
-  const vals = sorted.map(c=>c.fbio*100);
-  charts.range = new Chart(ctx,{
-    type:'bar',
-    data:{ labels, datasets:[
-      { label:'% Biometano', data:vals, backgroundColor: sorted.map(c=>c.status==='crit'?statusCrit():c.status==='warn'?statusWarn():accentGn()), borderRadius:4, barThickness:16 }
-    ]},
-    plugins:[errorBarPlugin],
-    options:{
-      indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{display:false},
-        tooltip:{callbacks:{ label:(c)=>{
-          const i=c.dataIndex, r=sorted[i];
-          const range = r.env.min!==null ? ` (faixa ${(r.env.min*100).toFixed(1)}–${(r.env.max*100).toFixed(1)}%)` : '';
-          return `${(r.fbio*100).toFixed(1)}% biometano${range}`; }}}
-      },
-      scales:{ x:{title:{display:true,text:'% Biometano'}, grid:gridOpt()}, y:{grid:{display:false}} }
-    }
-  });
-  charts.range.config._errorRows = sorted;
+  const domainMax = Math.max(20, Math.ceil((Math.max(...sorted.map(c=>Math.max(c.env.max!==null?c.env.max:c.fbio, c.fbio)))*100 + 6)/10)*10);
+  el.innerHTML = sorted.map(c=>{
+    const min = c.env.min!==null ? c.env.min*100 : c.fbio*100;
+    const max = c.env.max!==null ? c.env.max*100 : c.fbio*100;
+    const result = c.fbio*100;
+    const pct = v => (v/domainMax*100);
+    const color = c.status==='crit'?'var(--status-crit)': c.status==='warn'?'var(--status-warn)':'var(--accent-gn)';
+    const colorSoft = c.status==='crit'?'var(--status-crit-soft)': c.status==='warn'?'var(--status-warn-soft)':'var(--accent-gn-soft)';
+    return `
+      <div class="tunnel-row">
+        <div class="tunnel-head">
+          <span class="tunnel-name">${c.nome}</span>
+          ${statusPill(c.status)}
+        </div>
+        <div class="tunnel-track">
+          <div class="tunnel-band" style="left:${pct(min)}%;width:${pct(max-min)}%;background:${colorSoft};border-color:${color};"></div>
+          <div class="tunnel-tick" style="left:${pct(min)}%;"></div>
+          <div class="tunnel-tick" style="left:${pct(max)}%;"></div>
+          <div class="tunnel-marker" style="left:${pct(result)}%;background:${color};" title="MÍN ${min.toFixed(1)}% · Resultado ${result.toFixed(1)}% · MÁX ${max.toFixed(1)}%"></div>
+        </div>
+        <div class="tunnel-labels mono">
+          <span>MÍN ${min.toFixed(1)}%</span>
+          <span class="result" style="color:${color};">Resultado ${result.toFixed(1)}%</span>
+          <span>MÁX ${max.toFixed(1)}%</span>
+        </div>
+      </div>`;
+  }).join('');
 }
 
 function renderSeries(){
@@ -819,6 +992,24 @@ function exportCsv(){
   a.click();
 }
 
+/* ---------- resumo executivo (espelha KPIs/leitura já calculados) ---------- */
+function renderResumo(){
+  document.getElementById('resumoKpis').innerHTML = document.getElementById('kpiRow').innerHTML;
+  document.getElementById('resumoReadout').innerHTML = document.getElementById('readout').innerHTML;
+  document.getElementById('resumoTransitNote').innerHTML = document.getElementById('transitNote').innerHTML;
+
+  const critPoints = computed.filter(c=>c.status==='crit');
+  const rec1 = critPoints.length
+    ? `<b>Investigar em campo o(s) ponto(s) fora do envelope</b> — ${critPoints.map(c=>c.nome).join(', ')}: confirmar se estão de fato recebendo pouco/nenhum biometano (posição na rede) ou se há um problema de calibração/referência específico dessa medição.`
+    : `<b>Nenhum ponto está fora do envelope nesta rodada</b> — manter o monitoramento nas próximas campanhas de coleta para confirmar que a aderência se mantém.`;
+  const recs = [
+    rec1,
+    `<b>Estimar o tempo de trânsito hidráulico real</b> por ponto (traçador ou cálculo de tempo de residência) para substituir a análise de sensibilidade por defasagem por um valor calibrado — deve reduzir o desvio remanescente.`,
+    `<b>Rodar a ferramenta a cada nova campanha de coleta</b>, mantendo a mesma referência de correntes entre rodadas, para acompanhar a aderência do modelo como série histórica em vez de fotografia única.`
+  ];
+  document.getElementById('resumoRecs').innerHTML = recs.map((r,i)=>`<li><span class="n">0${i+1}</span><span>${r}</span></li>`).join('');
+}
+
 /* ---------- orquestração ---------- */
 function recomputeAndRenderAll(){
   recompute();
@@ -826,11 +1017,12 @@ function recomputeAndRenderAll(){
   renderReadout();
   renderPontosTable();
   renderScatter();
-  renderRange();
+  renderTunnels();
   renderLag();
   renderIntraday();
   renderDispersao();
   renderTransitNote();
+  renderResumo();
 }
 
 function addPoint(){
@@ -865,13 +1057,14 @@ renderKpis();
 renderReadout();
 renderPontosTable();
 renderScatter();
-renderRange();
+renderTunnels();
 renderSeries();
 renderComposto();
 renderLag();
 renderIntraday();
 renderDispersao();
 renderTransitNote();
+renderResumo();
 renderRawTables();
 </script>
 </body>
