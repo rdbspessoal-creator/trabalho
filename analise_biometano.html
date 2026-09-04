@@ -321,6 +321,15 @@ input[type=number]{width:88px;}
   body.printing .rowbtn{display:none !important;}
   a{color:var(--accent-gn);text-decoration:none;}
 }
+
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+  max-width:min(92vw,480px);background:var(--ink);color:var(--surface);
+  font-size:12.5px;line-height:1.5;padding:12px 16px;border-radius:9px;box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;z-index:100;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media (prefers-reduced-motion:reduce){.toast{transition:none;}}
 </style>
 </head>
 <body>
@@ -1043,21 +1052,114 @@ function exportCsv(){
 }
 
 /* ---------- exportar relatório em PDF (impressão com todas as abas) ---------- */
-function exportPdf(){
-  const activeBtn = document.querySelector('#tabs button.active');
+function showToast(msg){
+  let t = document.getElementById('toast');
+  if(!t){
+    t = document.createElement('div');
+    t.id = 'toast';
+    t.className = 'toast';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._hideTimer);
+  t._hideTimer = setTimeout(()=>t.classList.remove('show'), 6500);
+}
+
+function printMetaStamp(){
   const now = new Date();
   const stamp = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
-  document.getElementById('printMeta').textContent = `Gerado em ${stamp} · ${computed.length} pontos de amostragem · referência: ${document.getElementById('refMode').selectedOptions[0].textContent}`;
+  return `Gerado em ${stamp} · ${computed.length} pontos de amostragem · referência: ${document.getElementById('refMode').selectedOptions[0].textContent}`;
+}
+
+/* imprime a própria página (funciona ao abrir o arquivo direto no navegador; costuma ser bloqueado dentro do iframe do Artifact) */
+function printInPlace(){
+  document.getElementById('printMeta').textContent = printMetaStamp();
   document.body.classList.add('printing');
   const restore = () => {
     document.body.classList.remove('printing');
     window.removeEventListener('afterprint', restore);
   };
   window.addEventListener('afterprint', restore);
-  // dá tempo dos gráficos, criados enquanto a aba estava oculta, se redimensionarem antes de imprimir
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     Object.values(charts).forEach(c=>{ try{ c.resize(); } catch(e){} });
-    setTimeout(()=>window.print(), 200);
+    setTimeout(()=>{
+      try{ window.print(); }
+      catch(e){ restore(); showToast('Não foi possível abrir a impressão aqui. Abra este arquivo diretamente no navegador (fora do Claude.ai) para exportar o PDF.'); }
+    }, 200);
+  }));
+}
+
+/* abre o relatório numa aba própria (fora do iframe restrito do Artifact) e imprime a partir dela */
+function buildReportDoc(win){
+  document.getElementById('printMeta').textContent = printMetaStamp();
+
+  const clone = document.querySelector('main').cloneNode(true);
+  const cloneCover = clone.querySelector('.print-cover');
+  if(cloneCover) cloneCover.remove();
+  clone.querySelectorAll('canvas').forEach(cv=>{
+    const original = document.getElementById(cv.id);
+    const chart = (window.Chart && Chart.getChart) ? Chart.getChart(original) : null;
+    const img = document.createElement('img');
+    img.src = chart ? chart.toBase64Image() : '';
+    img.style.cssText = 'width:100%;height:auto;';
+    cv.replaceWith(img);
+  });
+  clone.querySelectorAll('input, select').forEach(inp=>{
+    const span = document.createElement('span');
+    span.textContent = inp.tagName === 'SELECT' ? inp.selectedOptions[0].textContent : inp.value;
+    inp.replaceWith(span);
+  });
+  clone.querySelectorAll('.controls, .rowbtn, button').forEach(el=>el.remove());
+  clone.querySelectorAll('section.view').forEach(s=>s.classList.add('active'));
+
+  const styles = Array.from(document.querySelectorAll('style')).map(s=>s.outerHTML).join('\n');
+  const fontLinks = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(l=>l.outerHTML).join('\n');
+  const cover = document.querySelector('.print-cover').outerHTML;
+
+  win.document.open();
+  win.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<title>Aderência Biometano — Relatório</title>
+${fontLinks}
+${styles}
+</head><body class="printing">${cover}${clone.innerHTML}</body></html>`);
+  win.document.close();
+  win.focus();
+
+  const doPrint = () => { try{ win.print(); } catch(e){ showToast('A aba do relatório abriu, mas não foi possível iniciar a impressão automaticamente — use Ctrl/Cmd+P nela para salvar como PDF.'); } };
+  if(win.document.readyState === 'complete') setTimeout(doPrint, 350);
+  else win.addEventListener('load', ()=>setTimeout(doPrint, 350));
+}
+
+function exportPdf(){
+  let win;
+  try{ win = window.open('', '_blank'); }
+  catch(e){ win = null; }
+
+  if(!win){
+    printInPlace();
+    return;
+  }
+
+  // gráficos de abas nunca visitadas ainda têm canvas 0×0 — mostra todas as abas
+  // brevemente para elas se redimensionarem antes de capturar as imagens
+  const activeSection = document.querySelector('section.view.active');
+  const allSections = document.querySelectorAll('section.view');
+  allSections.forEach(s=>s.classList.add('active'));
+
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    Object.values(charts).forEach(c=>{ try{ c.resize(); } catch(e){} });
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      try{
+        buildReportDoc(win);
+      }catch(e){
+        try{ win.close(); }catch(e2){}
+        printInPlace();
+      }finally{
+        allSections.forEach(s=>s.classList.remove('active'));
+        if(activeSection) activeSection.classList.add('active');
+      }
+    }));
   }));
 }
 
